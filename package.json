@@ -1,0 +1,37 @@
+{
+  "name": "health-product",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/lib/forms.test.ts"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "nodemailer": "^10.0.12",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^7.0.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  },
+  "allowScripts": {
+    "@next/swc-win32-x64-msvc": true,
+    "@tailwindcss/oxide-win32-x64-msvc": true,
+    "lightningcss-win32-x64-msvc": true,
+    "next": true
+  }
+}
