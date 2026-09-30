@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { msPageMetadata } from "@/lib/ms-page-metadata";
@@ -21,10 +22,10 @@ export const metadata: Metadata = msPageMetadata(
 
 const sections = [
   {
-    title: "Apa yang sebenarnya dicari pasangan di Malaysia",
+    title: "Kenapa halaman ini ditulis",
     body: [
-      "Ramai lelaki di Malaysia mencari cara untuk berasa lebih yakin di rumah, bukan untuk menjadi orang lain. Isteri dan suami yang bahagia biasanya tidak meminta keajaiban. Mereka mahu kehadiran, kesabaran, dan rasa dihormati. Kesihatan lelaki dalam erti kata luas bermula di situ: tidur yang cukup, kerja yang tidak menelan seluruh petang, dan keupayaan untuk bercakap tanpa marah.",
-      "Laman seperti ensiklopedia kesihatan mendapat trafik tinggi kerana orang taip gejala — sakit kepala sebelah kiri, ubat sakit gigi, atau soalan intim. Itu model hospital digital. Lebih Yakin bukan hospital. Kami menjual katalog kesejahteraan lelaki dengan harga jelas, dan kami menulis tentang hubungan kerana itulah konteks pelanggan kami: suami yang mahu jaga diri tanpa memalukan pasangan.",
+      "Kebanyakan pasangan tidak mahu syarahan. Mereka mahu rumah yang lebih lembut selepas hari yang panjang. Artikel ini untuk harapan yang senyap itu: suami yang mahu hadir, isteri yang mahu dirasai, dan perkahwinan yang masih ada ruang untuk bernafas.",
+      "Lebih Yakin menjual katalog kecil kesejahteraan lelaki — Magnum Pump, Ultrahot, Horsemen dan Hammer of Thor. Kami menulis tentang kehidupan berumahtangga kerana itulah dunia pelanggan kami. Ini bukan klinik, dan ini bukan janji bahawa sebarang produk boleh membaiki hubungan.",
     ],
   },
   {
@@ -45,13 +46,13 @@ const sections = [
     title: "Penjagaan diri tanpa tekanan iklan",
     body: [
       "Iklan kesihatan lelaki di Malaysia sering menggunakan bahasa yang memalukan. Kami elakkan itu. Harga di Lebih Yakin ialah RM159 setiap produk. Penghantaran percuma ke seluruh Malaysia. COD tersedia selepas destinasi disahkan. Pesanan dihantar melalui e-mel ke producth006@gmail.com.",
-      "Pilih produk hanya jika anda mahu memilikinya, bukan kerana takut ketinggalan. Bandingkan nama pada bungkusan. Jangan percaya dakwaan “lulus” atau “asli luar negara” tanpa dokumen. Kedai yang jujur akan katakan apa yang belum mereka tahu.",
+      "Pilih produk hanya jika anda mahu memilikinya, bukan kerana takut ketinggalan. Bandingkan nama pada bungkusan. Jangan percaya dakwaan lulus atau asli luar negara tanpa dokumen. Kedai yang jujur akan katakan apa yang belum mereka tahu.",
     ],
   },
   {
     title: "Apabila badan memberi isyarat",
     body: [
-      "Sakit kepala yang berulang, gigi yang sakit, atau perubahan tiba-tiba pada badan bukan topik untuk halaman produk. Itu topik klinik. Cari sumber perubatan yang sah atau berjumpa doktor. Jangan guna artikel hubungan sebagai diagnosis.",
+      "Sakit yang berulang atau perubahan tiba-tiba pada badan bukan topik untuk halaman produk. Itu topik klinik. Cari sumber perubatan yang sah atau berjumpa doktor. Jangan guna artikel hubungan sebagai diagnosis.",
       "Yang relevan dengan laman ini ialah: lelaki yang jaga kesihatan asas — makan, tidur, pergerakan, dan pemeriksaan jika perlu — biasanya lebih mudah hadir dalam perkahwinan. Itu sahaja kaitan yang jujur.",
     ],
   },
@@ -74,6 +75,16 @@ export default function MarriageArticlePage() {
           <h1>Perkahwinan bahagia bermula<br /><em>dengan kehadiran, bukan janji iklan.</em></h1>
           <p>Bacaan untuk suami dan isteri di Malaysia yang mahu kesihatan lelaki, keyakinan dan rumah tangga yang lebih tenang. Ini maklumat gaya hidup, bukan nasihat perubatan.</p>
         </header>
+        <figure className="blog-hero-photo">
+          <Image
+            src="/blog/couple-sunset.webp"
+            alt="Pasangan suami isteri duduk bersama di pantai waktu senja"
+            width={1600}
+            height={1000}
+            priority
+          />
+          <figcaption>Masa bersama biasanya lebih senyap daripada yang digambarkan iklan.</figcaption>
+        </figure>
         {sections.map((section) => (
           <section className="blog-article" key={section.title}>
             <div className="blog-article-content">
