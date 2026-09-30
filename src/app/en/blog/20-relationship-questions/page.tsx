@@ -34,7 +34,7 @@ export default function RelationshipQuestionsEnPage() {
         </header>
         <figure className="blog-hero-photo" style={{ width: "100%", maxWidth: 920, margin: "0 auto 2rem" }}>
           <img
-            src="/blog/couple-sunset.jpg"
+            src="/image%20(64).jpg"
             alt="A married couple sitting on the beach at sunset"
             width={1600}
             height={1000}
