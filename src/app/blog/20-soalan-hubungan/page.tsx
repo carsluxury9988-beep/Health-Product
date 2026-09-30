@@ -39,7 +39,7 @@ export default function RelationshipQuestionsPage() {
         </header>
         <figure className="blog-hero-photo" style={{ width: "100%", maxWidth: 920, margin: "0 auto 2rem" }}>
           <img
-            src="/blog/couple-sunset.jpg"
+            src="/image%20(64).jpg"
             alt="Pasangan suami isteri duduk di pantai waktu senja"
             width={1600}
             height={1000}
