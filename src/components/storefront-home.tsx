@@ -12,6 +12,9 @@ export function StorefrontHome({ locale }: { locale: Locale }) {
   const paths = locale === "en"
     ? { products: "/en/products", order: "/en/order", about: "/en/about-us", contact: "/en/contact", faq: "/en/faq" }
     : { products: "/produk", order: "/pesanan", about: "/tentang-kami", contact: "/hubungi-kami", faq: "/soalan-lazim" };
+  const catalogueLine = locale === "ms"
+    ? "Magnum Pump, Ultrahot, Horsemen dan Hammer of Thor — RM159, COD, hantar percuma ke seluruh Malaysia."
+    : "Magnum Pump, Ultrahot, Horsemen and Hammer of Thor — RM159, COD, free delivery across Malaysia.";
 
   return (
     <main id="main-content">
@@ -19,6 +22,7 @@ export function StorefrontHome({ locale }: { locale: Locale }) {
         <div className="hero-copy container">
           <p className="eyebrow"><span className="eyebrow-line" /> {t.home.eyebrow}</p>
           <h1>{t.home.heroTitleLine1}<br /><em>{t.home.heroTitleLine2}</em></h1>
+          <p className="hero-description">{catalogueLine}</p>
           <p className="hero-description">{t.home.description}</p>
           <div className="hero-actions">
             <Link className="button button-dark" href={paths.products}>{t.home.primaryCta} <span aria-hidden="true">↗</span></Link>
