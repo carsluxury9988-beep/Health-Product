@@ -75,15 +75,8 @@ export default function MarriageArticlePage() {
           <h1>Perkahwinan bahagia bermula<br /><em>dengan kehadiran, bukan janji iklan.</em></h1>
           <p>Bacaan untuk suami dan isteri di Malaysia yang mahu kesihatan lelaki, keyakinan dan rumah tangga yang lebih tenang. Ini maklumat gaya hidup, bukan nasihat perubatan.</p>
         </header>
-        <figure className="blog-hero-photo">
-          <Image
-            src="/blog/couple-sunset.webp"
-            alt="Pasangan suami isteri duduk bersama di pantai waktu senja"
-            width={1600}
-            height={1000}
-            priority
-          />
-          <figcaption>Masa bersama biasanya lebih senyap daripada yang digambarkan iklan.</figcaption>
+        <figure className="blog-hero-photo" style={{ position: "relative", width: "100%", maxWidth: 920, aspectRatio: "16 / 10", margin: "0 auto 2rem" }}>
+          <Image src="/home-couple.webp" alt="Pasangan suami isteri duduk bersama" fill sizes="(max-width: 920px) 100vw, 920px" priority style={{ objectFit: "cover" }} />
         </figure>
         {sections.map((section) => (
           <section className="blog-article" key={section.title}>
