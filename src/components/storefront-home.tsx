@@ -10,8 +10,8 @@ import { formatPrice } from "@/lib/format";
 export function StorefrontHome({ locale }: { locale: Locale }) {
   const t = getMessages(locale);
   const paths = locale === "en"
-    ? { products: "/en/products", order: "/en/order", about: "/en/about-us", contact: "/en/contact", faq: "/en/faq" }
-    : { products: "/produk", order: "/pesanan", about: "/tentang-kami", contact: "/hubungi-kami", faq: "/soalan-lazim" };
+    ? { products: "/en/products", order: "/en/order", about: "/en/about-us", contact: "/en/contact", faq: "/en/faq", blog: "/en/blog/20-relationship-questions" }
+    : { products: "/produk", order: "/pesanan", about: "/tentang-kami", contact: "/hubungi-kami", faq: "/soalan-lazim", blog: "/blog/20-soalan-hubungan" };
   const catalogueLine = locale === "ms"
     ? "Magnum Pump, Ultrahot, Horsemen dan Hammer of Thor — RM159, COD, hantar percuma ke seluruh Malaysia."
     : "Magnum Pump, Ultrahot, Horsemen and Hammer of Thor — RM159, COD, free delivery across Malaysia.";
@@ -26,6 +26,7 @@ export function StorefrontHome({ locale }: { locale: Locale }) {
           <p className="hero-description">{t.home.description}</p>
           <div className="hero-actions">
             <Link className="button button-dark" href={paths.products}>{t.home.primaryCta} <span aria-hidden="true">↗</span></Link>
+            <Link className="button button-dark" href={paths.blog}>{t.nav.blog} <span aria-hidden="true">↗</span></Link>
             <Link className="text-link" href={paths.order}>{t.home.secondaryCta} <span aria-hidden="true">→</span></Link>
           </div>
           <div className="hero-note"><span className="note-mark" aria-hidden="true">✳</span><span>{formatPrice(products[0].price)} <i>·</i> {t.common.deliveryShort} <i>·</i> {t.common.codShort}</span></div>
@@ -84,7 +85,7 @@ export function StorefrontHome({ locale }: { locale: Locale }) {
             <p className="eyebrow eyebrow-light"><span className="eyebrow-line" /> {t.home.relationshipEyebrow}</p>
             <h2>{t.home.relationshipTitleLine1}<br /><em>{t.home.relationshipTitleLine2}</em></h2>
             <p>{t.home.relationshipBody}</p>
-            <Link className="button button-light" href={paths.products}>{t.home.relationshipCta} <span aria-hidden="true">↗</span></Link>
+            <Link className="button button-light" href={paths.blog}>{t.nav.blog} <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
       </section>
