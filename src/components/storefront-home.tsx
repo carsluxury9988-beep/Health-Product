@@ -10,11 +10,38 @@ import { formatPrice } from "@/lib/format";
 export function StorefrontHome({ locale }: { locale: Locale }) {
   const t = getMessages(locale);
   const paths = locale === "en"
-    ? { products: "/en/products", order: "/en/order", about: "/en/about-us", contact: "/en/contact", faq: "/en/faq", blog: "/en/blog/20-relationship-questions" }
-    : { products: "/produk", order: "/pesanan", about: "/tentang-kami", contact: "/hubungi-kami", faq: "/soalan-lazim", blog: "/blog/20-soalan-hubungan" };
+    ? {
+        products: "/en/products",
+        order: "/en/order",
+        about: "/en/about-us",
+        contact: "/en/contact",
+        faq: "/en/faq",
+        blog: "/en/blog",
+        articleOne: "/en/blog/20-relationship-questions",
+        articleTwo: "/en/blog/happy-marriage",
+      }
+    : {
+        products: "/produk",
+        order: "/pesanan",
+        about: "/tentang-kami",
+        contact: "/hubungi-kami",
+        faq: "/soalan-lazim",
+        blog: "/blog",
+        articleOne: "/blog/20-soalan-hubungan",
+        articleTwo: "/blog/hubungan-bahagia",
+      };
   const catalogueLine = locale === "ms"
     ? "Magnum Pump, Ultrahot, Horsemen dan Hammer of Thor — RM159, COD, hantar percuma ke seluruh Malaysia."
     : "Magnum Pump, Ultrahot, Horsemen and Hammer of Thor — RM159, COD, free delivery across Malaysia.";
+  const blogCards = locale === "ms"
+    ? [
+        { href: paths.articleOne, title: "20 soalan hubungan suami isteri", body: "Klik setiap soalan untuk jawapan panjang tentang rumah tangga, keyakinan dan penjagaan diri." },
+        { href: paths.articleTwo, title: "Perkahwinan bahagia bermula dengan kehadiran", body: "Bacaan tentang hubungan yang lebih tenang, tanpa janji iklan." },
+      ]
+    : [
+        { href: paths.articleOne, title: "20 questions about a calmer marriage", body: "Open each question for a full answer on closeness, fitness, confidence and privacy." },
+        { href: paths.articleTwo, title: "A calmer marriage starts with presence", body: "A longer article on married life, without medical claims." },
+      ];
 
   return (
     <main id="main-content">
@@ -52,6 +79,31 @@ export function StorefrontHome({ locale }: { locale: Locale }) {
           </div>
           <ProductGrid locale={locale} />
           <p className="catalogue-note"><span aria-hidden="true">i</span> {t.home.imageNotice}</p>
+        </div>
+      </section>
+
+      <section className="section home-blog-section" id="blog">
+        <div className="container">
+          <div className="section-heading-row">
+            <div>
+              <p className="eyebrow"><span className="eyebrow-line" /> {t.nav.blog}</p>
+              <h2>{locale === "ms" ? <>Bacaan untuk<br /><em>rumah tangga.</em></> : <>Reading for<br /><em>married life.</em></>}</h2>
+            </div>
+            <p className="section-intro">{locale === "ms" ? "Setiap artikel ada halaman sendiri. Buka soalan untuk jawapan penuh." : "Each article has its own page. Open a question for the full answer."}</p>
+          </div>
+          <div className="related-link-grid">
+            {blogCards.map((card) => (
+              <Link className="related-link" href={card.href} key={card.href}>
+                <span>
+                  <strong>{card.title}</strong>
+                  <br />
+                  {card.body}
+                </span>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+          <p style={{ marginTop: "1.25rem" }}><Link className="text-link" href={paths.blog}>{locale === "ms" ? "Lihat semua blog" : "See all journal pages"} <span aria-hidden="true">↗</span></Link></p>
         </div>
       </section>
 
