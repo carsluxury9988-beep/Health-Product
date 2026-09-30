@@ -27,6 +27,7 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
+  const paragraphs = product.description.split("\n\n");
 
   const productSchema = {
     "@context": "https://schema.org",
@@ -49,9 +50,9 @@ export default async function ProductPage({ params }: Props) {
         <div className="product-detail-art"><ProductArtwork name={product.name} images={product.images} locale="en" preload /></div>
         <div className="product-detail-copy">
           <p className="eyebrow"><span className="eyebrow-line" /> Product details</p>
-          <h1>{product.name}</h1>
+          <h1>{product.name} Malaysia</h1>
           <p className="product-detail-price">{formatPrice(product.price)} <span>MYR</span></p>
-          <p className="product-detail-description">{product.description}</p>
+          {paragraphs.map((paragraph) => <p className="product-detail-description" key={paragraph}>{paragraph}</p>)}
           <p className="availability-note"><span className="status-dot" /> Availability will be confirmed with your order request.</p>
           <div className="product-detail-facts">
             <div><span>Delivery</span><strong>{store.deliveryLabel}</strong></div>
@@ -72,11 +73,11 @@ export default async function ProductPage({ params }: Props) {
       <section className="section product-information-section">
         <div className="container product-information-grid">
           <div>
-            <p className="eyebrow"><span className="eyebrow-line" /> Product information</p>
-            <h2>Clear details,<br /><em>when confirmed.</em></h2>
+            <p className="eyebrow"><span className="eyebrow-line" /> How to buy</p>
+            <h2>Buy {product.name}<br /><em>in Malaysia.</em></h2>
           </div>
           <div className="information-list">
-            <article><h3>Product overview</h3><p>{product.description}</p></article>
+            <article><h3>Product overview</h3><p>{paragraphs[0]}</p></article>
             <article><h3>Benefits</h3><p>Official product information will be updated from the packaging. We do not publish unverified benefits or claims.</p></article>
             <article><h3>Ingredients & usage</h3><p>Ingredients and usage instructions have not been supplied. Please follow the manufacturer's label instructions when available.</p></article>
             <article><h3>Safety information</h3><p>Warnings and manufacturer details are not yet available. Please read the official packaging and seek advice from a qualified healthcare professional if you have a health question.</p></article>
