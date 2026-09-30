@@ -15,6 +15,7 @@ const staticPaths = [
   "/polisi-pemulangan",
   "/blog",
   "/blog/hubungan-bahagia",
+  "/blog/20-soalan-hubungan",
 ];
 const englishPaths: Record<string, string> = {
   "/": "/en",
@@ -29,6 +30,7 @@ const englishPaths: Record<string, string> = {
   "/polisi-pemulangan": "/en/refund-policy",
   "/blog": "/en/blog",
   "/blog/hubungan-bahagia": "/en/blog/happy-marriage",
+  "/blog/20-soalan-hubungan": "/en/blog/20-relationship-questions",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
