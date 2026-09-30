@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { products } from "@/config/products";
+import { products, getProduct } from "@/config/products";
 import { store } from "@/config/store";
+import { openShopEmail } from "@/lib/mailto";
 import { trackEvent } from "@/lib/analytics";
 import { getMessages, type Locale } from "@/i18n";
 
@@ -12,44 +13,48 @@ export function ContactForm({ locale = "en" }: { locale?: Locale }) {
   const privacyPath = locale === "en" ? "/en/privacy-policy" : "/polisi-privasi";
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
-    setSubmitting(true);
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
-    const message = {
-      name: form.get("name"),
-      email: form.get("email"),
-      phone: form.get("phone"),
-      product: form.get("product"),
-      message: form.get("message"),
-      privacyConsent: form.get("privacyConsent") === "on",
-      website: form.get("website"),
-      locale,
-    };
+    if (String(form.get("website") ?? "").trim()) return;
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Site-Locale": locale },
-        body: JSON.stringify(message),
-      });
-      const result = (await response.json()) as { message?: string; error?: string };
-      if (!response.ok) {
-        setError(result.error ?? t.contact.errors.fallback);
-        return;
-      }
-      trackEvent("contact_submit");
-      setSent(true);
-      formElement.reset();
-    } catch {
-      setError(t.contact.errors.network);
-    } finally {
-      setSubmitting(false);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const phone = String(form.get("phone") ?? "").trim();
+    const productSlug = String(form.get("product") ?? "");
+    const message = String(form.get("message") ?? "").trim();
+    const product = getProduct(productSlug);
+
+    if (name.length < 2 || !email.includes("@") || message.length < 10) {
+      setError(t.contact.errors.fallback);
+      return;
     }
+    if (form.get("privacyConsent") !== "on") {
+      setError(t.contact.errors.consent);
+      return;
+    }
+
+    const subject = locale === "ms"
+      ? `Pertanyaan dari ${name}${product ? ` — ${product.name}` : ""}`
+      : `Enquiry from ${name}${product ? ` — ${product.name}` : ""}`;
+    const body = [
+      locale === "ms" ? "Pertanyaan dari lebihyakin.my" : "Enquiry from lebihyakin.my",
+      "",
+      `${locale === "ms" ? "Nama" : "Name"}: ${name}`,
+      `Email: ${email}`,
+      phone ? `${locale === "ms" ? "Telefon" : "Phone"}: ${phone}` : "",
+      product ? `${locale === "ms" ? "Produk" : "Product"}: ${product.name}` : "",
+      "",
+      message,
+    ].filter(Boolean).join("\n");
+
+    openShopEmail(subject, body);
+    trackEvent("contact_submit");
+    setSent(true);
+    formElement.reset();
   }
 
   if (sent) {
@@ -57,7 +62,7 @@ export function ContactForm({ locale = "en" }: { locale?: Locale }) {
       <div className="form-card form-success" role="status">
         <span className="success-mark" aria-hidden="true">✓</span>
         <h2>{t.contact.sentTitle}</h2>
-        <p>{t.contact.sentBody}</p>
+        <p>{locale === "ms" ? `E-mel anda dibuka kepada ${store.contactEmail}. Hantar mesej itu dari peti masuk anda.` : `Your email app opened to ${store.contactEmail}. Send the message from your inbox.`}</p>
         <button className="text-link" type="button" onClick={() => setSent(false)}>{t.contact.another}</button>
       </div>
     );
@@ -87,8 +92,8 @@ export function ContactForm({ locale = "en" }: { locale?: Locale }) {
         <span>{t.contact.consent} <Link href={privacyPath}>{t.common.privacy}</Link>.</span>
       </label>
       {error && <p className="form-error" role="alert">{error}</p>}
-      <button className="button button-dark form-submit" type="submit" disabled={submitting}>
-        {submitting ? t.contact.submitting : t.contact.submit} <span aria-hidden="true">↗</span>
+      <button className="button button-dark form-submit" type="submit">
+        {t.contact.submit} <span aria-hidden="true">↗</span>
       </button>
       <p className="form-note">{t.contact.preferEmail} <a href={`mailto:${store.contactEmail}`}>{store.contactEmail}</a>.</p>
     </form>
