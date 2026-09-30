@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) return {};
-  return pageMetadata(product.seoTitle, product.seoDescription, `/en/products/${product.slug}`, "en");
+  return pageMetadata(product.seoTitle, product.seoDescription, `/en/products/${product.slug}`, "en", product.keywords);
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: Props) {
           <div className="information-list">
             <article><h3>Product overview</h3><p>{product.description}</p></article>
             <article><h3>Benefits</h3><p>Official product information will be updated from the packaging. We do not publish unverified benefits or claims.</p></article>
-            <article><h3>Ingredients & usage</h3><p>Ingredients and usage instructions have not been supplied. Please follow the manufacturer&apos;s label instructions when available.</p></article>
+            <article><h3>Ingredients & usage</h3><p>Ingredients and usage instructions have not been supplied. Please follow the manufacturer's label instructions when available.</p></article>
             <article><h3>Safety information</h3><p>Warnings and manufacturer details are not yet available. Please read the official packaging and seek advice from a qualified healthcare professional if you have a health question.</p></article>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default async function ProductPage({ params }: Props) {
             </details>
             <details className="faq-item">
               <summary><span>Where can I find ingredients and usage information?</span><span className="faq-plus" aria-hidden="true" /></summary>
-              <p>Product information will be updated from the official product packaging. Please follow the manufacturer&apos;s label instructions when available.</p>
+              <p>Product information will be updated from the official product packaging. Please follow the manufacturer's label instructions when available.</p>
             </details>
             <details className="faq-item">
               <summary><span>Can I pay by Cash on Delivery?</span><span className="faq-plus" aria-hidden="true" /></summary>
