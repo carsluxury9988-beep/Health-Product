@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { msPageMetadata } from "@/lib/ms-page-metadata";
@@ -38,8 +37,14 @@ export default function RelationshipQuestionsPage() {
           <h1>Dua puluh soalan<br /><em>tentang hubungan yang lebih tenang.</em></h1>
           <p>Klik soalan untuk membaca jawapan. Ini bacaan gaya hidup untuk suami dan isteri di Malaysia, bukan nasihat doktor.</p>
         </header>
-        <figure className="blog-hero-photo" style={{ position: "relative", width: "100%", maxWidth: 920, aspectRatio: "16 / 10", margin: "0 auto 2rem" }}>
-          <Image src="/home-couple.webp" alt="Pasangan duduk bersama semasa senja" fill sizes="(max-width: 920px) 100vw, 920px" priority style={{ objectFit: "cover" }} />
+        <figure className="blog-hero-photo" style={{ width: "100%", maxWidth: 920, margin: "0 auto 2rem" }}>
+          <img
+            src="/blog/couple-sunset.jpg"
+            alt="Pasangan suami isteri duduk di pantai waktu senja"
+            width={1600}
+            height={1000}
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
         </figure>
         <div className="faq-list">
           {relationshipFaq.map((item, index) => (
