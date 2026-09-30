@@ -14,6 +14,7 @@ const staticPaths = [
   "/terma-syarat",
   "/polisi-pemulangan",
   "/blog",
+  "/blog/hubungan-bahagia",
 ];
 const englishPaths: Record<string, string> = {
   "/": "/en",
@@ -27,6 +28,7 @@ const englishPaths: Record<string, string> = {
   "/terma-syarat": "/en/terms",
   "/polisi-pemulangan": "/en/refund-policy",
   "/blog": "/en/blog",
+  "/blog/hubungan-bahagia": "/en/blog/happy-marriage",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -43,13 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       {
       url: new URL(path, store.siteUrl).toString(),
       changeFrequency: path === "/" || path === "/produk" ? "weekly" as const : "monthly" as const,
-      priority: path === "/" ? 1 : path === "/produk" ? 0.9 : 0.6,
+      priority: path === "/" ? 1 : path === "/produk" ? 0.9 : path.includes("blog") ? 0.7 : 0.6,
       alternates: { languages },
       },
       {
         url: new URL(englishPath, store.siteUrl).toString(),
         changeFrequency: path === "/" || path === "/produk" ? "weekly" as const : "monthly" as const,
-        priority: path === "/" ? 1 : path === "/produk" ? 0.9 : 0.6,
+        priority: path === "/" ? 1 : path === "/produk" ? 0.9 : path.includes("blog") ? 0.7 : 0.6,
         alternates: { languages },
       },
     ];
