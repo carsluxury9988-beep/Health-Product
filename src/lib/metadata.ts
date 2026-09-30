@@ -3,14 +3,37 @@ import { store } from "@/config/store";
 import { localizedPath } from "@/i18n/routes";
 import type { Locale } from "@/i18n";
 
+export const malaysiaMarketKeywords = [
+  "produk kesihatan lelaki Malaysia",
+  "suplemen kesihatan lelaki",
+  "kesihatan lelaki Malaysia",
+  "produk kesejahteraan lelaki",
+  "beli produk lelaki online Malaysia",
+  "penghantaran percuma seluruh Malaysia",
+  "COD Malaysia",
+  "bayaran tunai semasa penghantaran",
+  "men's wellness Malaysia",
+  "men's health supplement Malaysia",
+  "men's vitality Malaysia",
+  "Magnum Pump Malaysia",
+  "Ultrahot Malaysia",
+  "Horsemen Malaysia",
+  "Hammer of Thor Malaysia",
+] as const;
+
 export function pageMetadata(
   title: string,
   description: string,
   path: string,
   locale?: Locale,
+  keywords?: readonly string[],
 ): Metadata {
   const pageLocale = locale ?? (path === "/en" || path.startsWith("/en/") ? "en" : "ms");
-  const metadata: Metadata = { title, description };
+  const metadata: Metadata = {
+    title,
+    description,
+    keywords: [...(keywords ?? malaysiaMarketKeywords)],
+  };
 
   const canonicalPath = path === "/" || path === "/en" ? path : path.replace(/\/$/, "");
   const languages = {
