@@ -9,6 +9,7 @@ export function ProductCard({ product, locale = "ms" }: { product: Product; loca
   const t = getMessages(locale);
   const productBase = locale === "en" ? "/en/products" : "/produk";
   const orderPath = locale === "en" ? "/en/order" : "/pesanan";
+  const blurb = locale === "ms" ? product.shortDescriptionMs : product.shortDescription;
   return (
     <article className="product-card">
       <Link className="product-card-image-link" href={`${productBase}/${product.slug}`} aria-label={`${t.nav.view}: ${product.name}`}>
@@ -20,7 +21,8 @@ export function ProductCard({ product, locale = "ms" }: { product: Product; loca
           <h3><Link href={`${productBase}/${product.slug}`}>{product.name}</Link></h3>
           <span className="price">{formatPrice(product.price)}</span>
         </div>
-        <p>{t.home.productDescriptions[product.id] ?? t.common.packaging}</p>
+        <p>{blurb}</p>
+        <p className="product-card-meta">{locale === "ms" ? "Beli online · COD · Penghantaran percuma" : "Buy online · COD · Free delivery"}</p>
         <div className="product-card-actions">
           <TrackedOrderLink className="button button-dark card-order-button" href={`${orderPath}?${locale === "en" ? "product" : "produk"}=${product.slug}`} productId={product.id} productName={product.name} price={product.price}>{t.nav.order} <span aria-hidden="true">↗</span></TrackedOrderLink>
           <Link className="text-link card-details-link" href={`${productBase}/${product.slug}`}>{t.nav.view} <span aria-hidden="true">↗</span></Link>
