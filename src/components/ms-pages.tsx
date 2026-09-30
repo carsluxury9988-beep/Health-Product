@@ -19,7 +19,7 @@ export function MsHomePage() {
 export function MsProductsPage() {
   return (
     <main id="main-content"><Breadcrumbs items={[{ label: "Produk" }]} />
-      <section className="page-hero container"><p className="eyebrow"><span className="eyebrow-line" /> {ms.products.eyebrow}</p><h1>Terokai pilihan<br /><em>kesejahteraan anda.</em></h1><p>{ms.products.description}</p><span className="page-hero-aside">{formatPrice(products[0].price)} setiap produk <i>·</i> {ms.common.delivery} <i>·</i> {ms.common.codShort}</span></section>
+      <section className="page-hero container"><p className="eyebrow"><span className="eyebrow-line" /> {ms.products.eyebrow}</p><h1>Produk kesihatan lelaki<br /><em>di Malaysia.</em></h1><p>Beli Magnum Pump, Ultrahot, Horsemen dan Hammer of Thor secara online. Setiap produk RM159, penghantaran percuma dan COD.</p><span className="page-hero-aside">{formatPrice(products[0].price)} setiap produk <i>·</i> {ms.common.delivery} <i>·</i> {ms.common.codShort}</span></section>
       <section className="section container products-page-grid"><ProductGrid locale="ms" /><p className="catalogue-note"><span aria-hidden="true">i</span> {ms.products.catalogueNote}</p></section>
     </main>
   );
@@ -29,13 +29,14 @@ export function MsProductPage({ slug }: { slug: string }) {
   const product = getProduct(slug);
   if (!product) return null;
   const related = products.filter((item) => item.id !== product.id);
+  const paragraphs = product.descriptionMs.split("\n\n");
   return (
     <main id="main-content"><Breadcrumbs items={[{ label: "Produk", href: "/produk" }, { label: product.name }]} />
       <section className="product-detail container">
         <div className="product-detail-art"><ProductArtwork name={product.name} images={product.images} locale="ms" preload /></div>
         <div className="product-detail-copy">
-          <p className="eyebrow"><span className="eyebrow-line" /> {ms.product.eyebrow}</p><h1>{product.name}</h1><p className="product-detail-price">{formatPrice(product.price)} <span>{ms.product.label}</span></p>
-          <p className="product-detail-description">{ms.common.packaging}</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> {ms.product.eyebrow}</p><h1>{product.name} Malaysia</h1><p className="product-detail-price">{formatPrice(product.price)} <span>{ms.product.label}</span></p>
+          {paragraphs.map((paragraph) => <p className="product-detail-description" key={paragraph}>{paragraph}</p>)}
           <p className="availability-note"><span className="status-dot" /> {ms.common.stockUnknown}</p>
           <div className="product-detail-facts"><div><span>{ms.product.delivery}</span><strong>{ms.common.delivery}</strong></div><div><span>{ms.product.payment}</span><strong>{ms.common.codShort}</strong></div><div><span>{ms.product.info}</span><strong>{ms.product.official}</strong></div></div>
           <Link className="button button-dark product-order-button" href={`/pesanan?produk=${product.slug}`}>{ms.product.order} {product.name} <span aria-hidden="true">↗</span></Link>
@@ -43,8 +44,8 @@ export function MsProductPage({ slug }: { slug: string }) {
         </div>
       </section>
       <section className="section product-information-section"><div className="container product-information-grid">
-        <div><p className="eyebrow"><span className="eyebrow-line" /> {ms.product.sectionEyebrow}</p><h2>Butiran jelas,<br /><em>apabila disahkan.</em></h2></div>
-        <div className="information-list"><article><h3>{ms.product.overview}</h3><p>{ms.common.packaging}</p></article><article><h3>{ms.product.benefits}</h3><p>{ms.product.benefitsText}</p></article><article><h3>{ms.product.ingredients}</h3><p>{ms.product.ingredientsText}</p></article><article><h3>{ms.product.safety}</h3><p>{ms.product.safetyText}</p></article></div>
+        <div><p className="eyebrow"><span className="eyebrow-line" /> {ms.product.sectionEyebrow}</p><h2>Cara beli {product.name}<br /><em>di Malaysia.</em></h2></div>
+        <div className="information-list"><article><h3>{ms.product.overview}</h3><p>{paragraphs[0]}</p></article><article><h3>{ms.product.benefits}</h3><p>{ms.product.benefitsText}</p></article><article><h3>{ms.product.ingredients}</h3><p>{ms.product.ingredientsText}</p></article><article><h3>{ms.product.safety}</h3><p>{ms.product.safetyText}</p></article></div>
       </div></section>
       <section className="section product-faq-section"><div className="container product-faq-layout"><div><p className="eyebrow"><span className="eyebrow-line" /> {ms.product.faqEyebrow}</p><h2>Perkara yang<br /><em>wajar diketahui.</em></h2></div>
         <div className="faq-list"><details className="faq-item"><summary><span>{ms.product.priceQuestion.replace("{name}", product.name)}</span><span className="faq-plus" aria-hidden="true" /></summary><p>{formatPrice(product.price)}. {ms.common.delivery}.</p></details>
@@ -99,5 +100,5 @@ export function MsPolicyPage({ type }: { type: "privacy" | "terms" | "refunds" }
 }
 
 export function MsBlogPage() {
-  return <main id="main-content"><Breadcrumbs items={[{label:"Blog"}]} /><section className="page-hero blog-hero container"><p className="eyebrow"><span className="eyebrow-line" /> {ms.blog.eyebrow}</p><h1>Ruang untuk<br /><em>memahami diri.</em></h1><p>{ms.blog.intro}</p></section><section className="section container blog-list">{ms.blog.articles.map((article,index)=><article className="blog-article" id={`artikel-${index+1}`} key={article.title}><div className="blog-article-aside"><span>0{index+1}</span><span>{article.category}</span></div><div className="blog-article-content"><p className="eyebrow">{article.category}</p><h2>{article.title}</h2><p className="blog-intro">{article.intro}</p>{article.paragraphs.map((paragraph)=><p key={paragraph}>{paragraph}</p>)}<p className="blog-disclaimer">{ms.blog.disclaimer}</p></div></article>)}<aside className="blog-local-note"><p className="eyebrow"><span className="eyebrow-line" /> Untuk komuniti Malaysia</p><p>{ms.blog.localNote}</p></aside></section></main>;
+  return <main id="main-content"><Breadcrumbs items={[{label:"Blog"}]} /><section className="page-hero blog-hero container"><p className="eyebrow"><span className="eyebrow-line" /> {ms.blog.eyebrow}</p><h1>Cara pesan produk<br /><em>kesihatan lelaki.</em></h1><p>{ms.blog.intro}</p></section><section className="section container blog-list">{ms.blog.articles.map((article,index)=><article className="blog-article" id={`artikel-${index+1}`} key={article.title}><div className="blog-article-aside"><span>0{index+1}</span><span>{article.category}</span></div><div className="blog-article-content"><p className="eyebrow">{article.category}</p><h2>{article.title}</h2><p className="blog-intro">{article.intro}</p>{article.paragraphs.map((paragraph)=><p key={paragraph}>{paragraph}</p>)}<p className="blog-disclaimer">{ms.blog.disclaimer}</p></div></article>)}<article className="blog-article" id="cara-pesan"><div className="blog-article-aside"><span>04</span><span>Pesanan COD</span></div><div className="blog-article-content"><p className="eyebrow">Pesanan COD</p><h2>Cara pesan produk kesihatan lelaki di Malaysia (COD)</h2><p className="blog-intro">Tiga langkah: pilih Magnum Pump, Ultrahot, Horsemen atau Hammer of Thor, isi alamat, kemudian hantar e-mel ke producth006@gmail.com.</p><p>Harga setiap produk ialah RM159. Penghantaran percuma ke seluruh Malaysia. Bayaran secara COD selepas kami sahkan destinasi.</p><p>Buka halaman Pesan Sekarang, lengkapkan borang, dan peti e-mel anda akan dibuka dengan butiran pesanan. Tekan hantar. Ini bukan nasihat perubatan.</p><p className="blog-disclaimer">{ms.blog.disclaimer}</p></div></article><aside className="blog-local-note"><p className="eyebrow"><span className="eyebrow-line" /> Untuk komuniti Malaysia</p><p>{ms.blog.localNote}</p></aside></section></main>;
 }
