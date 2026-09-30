@@ -16,7 +16,7 @@ export function SiteHeader() {
   const navigation = [
     { href: locale === "en" ? "/en" : "/", label: t.nav.home },
     { href: locale === "en" ? "/en/products" : "/produk", label: t.nav.products },
-    { href: locale === "en" ? "/en/blog/happy-marriage" : "/blog/hubungan-bahagia", label: t.nav.blog },
+    { href: locale === "en" ? "/en/blog" : "/blog", label: t.nav.blog },
     { href: locale === "en" ? "/en/about-us" : "/tentang-kami", label: t.nav.about },
     { href: locale === "en" ? "/en/faq" : "/soalan-lazim", label: t.nav.faq },
     { href: locale === "en" ? "/en/contact" : "/hubungi-kami", label: t.nav.contact },
