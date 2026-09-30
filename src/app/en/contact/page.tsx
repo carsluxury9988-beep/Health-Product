@@ -6,8 +6,8 @@ import { store } from "@/config/store";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata(
-  "Contact Our Team",
-  "Get in touch about an order or product. Contact Health Product by email or use the customer support form.",
+  "Contact Our Team in Kuala Lumpur",
+  "Email producth006@gmail.com or write to 1, Jalan Metro Prima, Taman Kepong, 52100 Kuala Lumpur. Questions about Magnum Pump, Ultrahot, Horsemen and Hammer of Thor.",
   "/en/contact",
 );
 
@@ -20,11 +20,15 @@ export default function ContactPage() {
       <section className="contact-page container">
         <div className="contact-intro">
           <p className="eyebrow"><span className="eyebrow-line" /> Here to help</p>
-          <h1>We&apos;re here<br /><em>to help.</em></h1>
-          <p>Have a question about an order or one of our products? Contact our team and we&apos;ll be happy to help.</p>
+          <h1>We're here<br /><em>to help.</em></h1>
+          <p>Have a question about an order or one of our products? Contact our team and we'll be happy to help.</p>
           <div className="contact-details">
             <span className="eyebrow">Email</span>
             <a href={`mailto:${store.contactEmail}`}>{store.contactEmail}</a>
+            {store.address && <>
+              <span className="eyebrow contact-availability">Address</span>
+              <p>{store.address}</p>
+            </>}
             {store.phone && <>
               <span className="eyebrow contact-availability">Phone</span>
               <a href={`tel:${store.phone.replace(/[^\d+]/g, "")}`}>{store.phone}</a>
