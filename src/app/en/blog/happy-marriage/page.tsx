@@ -30,15 +30,15 @@ export default function HappyMarriageArticle() {
           <h1>A calmer marriage starts<br /><em>with presence, not a slogan.</em></h1>
           <p>Written for couples in Malaysia who care about men's wellness, confidence and a quieter home. Lifestyle reading only. Not medical advice.</p>
         </header>
-        <figure className="blog-hero-photo">
+        <figure className="blog-hero-photo home-relationship-photo" style={{ position: "relative", width: "100%", maxWidth: 920, aspectRatio: "16 / 10", margin: "0 auto 2rem" }}>
           <Image
-            src="/blog/couple-sunset.webp"
-            alt="A married couple sitting together on the beach at sunset"
-            width={1600}
-            height={1000}
+            src="/home-couple.webp"
+            alt="A married couple sitting close together"
+            fill
+            sizes="(max-width: 920px) 100vw, 920px"
             priority
+            style={{ objectFit: "cover" }}
           />
-          <figcaption>Time together is usually quieter than advertising suggests.</figcaption>
         </figure>
         <section className="blog-article"><div className="blog-article-content">
           <h2>Why this page exists</h2>
