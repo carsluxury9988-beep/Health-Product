@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { pageMetadata } from "@/lib/metadata";
@@ -33,8 +32,14 @@ export default function RelationshipQuestionsEnPage() {
           <h1>Twenty questions<br /><em>for a calmer relationship.</em></h1>
           <p>Open a question to read the full answer. Written for couples in Malaysia. Not medical advice.</p>
         </header>
-        <figure className="blog-hero-photo" style={{ position: "relative", width: "100%", maxWidth: 920, aspectRatio: "16 / 10", margin: "0 auto 2rem" }}>
-          <Image src="/home-couple.webp" alt="A couple sitting together at dusk" fill sizes="(max-width: 920px) 100vw, 920px" priority style={{ objectFit: "cover" }} />
+        <figure className="blog-hero-photo" style={{ width: "100%", maxWidth: 920, margin: "0 auto 2rem" }}>
+          <img
+            src="/blog/couple-sunset.jpg"
+            alt="A married couple sitting on the beach at sunset"
+            width={1600}
+            height={1000}
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
         </figure>
         <div className="faq-list">
           {relationshipFaq.map((item, index) => (
