@@ -6,6 +6,7 @@ import { useState } from "react";
 import { products, getProduct } from "@/config/products";
 import { malaysianStates, malaysianStatesMs, store } from "@/config/store";
 import { formatPrice } from "@/lib/format";
+import { openShopEmail } from "@/lib/mailto";
 import { trackEvent } from "@/lib/analytics";
 import { useOrderConfirmation } from "@/components/order-confirmation-provider";
 import { getMessages, type Locale } from "@/i18n";
@@ -23,28 +24,66 @@ export function OrderForm({ initialProduct, locale = "ms" }: { initialProduct: s
   const selectedProduct = getProduct(productSlug) ?? products[0];
   const total = selectedProduct.price * quantity + store.deliveryFee;
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
     setSubmitting(true);
 
     const form = new FormData(event.currentTarget);
+    if (String(form.get("website") ?? "").trim()) {
+      setSubmitting(false);
+      return;
+    }
+
+    const name = String(form.get("name") ?? "").trim();
+    const phone = String(form.get("phone") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const address = String(form.get("address") ?? "").trim();
+    const city = String(form.get("city") ?? "").trim();
     const stateValue = String(form.get("state") ?? "");
-    const order = {
-      productSlug,
-      quantity,
-      name: form.get("name"),
-      phone: form.get("phone"),
-      email: form.get("email"),
-      address: form.get("address"),
-      city: form.get("city"),
-      state: stateValue,
-      notes: form.get("notes"),
-      codConfirmed: store.codAvailable && form.get("codConfirmed") === "on",
-      privacyConsent: form.get("privacyConsent") === "on",
-      website: form.get("website"),
-      locale,
-    };
+    const notes = String(form.get("notes") ?? "").trim();
+    const stateIndex = malaysianStates.indexOf(stateValue as (typeof malaysianStates)[number]);
+    const stateLabel = stateIndex >= 0 && locale === "ms" ? malaysianStatesMs[stateIndex] : stateValue;
+
+    if (name.length < 2 || phone.length < 8 || address.length < 10 || city.length < 2 || !stateValue) {
+      setError(t.order.errors.invalid);
+      setSubmitting(false);
+      return;
+    }
+    if (store.codAvailable && form.get("codConfirmed") !== "on") {
+      setError(t.order.errors.cod);
+      setSubmitting(false);
+      return;
+    }
+    if (form.get("privacyConsent") !== "on") {
+      setError(t.order.errors.consent);
+      setSubmitting(false);
+      return;
+    }
+
+    const reference = `LY${Date.now().toString(36).toUpperCase()}`;
+    const subject = locale === "ms"
+      ? `Pesanan ${reference} — ${selectedProduct.name}`
+      : `Order ${reference} — ${selectedProduct.name}`;
+    const body = [
+      locale === "ms" ? "Pesanan baharu dari lebihyakin.my" : "New order from lebihyakin.my",
+      "",
+      `${locale === "ms" ? "Rujukan" : "Reference"}: ${reference}`,
+      `${locale === "ms" ? "Produk" : "Product"}: ${selectedProduct.name}`,
+      `${locale === "ms" ? "Kuantiti" : "Quantity"}: ${quantity}`,
+      `${locale === "ms" ? "Harga" : "Price"}: ${formatPrice(selectedProduct.price)} x ${quantity}`,
+      `${locale === "ms" ? "Penghantaran" : "Delivery"}: ${store.deliveryFee === 0 ? (locale === "ms" ? "Percuma" : "Free") : formatPrice(store.deliveryFee)}`,
+      `${locale === "ms" ? "Jumlah" : "Total"}: ${formatPrice(total)}`,
+      `${locale === "ms" ? "Bayaran" : "Payment"}: ${t.common.cod}`,
+      "",
+      `${locale === "ms" ? "Nama" : "Name"}: ${name}`,
+      `${locale === "ms" ? "Telefon" : "Phone"}: ${phone}`,
+      email ? `Email: ${email}` : "",
+      `${locale === "ms" ? "Alamat" : "Address"}: ${address}`,
+      `${locale === "ms" ? "Bandar" : "City"}: ${city}`,
+      `${locale === "ms" ? "Negeri" : "State"}: ${stateLabel}`,
+      notes ? `${locale === "ms" ? "Catatan" : "Notes"}: ${notes}` : "",
+    ].filter(Boolean).join("\n");
 
     trackEvent("begin_checkout", {
       item_name: selectedProduct.name,
@@ -52,45 +91,25 @@ export function OrderForm({ initialProduct, locale = "ms" }: { initialProduct: s
       currency: "MYR",
       quantity,
     });
-
-    try {
-      const response = await fetch("/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Site-Locale": locale },
-        body: JSON.stringify(order),
-      });
-      const result = (await response.json()) as
-        | { reference: string; total: number; unitPrice: number; deliveryFee: number; stateLabel: string }
-        | { error: string };
-
-      if (!response.ok || "error" in result) {
-        setError("error" in result ? result.error : t.order.errors.send);
-        return;
-      }
-
-      const value = {
-        reference: result.reference,
-        productName: selectedProduct.name,
-        quantity,
-        unitPrice: result.unitPrice,
-        deliveryFee: result.deliveryFee,
-        name: String(order.name),
-        phone: String(order.phone),
-        email: String(order.email ?? ""),
-        address: String(order.address),
-        city: String(order.city),
-        state: String(order.state),
-        stateLabel: result.stateLabel,
-        notes: String(order.notes ?? ""),
-      };
-      setSummary(value);
-      trackEvent("order_submit", { item_name: selectedProduct.name, value: result.total, currency: "MYR", quantity });
-      router.push(locale === "en" ? "/en/order/confirmation" : "/pesanan/pengesahan");
-    } catch {
-      setError(t.order.errors.network);
-    } finally {
-      setSubmitting(false);
-    }
+    openShopEmail(subject, body);
+    setSummary({
+      reference,
+      productName: selectedProduct.name,
+      quantity,
+      unitPrice: selectedProduct.price,
+      deliveryFee: store.deliveryFee,
+      name,
+      phone,
+      email,
+      address,
+      city,
+      state: stateValue,
+      stateLabel,
+      notes,
+    });
+    trackEvent("order_submit", { item_name: selectedProduct.name, value: total, currency: "MYR", quantity });
+    router.push(locale === "en" ? "/en/order/confirmation" : "/pesanan/pengesahan");
+    setSubmitting(false);
   }
 
   return (
@@ -152,7 +171,7 @@ export function OrderForm({ initialProduct, locale = "ms" }: { initialProduct: s
         <span><strong>{t.order.price}: {formatPrice(selectedProduct.price)}</strong> × {quantity}<br /><small>{t.order.delivery}: {store.deliveryFee === 0 ? t.order.free : formatPrice(store.deliveryFee)} · {store.codAvailable ? t.common.cod : t.nav.contact}</small></span>
         <span className="order-total-price">{formatPrice(total)}</span>
       </div>
-      <p className="form-note">{t.order.requestInfo}</p>
+      <p className="form-note">{locale === "ms" ? `Hantar pesanan terus ke ${store.contactEmail}. E-mel anda akan dibuka dengan butiran pesanan.` : `Send this order directly to ${store.contactEmail}. Your email app will open with the order details.`}</p>
       {error && <p className="form-error" role="alert">{error}</p>}
       <button className="button button-dark form-submit" type="submit" disabled={submitting || !store.codAvailable}>
         {submitting ? t.order.submitting : store.codAvailable ? `${t.order.submit} · ${formatPrice(total)}` : t.nav.contact}
