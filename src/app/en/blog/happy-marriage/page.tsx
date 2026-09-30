@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { pageMetadata } from "@/lib/metadata";
@@ -29,10 +30,20 @@ export default function HappyMarriageArticle() {
           <h1>A calmer marriage starts<br /><em>with presence, not a slogan.</em></h1>
           <p>Written for couples in Malaysia who care about men's wellness, confidence and a quieter home. Lifestyle reading only. Not medical advice.</p>
         </header>
+        <figure className="blog-hero-photo">
+          <Image
+            src="/blog/couple-sunset.webp"
+            alt="A married couple sitting together on the beach at sunset"
+            width={1600}
+            height={1000}
+            priority
+          />
+          <figcaption>Time together is usually quieter than advertising suggests.</figcaption>
+        </figure>
         <section className="blog-article"><div className="blog-article-content">
-          <h2>What HelloDoktor does, and what this shop is</h2>
-          <p>Large health sites in Malaysia win traffic because they publish hundreds of articles that answer symptom searches: a headache on one side, a toothache, digestion, intimate questions. That is an encyclopedia model. People arrive with a health worry and stay because the page matches the question.</p>
-          <p>Lebih Yakin is a small catalogue. Copying those medical keywords onto a product shop would confuse Google and readers. We write about marriage and men's self-care because that is the honest context of Magnum Pump, Ultrahot, Horsemen and Hammer of Thor: private routines, not a clinic.</p>
+          <h2>Why this page exists</h2>
+          <p>Most couples are not looking for a lecture. They want a home that feels kinder at the end of a long day. This article is for that quieter hope: a husband who wants to show up, a wife who wants to feel met, and a marriage that still has room to breathe.</p>
+          <p>Lebih Yakin sells a small men's wellness catalogue &mdash; Magnum Pump, Ultrahot, Horsemen and Hammer of Thor. We write about married life because that is the world our customers live in. It is not a clinic, and it is not a promise that any product can repair a relationship.</p>
         </div></section>
         <section className="blog-article"><div className="blog-article-content">
           <h2>What a happy marriage usually looks like</h2>
