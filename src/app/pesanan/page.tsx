@@ -4,8 +4,8 @@ import { products, getProduct } from "@/config/products";
 import { msPageMetadata } from "@/lib/ms-page-metadata";
 
 export const metadata: Metadata = msPageMetadata(
-  "Buat Permintaan Pesanan | Kesihatan Lelaki",
-  "Pilih produk pada harga RM159, masukkan butiran penghantaran dan hantar permintaan pesanan. Pasukan kami akan mengesahkan butiran.",
+  "Pesan Produk Kesihatan Lelaki Malaysia | Beli Online COD",
+  "Isi borang pesanan mudah untuk Magnum Pump, Ultrahot, Horsemen atau Hammer of Thor. RM159, penghantaran percuma ke seluruh Malaysia, COD. Pesanan dihantar ke e-mel kedai.",
   "/pesanan",
 );
 
