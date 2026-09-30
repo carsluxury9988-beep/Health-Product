@@ -6,7 +6,7 @@ export const store = {
   contactEmail: "producth006@gmail.com",
   phone: null as string | null,
   whatsappNumber: null as string | null,
-  address: null as string | null,
+  address: "1, Jalan Metro Prima, Taman Kepong, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
   logoPath: null as string | null,
   heroImagePath: "/home-couple.webp" as string | null,
   socialLinks: {
