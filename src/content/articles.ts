@@ -1,8 +1,14 @@
 import { checkKkm, foodsForStamina, tongkatAli } from "@/content/guides";
 import { relationshipFaq } from "@/content/relationship-faq";
 import type { Locale } from "@/i18n";
+import type { TopicKey } from "@/content/topics";
+import { relationshipArticles } from "@/content/qa/relationships";
+import { mensHealthArticles } from "@/content/qa/mens-health";
+import { ingredientArticles } from "@/content/qa/ingredients";
+import { buyingArticles } from "@/content/qa/buying";
 
-export type ArticleBlock = { heading: string; paragraphs: string[]; list?: string[] };
+/** Paragraphs and list items may contain inline links written as `[label](/path)`. */
+export type ArticleBlock = { heading: string; paragraphs: string[]; list?: string[]; /** Paragraphs shown after the list. */ after?: string[] };
 export type ArticleSource = { label: string; url: string };
 export type ArticleQa = { q: string; a: string };
 
@@ -11,18 +17,23 @@ export type ArticleContent = {
   title: string;
   seoTitle: string;
   description: string;
-  category: string;
+  /** Legacy free-text category; the blog now shows the topic label instead. */
+  category?: string;
+  /** First paragraph. For Q&A articles this is the direct answer to the H1 question. */
   lead: string;
   imageAlt: string;
   blocks: ArticleBlock[];
   qa?: ArticleQa[];
   sources?: ArticleSource[];
+  /** Shown in a highlighted box: when to see a doctor or other professional. */
+  doctorNote?: string;
   disclaimer: string;
   readMinutes: number;
 };
 
 export type Article = {
   key: string;
+  topic: TopicKey;
   published: string;
   updated: string;
   image: { src: string; width: number; height: number };
@@ -34,6 +45,7 @@ export type Article = {
 
 const happyMarriage: Article = {
   key: "happy-marriage",
+  topic: "relationships",
   published: "2026-10-01",
   updated: "2026-10-03",
   image: { src: "/blog/couple-home.webp", width: 1440, height: 1080 },
@@ -105,6 +117,7 @@ const happyMarriage: Article = {
 
 const relationshipQuestions: Article = {
   key: "relationship-questions",
+  topic: "relationships",
   published: "2026-10-01",
   updated: "2026-10-03",
   image: { src: "/blog/couple-sunset.webp", width: 1168, height: 784 },
@@ -136,7 +149,21 @@ const relationshipQuestions: Article = {
   },
 };
 
-export const articles: readonly Article[] = [checkKkm, tongkatAli, foodsForStamina, happyMarriage, relationshipQuestions];
+export const articles: readonly Article[] = [
+  ...relationshipArticles,
+  ...mensHealthArticles,
+  ...ingredientArticles,
+  ...buyingArticles,
+  checkKkm,
+  tongkatAli,
+  foodsForStamina,
+  happyMarriage,
+  relationshipQuestions,
+];
+
+export function articlesByTopic(topic: TopicKey) {
+  return sortedArticles().filter((article) => article.topic === topic);
+}
 
 export function articlePath(article: Article, locale: Locale) {
   return locale === "en" ? `/en/blog/${article.en.slug}` : `/blog/${article.ms.slug}`;

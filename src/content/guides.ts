@@ -22,6 +22,7 @@ const S = {
 
 export const checkKkm: Article = {
   key: "check-kkm",
+  topic: "buying",
   published: "2026-10-03",
   updated: "2026-10-03",
   image: { src: "/blog/semak-kkm.webp", width: 1200, height: 630 },
@@ -128,6 +129,7 @@ export const checkKkm: Article = {
 
 export const tongkatAli: Article = {
   key: "tongkat-ali",
+  topic: "ingredients",
   published: "2026-10-03",
   updated: "2026-10-03",
   image: { src: "/blog/tongkat-ali.webp", width: 1200, height: 630 },
@@ -218,6 +220,7 @@ export const tongkatAli: Article = {
 
 export const foodsForStamina: Article = {
   key: "foods-for-stamina",
+  topic: "mens-health",
   published: "2026-10-03",
   updated: "2026-10-03",
   image: { src: "/blog/makanan-stamina.webp", width: 1200, height: 630 },

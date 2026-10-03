@@ -352,6 +352,6 @@ export const en: Messages = {
     privacy: { title: "Privacy Policy", description: "How Lebih Yakin collects, uses and protects your personal information in line with Malaysia's Personal Data Protection Act 2010." },
     about: { title: "About Us", description: "Lebih Yakin is an online store for men's health products in Malaysia. WhatsApp ordering, free delivery and COD payment." },
     contact: { title: "Contact Us — WhatsApp & Email", description: "Contact Lebih Yakin on WhatsApp +60 19-402 2352 or by email for product, order and delivery questions." },
-    blog: { title: "Blog — Guides & Reading", description: "Guides on checking KKM registration, facts about tongkat ali, nutrition and lifestyle for men in Malaysia, with sources." },
+    blog: { title: "Blog: Marriage, Men's Health & Buying Guides", description: "Answers to questions about marriage, men's health, tongkat ali, ginseng, honey and dates, plus guides to buying health products safely — with sources." },
   },
 };

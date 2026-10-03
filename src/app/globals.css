@@ -409,3 +409,34 @@ img { max-width: 100%; height: auto; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* Blog hub, categories and question index */
+.topic-nav ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0 0 8px; padding: 0; }
+.topic-pill { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-weight: 700; color: var(--green-800); text-decoration: none; }
+.topic-pill small { font-weight: 600; color: var(--ink-3); font-size: 0.8rem; }
+.topic-pill:hover, .topic-pill[aria-current="page"] { background: var(--green-50); border-color: var(--green-700); }
+.topic-pill-alt { background: var(--green-800); color: #fff; border-color: var(--green-800); }
+.topic-pill-alt small { color: #cfe3da; }
+.topic-pill-alt:hover { background: var(--green-700); }
+.topic-section + .topic-section { border-top: 1px solid var(--line); }
+.topic-section .section-head p { max-width: 640px; }
+.topic-nav + .article-grid { margin-top: 24px; }
+.question-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 6px; }
+.question-list li a { color: var(--green-800); font-weight: 600; text-underline-offset: 3px; }
+.question-list li { padding-left: 1.2rem; position: relative; }
+.question-list li::before { content: "?"; position: absolute; left: 0; color: var(--green-700); font-weight: 800; }
+.question-list-compact { margin-top: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; }
+@media (max-width: 700px) { .question-list-compact { grid-template-columns: 1fr; } }
+.question-index-topic { margin-top: 36px; }
+.question-index-topic > h2 { font-size: clamp(1.35rem, 2.6vw, 1.7rem); margin-bottom: 8px; }
+.question-index-topic > h2 a { text-decoration: none; }
+.question-index-article { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.question-index-article h3 { font-size: 1.1rem; }
+.question-index-article h3 a { text-decoration: none; }
+.question-index-article h3 a:hover { color: var(--green-700); }
+.topic-index-link, .article-index-link { margin-top: 28px; }
+.article-header .eyebrow a { color: inherit; text-decoration: none; }
+.doctor-note { margin-top: 30px; padding: 18px 20px; border-radius: var(--radius-sm); background: #fff7e6; border: 1px solid #f3d69b; }
+.doctor-note h2 { font-size: 1.15rem; margin-bottom: 6px; }
+.doctor-note p { font-size: 1.02rem; }
+.prose section[id], .faq-item[id] { scroll-margin-top: 96px; }
