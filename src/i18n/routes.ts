@@ -1,38 +1,53 @@
+import { articles } from "@/content/articles";
+import { products } from "@/config/products";
 import type { Locale } from "@/i18n";
 
-const msToEn: Record<string, string> = {
-  "/": "/en",
-  "/produk": "/en/products",
-  "/tentang-kami": "/en/about-us",
-  "/hubungi-kami": "/en/contact",
-  "/pesanan": "/en/order",
-  "/pesanan/pengesahan": "/en/order/confirmation",
-  "/soalan-lazim": "/en/faq",
-  "/penghantaran": "/en/shipping",
-  "/polisi-privasi": "/en/privacy-policy",
-  "/terma-syarat": "/en/terms",
-  "/polisi-pemulangan": "/en/refund-policy",
-  "/blog": "/en/blog",
-};
+/** Every public page as a BM/EN pair. Used for hreflang, the language switch and the sitemap. */
+export const staticRoutes = {
+  home: { ms: "/", en: "/en" },
+  products: { ms: "/produk", en: "/en/products" },
+  howToOrder: { ms: "/cara-pesan", en: "/en/how-to-order" },
+  order: { ms: "/pesanan", en: "/en/order" },
+  faq: { ms: "/soalan-lazim", en: "/en/faq" },
+  shipping: { ms: "/penghantaran", en: "/en/shipping" },
+  returns: { ms: "/polisi-pemulangan", en: "/en/refund-policy" },
+  terms: { ms: "/terma-syarat", en: "/en/terms" },
+  privacy: { ms: "/polisi-privasi", en: "/en/privacy-policy" },
+  about: { ms: "/tentang-kami", en: "/en/about-us" },
+  contact: { ms: "/hubungi-kami", en: "/en/contact" },
+  blog: { ms: "/blog", en: "/en/blog" },
+} as const satisfies Record<string, Record<Locale, string>>;
 
-const enToMs = Object.fromEntries(Object.entries(msToEn).map(([msPath, enPath]) => [enPath, msPath]));
+export type RouteKey = keyof typeof staticRoutes;
 
-function equivalentPath(pathname: string, sourceLocale: Locale) {
-  const productPattern = sourceLocale === "ms" ? /^\/produk\/([^/]+)$/ : /^\/en\/products\/([^/]+)$/;
-  const product = pathname.match(productPattern);
-  if (product) return sourceLocale === "ms" ? `/en/products/${product[1]}` : `/produk/${product[1]}`;
-  const confirmation = pathname.match(sourceLocale === "ms" ? /^\/pesanan\/pengesahan\/([^/]+)$/ : /^\/en\/order\/confirmation\/([^/]+)$/);
-  if (confirmation) return sourceLocale === "ms" ? `/en/order/confirmation/${confirmation[1]}` : `/pesanan/pengesahan/${confirmation[1]}`;
-  return sourceLocale === "ms" ? msToEn[pathname] : enToMs[pathname];
+export function routePath(key: RouteKey, locale: Locale) {
+  return staticRoutes[key][locale];
 }
 
+export function productPath(slug: string, locale: Locale) {
+  return locale === "en" ? `/en/products/${slug}` : `/produk/${slug}`;
+}
+
+export function allRoutePairs(): Record<Locale, string>[] {
+  return [
+    ...Object.values(staticRoutes),
+    ...products.map((product) => ({ ms: productPath(product.slug, "ms"), en: productPath(product.slug, "en") })),
+    ...articles.map((article) => ({ ms: `/blog/${article.ms.slug}`, en: `/en/blog/${article.en.slug}` })),
+  ];
+}
+
+export function localeOfPath(pathname: string): Locale {
+  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ms";
+}
+
+/** Returns the equivalent page in the target language, or that language's home page. */
 export function localizedPath(pathname: string, target: Locale) {
   const path = pathname.replace(/\/$/, "") || "/";
-  if (target === "en" && (path === "/en" || path.startsWith("/en/"))) return path;
-  if (target === "ms" && !path.startsWith("/en") && path !== "/en") return path;
-  const sourceLocale: Locale = path.startsWith("/en") ? "en" : "ms";
-  if ((sourceLocale === "en" && target === "ms" && path === "/en") || (sourceLocale === "ms" && target === "en" && path === "/")) {
-    return target === "en" ? "/en" : "/";
-  }
-  return equivalentPath(path, sourceLocale) ?? (target === "en" ? "/en" : "/");
+  const pair = allRoutePairs().find((item) => item.ms === path || item.en === path);
+  if (pair) return pair[target];
+  if (localeOfPath(path) === target) return path;
+  return staticRoutes.home[target];
 }
+
+/** Last meaningful content change for static pages (sitemap lastmod). Update when page content changes. */
+export const SITE_CONTENT_UPDATED = "2026-10-03";

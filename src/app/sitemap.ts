@@ -1,77 +1,33 @@
 import type { MetadataRoute } from "next";
+import { articles } from "@/content/articles";
 import { products } from "@/config/products";
-import { store } from "@/config/store";
+import { productPath, SITE_CONTENT_UPDATED, staticRoutes, type RouteKey } from "@/i18n/routes";
+import { absoluteUrl } from "@/lib/seo";
 
-const staticPaths = [
-  "/",
-  "/produk",
-  "/tentang-kami",
-  "/hubungi-kami",
-  "/pesanan",
-  "/soalan-lazim",
-  "/penghantaran",
-  "/polisi-privasi",
-  "/terma-syarat",
-  "/polisi-pemulangan",
-  "/blog",
-  "/blog/hubungan-bahagia",
-  "/blog/20-soalan-hubungan",
-];
-const englishPaths: Record<string, string> = {
-  "/": "/en",
-  "/produk": "/en/products",
-  "/tentang-kami": "/en/about-us",
-  "/hubungi-kami": "/en/contact",
-  "/pesanan": "/en/order",
-  "/soalan-lazim": "/en/faq",
-  "/penghantaran": "/en/shipping",
-  "/polisi-privasi": "/en/privacy-policy",
-  "/terma-syarat": "/en/terms",
-  "/polisi-pemulangan": "/en/refund-policy",
-  "/blog": "/en/blog",
-  "/blog/hubungan-bahagia": "/en/blog/happy-marriage",
-  "/blog/20-soalan-hubungan": "/en/blog/20-relationship-questions",
-};
+type Entry = MetadataRoute.Sitemap[number];
+
+function pairEntries(pair: { ms: string; en: string }, lastModified: string, priority: number, changeFrequency: Entry["changeFrequency"]): Entry[] {
+  const languages = { "ms-MY": absoluteUrl(pair.ms), "en-MY": absoluteUrl(pair.en), "x-default": absoluteUrl(pair.ms) };
+  return [pair.ms, pair.en].map((path) => ({
+    url: absoluteUrl(path),
+    lastModified,
+    changeFrequency,
+    priority,
+    alternates: { languages },
+  }));
+}
+
+const priorities: Partial<Record<RouteKey, number>> = { home: 1, products: 0.9, howToOrder: 0.8, faq: 0.7, shipping: 0.7, blog: 0.6, order: 0.6 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (!store.siteUrl) return [];
-
-  const entries = staticPaths.flatMap((path) => {
-    const englishPath = englishPaths[path];
-    const languages = {
-      "ms-MY": new URL(path, store.siteUrl).toString(),
-      "en-MY": new URL(englishPath, store.siteUrl).toString(),
-      "x-default": new URL(path, store.siteUrl).toString(),
-    };
-    return [
-      {
-      url: new URL(path, store.siteUrl).toString(),
-      changeFrequency: path === "/" || path === "/produk" ? "weekly" as const : "monthly" as const,
-      priority: path === "/" ? 1 : path === "/produk" ? 0.9 : path.includes("blog") ? 0.7 : 0.6,
-      alternates: { languages },
-      },
-      {
-        url: new URL(englishPath, store.siteUrl).toString(),
-        changeFrequency: path === "/" || path === "/produk" ? "weekly" as const : "monthly" as const,
-        priority: path === "/" ? 1 : path === "/produk" ? 0.9 : path.includes("blog") ? 0.7 : 0.6,
-        alternates: { languages },
-      },
-    ];
-  });
-  const productEntries = products.flatMap((product) => {
-    const msPath = `/produk/${product.slug}`;
-    const enPath = `/en/products/${product.slug}`;
-    const languages = {
-      "ms-MY": new URL(msPath, store.siteUrl).toString(),
-      "en-MY": new URL(enPath, store.siteUrl).toString(),
-      "x-default": new URL(msPath, store.siteUrl).toString(),
-    };
-    return [msPath, enPath].map((path) => ({
-      url: new URL(path, store.siteUrl).toString(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-      alternates: { languages },
-    }));
-  });
-  return [...entries, ...productEntries];
+  const staticEntries = (Object.keys(staticRoutes) as RouteKey[]).flatMap((key) =>
+    pairEntries(staticRoutes[key], SITE_CONTENT_UPDATED, priorities[key] ?? 0.4, key === "home" || key === "products" ? "weekly" : "monthly"),
+  );
+  const productEntries = products.flatMap((product) =>
+    pairEntries({ ms: productPath(product.slug, "ms"), en: productPath(product.slug, "en") }, SITE_CONTENT_UPDATED, 0.8, "monthly"),
+  );
+  const articleEntries = articles.flatMap((article) =>
+    pairEntries({ ms: `/blog/${article.ms.slug}`, en: `/en/blog/${article.en.slug}` }, article.updated, 0.6, "monthly"),
+  );
+  return [...staticEntries, ...productEntries, ...articleEntries];
 }

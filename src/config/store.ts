@@ -1,31 +1,37 @@
+/**
+ * Store identity and operating facts.
+ *
+ * Only facts confirmed by the owner are shown publicly. Anything left as `null` is hidden
+ * from visitors and from structured data until it is filled in.
+ *
+ * TODO(owner): provide the registered business/company name, the SSM registration number and
+ * the trading address. These are expected disclosures for online sellers in Malaysia
+ * (Consumer Protection (Electronic Trade Transactions) Regulations 2024 and SSM rules).
+ * Once set here they appear automatically in the footer, contact page, policies and the
+ * OnlineStore schema.
+ */
 export const store = {
-  brandName: "Health Product",
+  brandName: "Lebih Yakin",
   legalBusinessName: null as string | null,
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "",
-  displayBrandNameMs: "Kesihatan Lelaki",
+  ssmRegistrationNumber: null as string | null,
+  address: null as string | null,
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://lebihyakin.my"),
   contactEmail: "producth006@gmail.com",
-  phone: null as string | null,
-  whatsappNumber: null as string | null,
-  address: "1, Jalan Metro Prima, Taman Kepong, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
-  logoPath: null as string | null,
-  heroImagePath: "/home-couple.webp" as string | null,
+  whatsappNumber: "60194022352",
+  whatsappDisplay: "+60 19-402 2352",
+  logoPath: "/brand/logo.png",
+  priceCurrency: "MYR",
+  deliveryFee: 0,
+  codAvailable: true,
+  // TODO(owner): confirm before advertising these. They stay hidden while false/null.
+  discreetPackagingConfirmed: false,
+  courierNames: null as readonly string[] | null,
   socialLinks: {
     instagram: null as string | null,
     facebook: null as string | null,
     tiktok: null as string | null,
   },
-  priceCurrency: "MYR",
-  deliveryFee: 0,
-  deliveryLabel: "Free delivery across Malaysia",
-  deliveryCoverage: "Free delivery is offered across Malaysia, including West Malaysia, Sabah and Sarawak.",
-  deliveryTimingNote: "Delivery timing depends on destination and courier service. Our team will confirm your order and delivery details.",
-  codAvailable: true,
-  codRequiresDestinationConfirmation: true,
-  codLabel: "Cash on Delivery",
-  codAvailabilityNote: "Cash on Delivery is available. Final availability may depend on your destination and courier service; our team will confirm before dispatch.",
-  codConfirmationLabel: "I understand that Cash on Delivery availability depends on my destination and courier service.",
-  discreetPackagingConfirmed: false,
-};
+} as const;
 
 export const malaysianStates = [
   "Johor",
