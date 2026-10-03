@@ -1,3 +1,4 @@
+import { checkKkm, foodsForStamina, tongkatAli } from "@/content/guides";
 import { relationshipFaq } from "@/content/relationship-faq";
 import type { Locale } from "@/i18n";
 
@@ -25,6 +26,8 @@ export type Article = {
   published: string;
   updated: string;
   image: { src: string; width: number; height: number };
+  /** 1200×630 share image; defaults to the site OG image. */
+  ogImage?: string;
   ms: ArticleContent;
   en: ArticleContent;
 };
@@ -133,7 +136,7 @@ const relationshipQuestions: Article = {
   },
 };
 
-export const articles: readonly Article[] = [happyMarriage, relationshipQuestions];
+export const articles: readonly Article[] = [checkKkm, tongkatAli, foodsForStamina, happyMarriage, relationshipQuestions];
 
 export function articlePath(article: Article, locale: Locale) {
   return locale === "en" ? `/en/blog/${article.en.slug}` : `/blog/${article.ms.slug}`;
@@ -144,5 +147,6 @@ export function getArticle(slug: string, locale: Locale) {
 }
 
 export function sortedArticles() {
-  return [...articles].sort((a, b) => b.published.localeCompare(a.published) || a.key.localeCompare(b.key));
+  // Newest first; same-day articles keep their registry order.
+  return [...articles].sort((a, b) => b.published.localeCompare(a.published));
 }
