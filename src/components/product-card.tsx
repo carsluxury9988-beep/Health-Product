@@ -26,7 +26,7 @@ export function ProductCard({ product, locale, priority = false, headingLevel = 
           <li>{t.common.codShort}</li>
         </ul>
         <div className="product-card-actions">
-          <WhatsAppLink href={productOrderUrl(product, 1, locale)} source="product_card" product={product.name} className="btn btn-wa btn-block" ariaLabel={`${t.productCard.order} ${product.name} — WhatsApp`}>
+          <WhatsAppLink href={productOrderUrl(product, 1, locale)} source="product_card" product={product.name} value={product.price} className="btn btn-wa btn-block" ariaLabel={`${t.productCard.order} ${product.name} — WhatsApp`}>
             <WhatsAppIcon size={18} /> {t.productCard.order}
           </WhatsAppLink>
           <Link href={href} className="btn btn-ghost btn-block">{t.productCard.details}<span className="sr-only"> — {product.name}</span></Link>

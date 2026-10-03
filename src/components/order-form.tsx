@@ -7,7 +7,7 @@ import { getProduct, products } from "@/config/products";
 import { malaysianStates, malaysianStatesMs } from "@/config/store";
 import { getMessages, type Locale } from "@/i18n";
 import { routePath } from "@/i18n/routes";
-import { trackEvent } from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { parseOrderInput } from "@/lib/forms";
 import { formatRinggit, formOrderMessage, MAX_QUANTITY, whatsappUrl } from "@/lib/whatsapp";
 import { CheckIcon, WhatsAppIcon } from "@/components/icons";
@@ -60,7 +60,7 @@ export function OrderForm({ locale }: { locale: Locale }) {
     }, locale));
     setError(null);
     setSentUrl(url);
-    trackEvent("order_form_submit", { item_name: order.product.name, quantity: order.quantity, value: order.product.price * order.quantity, currency: "MYR" });
+    analytics.orderFormSubmit({ name: order.product.name, quantity: order.quantity, value: order.product.price * order.quantity });
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
