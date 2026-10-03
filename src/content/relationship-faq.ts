@@ -110,15 +110,15 @@ export const relationshipFaq: FaqPair[] = [
     answerEn: "See a doctor if there is pain, a sudden change, or a body question that rest does not settle. See a counsellor if the same fight repeats, silence lasts, or the house no longer feels safe. A shop page replaces neither.",
   },
   {
-    question: "Bagaimana pesan produk di laman ini tanpa memalukan pasangan?",
-    questionEn: "How do you order from this site without embarrassing your partner?",
-    answer: "Pesanan di Lebih Yakin dibuat melalui borang, kemudian e-mel ke producth006@gmail.com. Harga RM159, penghantaran percuma, COD selepas destinasi disahkan. Anda tidak perlu memuat naik cerita ke media sosial. Jaga privasi rumah.",
-    answerEn: "Orders on Lebih Yakin go through the form, then email to producth006@gmail.com. The price is RM159, delivery is free, and COD is confirmed against the destination. You do not need to post the story online. Protect the privacy of the house.",
+    question: "Bagaimana pesan produk di laman ini dengan privasi?",
+    questionEn: "How do you order from this site privately?",
+    answer: "Pilih produk dan hantar pesanan terus melalui laman ini. Harga RM159, penghantaran percuma dan bayaran secara COD selepas pesanan disahkan dengan anda. Anda tidak perlu berkongsi apa-apa di media sosial.",
+    answerEn: "Choose a product and send your order directly through this site. The price is RM159, delivery is free and payment is by COD once the order is confirmed with you. Nothing needs to be shared on social media.",
   },
   {
-    question: "Adakah “cara besarkan zakar”, pil, minyak atau krim di farmasi dijamin di sini?",
-    questionEn: "Does this site sell guaranteed enlargement pills, oils or pharmacy creams?",
-    answer: "Ramai orang di Malaysia taip cari: cara besarkan zakar, besarkan zakar, ubat besarkan zakar, cara nak besarkan zakar, minyak besarkan zakar, ubat besarkan zakar di farmasi, testimoni besarkan zakar, pil besarkan zakar, urutan besarkan zakar, krim besarkan zakar, cara untuk besarkan zakar, tip besarkan zakar. Laman ini bukan jawapan kepada carian itu. Kami tidak menjual rawatan pembesaran, tidak menerbitkan testimoni palsu, dan tidak mendakwa Magnum Pump, Ultrahot, Horsemen atau Hammer of Thor sebagai ubat atau cara besarkan zakar. Jika anda ada soalan tentang badan, rujuk doktor. Jika anda mahu katalog kesejahteraan dengan harga jelas, gunakan halaman produk.",
-    answerEn: "People in Malaysia often type searches such as enlargement methods, pills, oils, pharmacy products and testimonials. This site is not the answer to those searches. We do not sell enlargement treatment, we do not publish fake testimonials, and we do not claim Magnum Pump, Ultrahot, Horsemen or Hammer of Thor as medicine or as an enlargement method. If you have a question about your body, see a doctor. If you want a priced wellness catalogue, use the product pages.",
+    question: "Bagaimana mengurus tekanan kerja supaya tidak dibawa pulang ke rumah?",
+    questionEn: "How do you keep work stress from following you home?",
+    answer: "Buat satu ‘garisan penamat’ setiap hari: matikan notifikasi kerja selepas waktu tertentu, ambil sepuluh minit berjalan atau mandi sebelum berbual panjang, dan beritahu pasangan jika hari itu berat supaya dia tidak meneka. Jika tekanan berlarutan berminggu-minggu sehingga tidur atau selera terganggu, bercakap dengan doktor atau kaunselor.",
+    answerEn: "Draw a finish line each day: mute work notifications after a set hour, take ten minutes to walk or shower before a long conversation, and tell your partner when the day was heavy so they do not have to guess. If stress lasts for weeks and disturbs sleep or appetite, speak with a doctor or counsellor.",
   },
 ];
