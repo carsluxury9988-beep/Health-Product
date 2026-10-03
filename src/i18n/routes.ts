@@ -1,4 +1,5 @@
 import { articles } from "@/content/articles";
+import { questionIndexPaths, topicPath, topics } from "@/content/topics";
 import { products } from "@/config/products";
 import type { Locale } from "@/i18n";
 
@@ -16,6 +17,7 @@ export const staticRoutes = {
   about: { ms: "/tentang-kami", en: "/en/about-us" },
   contact: { ms: "/hubungi-kami", en: "/en/contact" },
   blog: { ms: "/blog", en: "/en/blog" },
+  blogQuestions: questionIndexPaths,
 } as const satisfies Record<string, Record<Locale, string>>;
 
 export type RouteKey = keyof typeof staticRoutes;
@@ -32,6 +34,7 @@ export function allRoutePairs(): Record<Locale, string>[] {
   return [
     ...Object.values(staticRoutes),
     ...products.map((product) => ({ ms: productPath(product.slug, "ms"), en: productPath(product.slug, "en") })),
+    ...topics.map((topic) => ({ ms: topicPath(topic, "ms"), en: topicPath(topic, "en") })),
     ...articles.map((article) => ({ ms: `/blog/${article.ms.slug}`, en: `/en/blog/${article.en.slug}` })),
   ];
 }

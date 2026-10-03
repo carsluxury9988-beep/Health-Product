@@ -1,4 +1,5 @@
 import { articlePath, type Article } from "@/content/articles";
+import { getTopic } from "@/content/topics";
 import type { Product } from "@/config/products";
 import { store } from "@/config/store";
 import { getMessages, type Locale } from "@/i18n";
@@ -105,6 +106,7 @@ export function articleSchema(article: Article, locale: Locale) {
     "@type": "Article",
     headline: content.title,
     description: content.description,
+    articleSection: getTopic(article.topic)[locale].label,
     inLanguage: getMessages(locale).htmlLang,
     image: [absoluteUrl(article.image.src)],
     datePublished: article.published,

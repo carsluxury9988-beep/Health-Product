@@ -350,7 +350,7 @@ export const ms = {
     privacy: { title: "Polisi Privasi", description: "Cara Lebih Yakin mengumpul, menggunakan dan melindungi maklumat peribadi anda selaras dengan Akta Perlindungan Data Peribadi 2010." },
     about: { title: "Tentang Kami", description: "Lebih Yakin ialah kedai dalam talian produk kesihatan lelaki di Malaysia. Pesanan melalui WhatsApp, penghantaran percuma dan bayaran COD." },
     contact: { title: "Hubungi Kami — WhatsApp & E-mel", description: "Hubungi Lebih Yakin melalui WhatsApp +60 19-402 2352 atau e-mel untuk pertanyaan produk, pesanan dan penghantaran." },
-    blog: { title: "Blog — Panduan & Bacaan", description: "Panduan semak produk KKM, maklumat tongkat ali, pemakanan dan gaya hidup untuk lelaki di Malaysia, dengan sumber rujukan." },
+    blog: { title: "Blog Soal Jawab: Rumah Tangga & Kesihatan", description: "Jawapan kepada soalan tentang rumah tangga, kesihatan lelaki, tongkat ali, ginseng, madu dan kurma, serta panduan membeli dengan selamat — dengan sumber rujukan." },
   },
 };
 
