@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-type Details = Record<string, string | number>;
+type Details = Record<string, string | number | string[]>;
 
 function consented() {
   return typeof window !== "undefined" && document.cookie.includes("analytics-consent=accepted");
