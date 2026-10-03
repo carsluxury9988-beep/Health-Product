@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
-import { store } from "@/config/store";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    ...(store.siteUrl ? { sitemap: `${store.siteUrl}/sitemap.xml` } : {}),
+    sitemap: absoluteUrl("/sitemap.xml"),
+    host: absoluteUrl("/").replace(/\/$/, ""),
   };
 }

@@ -3,8 +3,8 @@
 import Script from "next/script";
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { getMessages, type Locale } from "@/i18n";
+import { routePath } from "@/i18n/routes";
 
 type Consent = "accepted" | "rejected" | null;
 
@@ -25,9 +25,7 @@ function subscribeHydration() {
   return () => {};
 }
 
-export function ConsentBanner() {
-  const pathname = usePathname() ?? "/";
-  const locale: Locale = pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ms";
+export function ConsentBanner({ locale }: { locale: Locale }) {
   const t = getMessages(locale);
   const consent = useSyncExternalStore(subscribeConsent, readConsent, () => null);
   const ready = useSyncExternalStore(subscribeHydration, () => true, () => false);
@@ -42,14 +40,14 @@ export function ConsentBanner() {
   return (
     <>
       {ready && hasAnalytics && consent === null && (
-        <aside className="consent-banner" aria-label={locale === "ms" ? "Persetujuan analitik pilihan" : "Optional analytics consent"}>
+        <aside className="consent-banner" aria-label={t.consent.label}>
           <div>
             <strong>{t.consent.title}</strong>
-            <p>{t.consent.description} <Link href={locale === "en" ? "/en/privacy-policy" : "/polisi-privasi"}>{t.nav.privacyDetails}</Link></p>
+            <p>{t.consent.description} <Link href={routePath("privacy", locale)}>{t.consent.details}</Link></p>
           </div>
           <div className="consent-actions">
-            <button className="button button-outline button-small" type="button" onClick={() => choose("rejected")}>{t.consent.decline}</button>
-            <button className="button button-dark button-small" type="button" onClick={() => choose("accepted")}>{t.consent.accept}</button>
+            <button className="btn btn-ghost btn-sm" type="button" onClick={() => choose("rejected")}>{t.consent.decline}</button>
+            <button className="btn btn-primary btn-sm" type="button" onClick={() => choose("accepted")}>{t.consent.accept}</button>
           </div>
         </aside>
       )}

@@ -1,8 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { parseContactInput, parseOrderInput } from "@/lib/forms";
-import { formatOrderNotification, orderNotificationEmail } from "@/lib/email";
-import { localizedPath } from "@/i18n/routes";
+import { products } from "@/config/products";
+import { store } from "@/config/store";
+import { articles } from "@/content/articles";
+import { en } from "@/i18n/en";
+import { ms } from "@/i18n/ms";
+import { allRoutePairs, localizedPath } from "@/i18n/routes";
+import { parseOrderInput } from "@/lib/forms";
+import { formOrderMessage, productOrderMessage, productOrderUrl } from "@/lib/whatsapp";
 
 const validOrder = {
   productSlug: "horsemen",
@@ -12,129 +17,99 @@ const validOrder = {
   email: "",
   address: "12 Jalan Merdeka, 43000 Kajang",
   city: "Kajang",
-  state: "Selangor",
-  stateLabel: "Selangor",
+  state: "Penang",
   notes: "",
   codConfirmed: true,
   privacyConsent: true,
   website: "",
 };
 
-test("valid order is resolved against server product pricing", () => {
+test("valid order resolves against catalogue pricing", () => {
   const parsed = parseOrderInput(validOrder);
   if (!("value" in parsed) || !parsed.value) assert.fail("Expected a valid order.");
   assert.equal(parsed.value.product.name, "Horsemen");
-  assert.equal(parsed.value.quantity, 2);
   assert.equal(parsed.value.product.price * parsed.value.quantity, 318);
   assert.equal(parsed.value.phone, "0123456789");
-  assert.equal("postcode" in parsed.value, false);
-  const parsedMalay = parseOrderInput(validOrder, "ms");
-  if (!("value" in parsedMalay) || !parsedMalay.value) assert.fail("Expected a valid Malay order.");
-  assert.equal(parsedMalay.value.stateLabel, "Selangor");
+  const malay = parseOrderInput(validOrder, "ms");
+  if (!("value" in malay) || !malay.value) assert.fail("Expected a valid Malay order.");
+  assert.equal(malay.value.stateLabel, "Pulau Pinang");
 });
 
-test("order quantities above the server limit are rejected", () => {
-  const parsed = parseOrderInput({ ...validOrder, quantity: 11 });
-  assert.ok("error" in parsed);
-  assert.ok("error" in parseOrderInput({ ...validOrder, name: "A".repeat(101) }));
-});
-
-test("unknown products, invalid phone numbers and states are rejected", () => {
-  assert.ok("error" in parseOrderInput({ ...validOrder, productSlug: "unlisted" }));
+test("invalid orders are rejected with localized errors", () => {
+  assert.ok("error" in parseOrderInput({ ...validOrder, quantity: 11 }));
   assert.ok("error" in parseOrderInput({ ...validOrder, phone: "123456" }));
   assert.ok("error" in parseOrderInput({ ...validOrder, state: "Singapore" }));
   assert.ok("error" in parseOrderInput({ ...validOrder, city: "" }));
-});
-
-test("order notification includes all order details and targets the fixed inbox", () => {
-  const message = formatOrderNotification({
-    reference: "ORDER123",
-    name: "Aina Rahman",
-    phone: "0123456789",
-    email: "aina@example.com",
-    address: "12 Jalan Merdeka",
-    city: "Kajang",
-    state: "Selangor",
-    productName: "Magnum Pump",
-    quantity: 2,
-    unitPrice: 159,
-    deliveryFee: 0,
-    total: 318,
-    notes: "Call on arrival",
-  });
-
-  assert.equal(orderNotificationEmail, "producth006@gmail.com");
-  for (const expected of [
-    "Customer name: Aina Rahman",
-    "Phone number: 0123456789",
-    "Email address: aina@example.com",
-    "Full delivery address: 12 Jalan Merdeka",
-    "City: Kajang",
-    "State: Selangor",
-    "Product name: Magnum Pump",
-    "Quantity: 2",
-    "Unit price: RM159",
-    "Delivery: FREE",
-    "Payment method: Cash on Delivery",
-    "Total order amount: RM318",
-    "Customer notes: Call on arrival",
-    "Order request reference: ORDER123",
-  ]) {
-    assert.ok(message.includes(expected), `Expected order email to include: ${expected}`);
-  }
-});
-
-test("order and contact errors follow the selected locale", () => {
-  const malayOrder = parseOrderInput({ ...validOrder, productSlug: "unlisted" }, "ms");
-  const englishOrder = parseOrderInput({ ...validOrder, productSlug: "unlisted" }, "en");
-  assert.deepEqual(malayOrder, { error: "Sila pilih produk yang disenaraikan." });
-  assert.deepEqual(englishOrder, { error: "Please choose a listed product." });
-  const malayContact = parseContactInput({ name: "x" }, "ms");
-  assert.deepEqual(malayContact, { error: "Masukkan nama anda." });
-});
-
-test("Malay and English route links are reciprocal", () => {
-  const pairs = [
-    ["/", "/en"],
-    ["/produk", "/en/products"],
-    ["/produk/magnum-pump", "/en/products/magnum-pump"],
-    ["/tentang-kami", "/en/about-us"],
-    ["/hubungi-kami", "/en/contact"],
-    ["/pesanan", "/en/order"],
-    ["/pesanan/pengesahan", "/en/order/confirmation"],
-    ["/soalan-lazim", "/en/faq"],
-    ["/penghantaran", "/en/shipping"],
-    ["/polisi-privasi", "/en/privacy-policy"],
-    ["/terma-syarat", "/en/terms"],
-    ["/polisi-pemulangan", "/en/refund-policy"],
-    ["/blog", "/en/blog"],
-  ];
-  for (const [malayPath, englishPath] of pairs) {
-    assert.equal(localizedPath(malayPath, "en"), englishPath);
-    assert.equal(localizedPath(englishPath, "ms"), malayPath);
-  }
-});
-
-test("honeypot submissions and missing consent are rejected", () => {
   assert.ok("error" in parseOrderInput({ ...validOrder, website: "https://spam.invalid" }));
   assert.ok("error" in parseOrderInput({ ...validOrder, privacyConsent: false }));
+  assert.deepEqual(parseOrderInput({ ...validOrder, productSlug: "unlisted" }, "ms"), { error: ms.orderPage.errors.product });
+  assert.deepEqual(parseOrderInput({ ...validOrder, productSlug: "unlisted" }, "en"), { error: en.orderPage.errors.product });
 });
 
-test("contact message requires valid email, sufficient detail and consent", () => {
-  const base = {
-    name: "Aina Rahman",
-    email: "aina@example.com",
-    phone: "",
-    product: "",
-    message: "Could you share more about this product?",
-    privacyConsent: true,
-    website: "",
-  };
-  const parsed = parseContactInput(base);
-  if (!("value" in parsed) || !parsed.value) assert.fail("Expected a valid contact message.");
-  assert.equal(parsed.value.email, base.email);
-  assert.ok("error" in parseContactInput({ ...base, email: "not-an-email" }));
-  assert.ok("error" in parseContactInput({ ...base, message: "Short" }));
-  assert.ok("error" in parseContactInput({ ...base, privacyConsent: false }));
-  assert.ok("error" in parseContactInput({ ...base, message: "A".repeat(2001) }));
+test("every product is RM159 and the WhatsApp order link targets the store number", () => {
+  for (const product of products) {
+    assert.equal(product.price, 159);
+    const url = new URL(productOrderUrl(product, 1, "ms"));
+    assert.equal(url.origin + url.pathname, `https://wa.me/${store.whatsappNumber}`);
+    const text = url.searchParams.get("text") ?? "";
+    assert.ok(text.includes(product.name));
+    assert.ok(text.includes("RM159"));
+  }
+  assert.equal(store.whatsappNumber, "60194022352");
+});
+
+test("prefilled messages contain product, price, quantity and prompts in each language", () => {
+  const msText = productOrderMessage(products[0], 3, "ms");
+  for (const expected of ["Magnum Pump", "RM159 seunit", "Kuantiti: 3", "RM477", "Nama:", "Alamat penuh:", "No. telefon:"]) {
+    assert.ok(msText.includes(expected), `BM message should include ${expected}`);
+  }
+  const enText = productOrderMessage(products[0], 2, "en");
+  for (const expected of ["Magnum Pump", "RM159 per unit", "Quantity: 2", "RM318", "Name:", "Full address:", "Phone number:"]) {
+    assert.ok(enText.includes(expected), `EN message should include ${expected}`);
+  }
+  assert.ok(productOrderMessage(products[0], 99, "en").includes("Quantity: 10"));
+});
+
+test("form order message includes the customer details", () => {
+  const text = formOrderMessage({ productName: "Ultrahot", unitPrice: 159, quantity: 2, name: "Aina", phone: "0123456789", email: "", address: "12 Jalan Merdeka", city: "Kajang", state: "Selangor", notes: "Call first" }, "ms");
+  for (const expected of ["Ultrahot", "Kuantiti: 2", "RM318", "Nama: Aina", "No. telefon: 0123456789", "12 Jalan Merdeka, Kajang, Selangor", "Catatan: Call first"]) {
+    assert.ok(text.includes(expected), `Form message should include ${expected}`);
+  }
+  assert.ok(!text.includes("E-mel"));
+});
+
+test("Malay and English routes are reciprocal, including products and articles", () => {
+  const pairs = allRoutePairs();
+  assert.ok(pairs.length >= 12 + products.length + articles.length);
+  for (const pair of pairs) {
+    assert.equal(localizedPath(pair.ms, "en"), pair.en);
+    assert.equal(localizedPath(pair.en, "ms"), pair.ms);
+  }
+  assert.equal(localizedPath("/cara-pesan", "en"), "/en/how-to-order");
+  assert.equal(localizedPath("/blog/hubungan-bahagia", "en"), "/en/blog/happy-marriage");
+  assert.equal(localizedPath("/unknown", "en"), "/en");
+});
+
+test("SEO titles stay within 60 characters including the brand suffix", () => {
+  const suffix = ` | ${store.brandName}`;
+  for (const dict of [ms, en]) {
+    for (const [key, value] of Object.entries(dict.seo)) {
+      const titles = key === "product" ? products.map((p) => value.title.replace("{name}", p.name)) : [value.title];
+      for (const title of titles) {
+        const full = key === "home" ? title : `${title}${suffix}`;
+        assert.ok(full.length <= 60, `${dict.locale} ${key} title too long (${full.length}): ${full}`);
+      }
+    }
+  }
+  for (const article of articles) {
+    for (const content of [article.ms, article.en]) {
+      assert.ok(`${content.seoTitle}${suffix}`.length <= 60, `Article title too long: ${content.seoTitle}`);
+    }
+  }
+});
+
+test("sales copy avoids prohibited claim phrases", () => {
+  const banned = ["ubat kuat", "mati pucuk", "tenaga batin", "tahan lama", "besarkan zakar", "zakar", "draf", "draft"];
+  const salesCopy = JSON.stringify({ ms, en, products }).toLowerCase();
+  for (const phrase of banned) assert.ok(!salesCopy.includes(phrase), `Found banned phrase: ${phrase}`);
 });

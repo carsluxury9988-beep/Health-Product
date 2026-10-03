@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { store } from "@/config/store";
 import { getMessages, type Locale } from "@/i18n";
+import { staticRoutes } from "@/i18n/routes";
+import { JsonLd } from "@/components/json-ld";
+import { absoluteUrl } from "@/lib/seo";
 
 export type BreadcrumbItem = { label: string; href?: string };
 
-export function Breadcrumbs({ items, locale = "ms" }: { items: BreadcrumbItem[]; locale?: Locale }) {
+export function Breadcrumbs({ items, locale }: { items: BreadcrumbItem[]; locale: Locale }) {
   const t = getMessages(locale);
-  const list = [{ label: t.nav.home, href: locale === "en" ? "/en" : "/" }, ...items];
+  const list = [{ label: t.common.home, href: staticRoutes.home[locale] }, ...items];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -14,13 +16,13 @@ export function Breadcrumbs({ items, locale = "ms" }: { items: BreadcrumbItem[];
       "@type": "ListItem",
       position: index + 1,
       name: item.label,
-      ...(item.href && store.siteUrl ? { item: new URL(item.href, store.siteUrl).toString() } : {}),
+      ...(item.href ? { item: absoluteUrl(item.href) } : {}),
     })),
   };
 
   return (
     <>
-      <nav className="breadcrumbs container" aria-label={locale === "ms" ? "Jejak navigasi" : "Breadcrumb"}>
+      <nav className="breadcrumbs container" aria-label={t.common.breadcrumb}>
         <ol>
           {list.map((item, index) => (
             <li key={`${item.label}-${index}`}>
@@ -29,7 +31,7 @@ export function Breadcrumbs({ items, locale = "ms" }: { items: BreadcrumbItem[];
           ))}
         </ol>
       </nav>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <JsonLd data={jsonLd} />
     </>
   );
 }

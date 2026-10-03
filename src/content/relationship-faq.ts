@@ -28,14 +28,14 @@ export const relationshipFaq: FaqPair[] = [
   {
     question: "Kenapa keyakinan lelaki penting di rumah?",
     questionEn: "Why does a man's confidence matter at home?",
-    answer: "Keyakinan yang sihat kelihatan seperti lelaki yang tidak perlu membuktikan diri setiap malam. Isteri lebih tenang apabila suami hadir, menepati janji dan tidak meledak. Keyakinan palsu — membanding, merendah, atau membeli janji iklan — biasanya membuat rumah lebih tegang.",
-    answerEn: "Healthy confidence looks like a man who does not have to prove himself every night. A household is calmer when he shows up, keeps his word and does not explode. False confidence — comparing, belittling, or buying an advert's promise — usually makes the house tighter.",
+    answer: "Keyakinan yang sihat kelihatan seperti lelaki yang tidak perlu sentiasa membuktikan diri. Isteri lebih tenang apabila suami hadir, menepati janji dan tidak meledak. Keyakinan palsu — membanding, merendah, atau membeli janji iklan — biasanya membuat rumah lebih tegang.",
+    answerEn: "Healthy confidence looks like a man who does not need to keep proving himself. A household is calmer when he shows up, keeps his word and does not explode. False confidence — comparing, belittling, or buying an advert's promise — usually makes the house tighter.",
   },
   {
     question: "Bagaimana jaga kehidupan intim tanpa tekanan?",
     questionEn: "How do you care for intimacy without pressure?",
-    answer: "Intimasi yang bertahan lama datang daripada rasa selamat, bukan daripada ujian prestasi. Tanya, dengar, dan jangan paksa. Jika badan atau perasaan berubah, bercakap. Produk kesejahteraan lelaki bukan tiket untuk menuntut sesuatu daripada pasangan.",
-    answerEn: "Intimacy that lasts comes from safety, not from a performance test. Ask, listen, and do not force. If the body or the feeling changes, talk. A wellness product is not a ticket to demand something from your partner.",
+    answer: "Keintiman yang berkekalan datang daripada rasa selamat dan saling menghormati, bukan tekanan. Tanya, dengar, dan jangan paksa. Jika badan atau perasaan berubah, bercakap dengan pasangan — dan dengan doktor jika perlu.",
+    answerEn: "Lasting closeness comes from safety and mutual respect, not pressure. Ask, listen, and do not force. If the body or the feeling changes, talk with your partner — and with a doctor if needed.",
   },
   {
     question: "Apa yang patut dibuat jika rasa jauh dengan pasangan?",
@@ -52,8 +52,8 @@ export const relationshipFaq: FaqPair[] = [
   {
     question: "Bagaimana kesihatan lelaki berkaitan dengan rumah tangga?",
     questionEn: "How is men's wellness connected to married life?",
-    answer: "Lelaki yang jaga tidur, makan dan pemeriksaan asas biasanya lebih mudah hadir. Penat yang tidak diurus menjadi pendek sabar. Kesihatan lelaki di sini bermaksud jaga diri, bukan menjanjikan hasil perubatan daripada Magnum Pump, Ultrahot, Horsemen atau Hammer of Thor.",
-    answerEn: "A man who protects sleep, food and basic check-ups is usually easier to live with. Untended exhaustion becomes a short temper. Men's wellness here means looking after yourself, not promising a medical result from Magnum Pump, Ultrahot, Horsemen or Hammer of Thor.",
+    answer: "Lelaki yang jaga tidur, makan dan pemeriksaan asas biasanya lebih mudah hadir. Penat yang tidak diurus menjadi pendek sabar. Kesihatan lelaki di sini bermaksud jaga diri, bukan janji hasil perubatan daripada mana-mana produk.",
+    answerEn: "A man who protects sleep, food and basic check-ups is usually easier to live with. Untended exhaustion becomes a short temper. Men's wellness here means looking after yourself, not a promise of a medical result from any product.",
   },
   {
     question: "Patut ke bandingkan perkahwinan dengan orang lain?",
@@ -112,8 +112,8 @@ export const relationshipFaq: FaqPair[] = [
   {
     question: "Bagaimana pesan produk di laman ini dengan privasi?",
     questionEn: "How do you order from this site privately?",
-    answer: "Pilih produk dan hantar pesanan terus melalui laman ini. Harga RM159, penghantaran percuma dan bayaran secara COD selepas pesanan disahkan dengan anda. Anda tidak perlu berkongsi apa-apa di media sosial.",
-    answerEn: "Choose a product and send your order directly through this site. The price is RM159, delivery is free and payment is by COD once the order is confirmed with you. Nothing needs to be shared on social media.",
+    answer: "Pilih produk dan hantar pesanan melalui WhatsApp atau borang pesanan di laman ini. Harga RM159, penghantaran percuma dan bayaran secara COD selepas pesanan disahkan dengan anda. Anda tidak perlu berkongsi apa-apa di media sosial.",
+    answerEn: "Choose a product and send your order on WhatsApp or with the order form on this site. The price is RM159, delivery is free and payment is by COD once the order is confirmed with you. Nothing needs to be shared on social media.",
   },
   {
     question: "Bagaimana mengurus tekanan kerja supaya tidak dibawa pulang ke rumah?",

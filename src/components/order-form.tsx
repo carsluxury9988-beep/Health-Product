@@ -1,182 +1,167 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
-import { products, getProduct } from "@/config/products";
-import { malaysianStates, malaysianStatesMs, store } from "@/config/store";
-import { formatPrice } from "@/lib/format";
-import { openShopEmail } from "@/lib/mailto";
-import { trackEvent } from "@/lib/analytics";
-import { useOrderConfirmation } from "@/components/order-confirmation-provider";
+import { useSearchParams } from "next/navigation";
+import { useState, type FormEvent } from "react";
+import { getProduct, products } from "@/config/products";
+import { malaysianStates, malaysianStatesMs } from "@/config/store";
 import { getMessages, type Locale } from "@/i18n";
+import { routePath } from "@/i18n/routes";
+import { trackEvent } from "@/lib/analytics";
+import { parseOrderInput } from "@/lib/forms";
+import { formatRinggit, formOrderMessage, MAX_QUANTITY, whatsappUrl } from "@/lib/whatsapp";
+import { CheckIcon, WhatsAppIcon } from "@/components/icons";
 
-export function OrderForm({ initialProduct, locale = "ms" }: { initialProduct: string; locale?: Locale }) {
-  const router = useRouter();
-  const { setSummary } = useOrderConfirmation();
+export function OrderForm({ locale }: { locale: Locale }) {
   const t = getMessages(locale);
-  const contactPath = locale === "en" ? "/en/contact" : "/hubungi-kami";
-  const privacyPath = locale === "en" ? "/en/privacy-policy" : "/polisi-privasi";
-  const [productSlug, setProductSlug] = useState(getProduct(initialProduct)?.slug ?? products[0].slug);
+  const f = t.orderPage;
+  const searchParams = useSearchParams();
+  const initialSlug = getProduct(searchParams?.get("product") ?? "")?.slug ?? products[0].slug;
+  const [productSlug, setProductSlug] = useState(initialSlug);
   const [quantity, setQuantity] = useState(1);
-  const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const selectedProduct = getProduct(productSlug) ?? products[0];
-  const total = selectedProduct.price * quantity + store.deliveryFee;
+  const [error, setError] = useState<string | null>(null);
+  const [sentUrl, setSentUrl] = useState<string | null>(null);
+  const product = getProduct(productSlug) ?? products[0];
+  const stateLabels = locale === "ms" ? malaysianStatesMs : malaysianStates;
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setError("");
-    setSubmitting(true);
-
-    const form = new FormData(event.currentTarget);
-    if (String(form.get("website") ?? "").trim()) {
-      setSubmitting(false);
-      return;
-    }
-
-    const name = String(form.get("name") ?? "").trim();
-    const phone = String(form.get("phone") ?? "").trim();
-    const email = String(form.get("email") ?? "").trim();
-    const address = String(form.get("address") ?? "").trim();
-    const city = String(form.get("city") ?? "").trim();
-    const stateValue = String(form.get("state") ?? "");
-    const notes = String(form.get("notes") ?? "").trim();
-    const stateIndex = malaysianStates.indexOf(stateValue as (typeof malaysianStates)[number]);
-    const stateLabel = stateIndex >= 0 && locale === "ms" ? malaysianStatesMs[stateIndex] : stateValue;
-
-    if (name.length < 2 || phone.length < 8 || address.length < 10 || city.length < 2 || !stateValue) {
-      setError(t.order.errors.invalid);
-      setSubmitting(false);
-      return;
-    }
-    if (store.codAvailable && form.get("codConfirmed") !== "on") {
-      setError(t.order.errors.cod);
-      setSubmitting(false);
-      return;
-    }
-    if (form.get("privacyConsent") !== "on") {
-      setError(t.order.errors.consent);
-      setSubmitting(false);
-      return;
-    }
-
-    const reference = `LY${Date.now().toString(36).toUpperCase()}`;
-    const subject = locale === "ms"
-      ? `Pesanan ${reference} — ${selectedProduct.name}`
-      : `Order ${reference} — ${selectedProduct.name}`;
-    const body = [
-      locale === "ms" ? "Pesanan baharu dari lebihyakin.my" : "New order from lebihyakin.my",
-      "",
-      `${locale === "ms" ? "Rujukan" : "Reference"}: ${reference}`,
-      `${locale === "ms" ? "Produk" : "Product"}: ${selectedProduct.name}`,
-      `${locale === "ms" ? "Kuantiti" : "Quantity"}: ${quantity}`,
-      `${locale === "ms" ? "Harga" : "Price"}: ${formatPrice(selectedProduct.price)} x ${quantity}`,
-      `${locale === "ms" ? "Penghantaran" : "Delivery"}: ${store.deliveryFee === 0 ? (locale === "ms" ? "Percuma" : "Free") : formatPrice(store.deliveryFee)}`,
-      `${locale === "ms" ? "Jumlah" : "Total"}: ${formatPrice(total)}`,
-      `${locale === "ms" ? "Bayaran" : "Payment"}: ${t.common.cod}`,
-      "",
-      `${locale === "ms" ? "Nama" : "Name"}: ${name}`,
-      `${locale === "ms" ? "Telefon" : "Phone"}: ${phone}`,
-      email ? `Email: ${email}` : "",
-      `${locale === "ms" ? "Alamat" : "Address"}: ${address}`,
-      `${locale === "ms" ? "Bandar" : "City"}: ${city}`,
-      `${locale === "ms" ? "Negeri" : "State"}: ${stateLabel}`,
-      notes ? `${locale === "ms" ? "Catatan" : "Notes"}: ${notes}` : "",
-    ].filter(Boolean).join("\n");
-
-    trackEvent("begin_checkout", {
-      item_name: selectedProduct.name,
-      value: total,
-      currency: "MYR",
+    const data = new FormData(event.currentTarget);
+    const parsed = parseOrderInput({
+      productSlug,
       quantity,
-    });
-    openShopEmail(subject, body);
-    setSummary({
-      reference,
-      productName: selectedProduct.name,
-      quantity,
-      unitPrice: selectedProduct.price,
-      deliveryFee: store.deliveryFee,
-      name,
-      phone,
-      email,
-      address,
-      city,
-      state: stateValue,
-      stateLabel,
-      notes,
-    });
-    trackEvent("order_submit", { item_name: selectedProduct.name, value: total, currency: "MYR", quantity });
-    router.push(locale === "en" ? "/en/order/confirmation" : "/pesanan/pengesahan");
-    setSubmitting(false);
+      name: data.get("name"),
+      phone: data.get("phone"),
+      email: data.get("email"),
+      address: data.get("address"),
+      city: data.get("city"),
+      state: data.get("state"),
+      notes: data.get("notes"),
+      website: data.get("website"),
+      codConfirmed: data.get("cod") === "on",
+      privacyConsent: data.get("consent") === "on",
+    }, locale);
+    if ("error" in parsed || !parsed.value) {
+      setError(parsed.error ?? f.errors.invalid);
+      return;
+    }
+    const order = parsed.value;
+    const url = whatsappUrl(formOrderMessage({
+      productName: order.product.name,
+      unitPrice: order.product.price,
+      quantity: order.quantity,
+      name: order.name,
+      phone: order.phone,
+      email: order.email,
+      address: order.address,
+      city: order.city,
+      state: order.stateLabel,
+      notes: order.notes,
+    }, locale));
+    setError(null);
+    setSentUrl(url);
+    trackEvent("order_form_submit", { item_name: order.product.name, quantity: order.quantity, value: order.product.price * order.quantity, currency: "MYR" });
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  if (sentUrl) {
+    return (
+      <div className="form-card form-success" role="status">
+        <span className="success-icon"><CheckIcon size={28} /></span>
+        <h2>{f.sentTitle}</h2>
+        <p>{f.sentBody}</p>
+        <a className="btn btn-wa btn-lg" href={sentUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /> {f.sentRetry}</a>
+        <button type="button" className="btn btn-ghost" onClick={() => setSentUrl(null)}>{f.sentEdit}</button>
+      </div>
+    );
   }
 
   return (
-    <form className="form-card order-form" onSubmit={handleSubmit}>
-      <div className="form-section">
-        <p className="form-section-kicker">01 <span>{t.order.formSections[0]}</span></p>
-        <label htmlFor="product">{t.order.product}</label>
-        <select id="product" name="product" value={productSlug} onChange={(event) => setProductSlug(event.target.value)}>
-          {products.map((product) => <option key={product.id} value={product.slug}>{product.name} — {formatPrice(product.price)}</option>)}
-        </select>
-        <label htmlFor="quantity">{t.order.quantity}</label>
-        <select id="quantity" name="quantity" value={quantity} onChange={(event) => setQuantity(Number(event.target.value))}>
-          {Array.from({ length: 10 }, (_, index) => index + 1).map((number) => <option key={number} value={number}>{number}</option>)}
-        </select>
-      </div>
-      <div className="form-section">
-        <p className="form-section-kicker">02 <span>{t.order.formSections[1]}</span></p>
-        <label htmlFor="name">{t.order.name} <span className="required-mark">*</span></label>
-        <input id="name" name="name" autoComplete="name" minLength={2} maxLength={100} required />
-        <label htmlFor="phone">{t.order.phone} <span className="required-mark">*</span></label>
-        <input id="phone" name="phone" type="tel" autoComplete="tel" placeholder={t.order.phonePlaceholder} pattern="(?:\+?60|0)1[\d\s()-]{8,14}" title={t.order.phoneHint} required />
-        <label htmlFor="email">{t.order.email} <span className="field-optional">{t.common.optional}</span></label>
-        <input id="email" name="email" type="email" autoComplete="email" maxLength={254} />
-      </div>
-      <div className="form-section">
-        <p className="form-section-kicker">03 <span>{t.order.formSections[2]}</span></p>
-        <label htmlFor="address">{t.order.address} <span className="required-mark">*</span></label>
-        <textarea id="address" name="address" rows={4} minLength={10} maxLength={500} autoComplete="street-address" placeholder={t.order.addressPlaceholder} required />
-        <label htmlFor="city">{t.order.city} <span className="required-mark">*</span></label>
-        <input id="city" name="city" autoComplete="address-level2" minLength={2} maxLength={80} required />
-        <label htmlFor="state">{t.order.state} <span className="required-mark">*</span></label>
-        <select id="state" name="state" autoComplete="address-level1" defaultValue="" required>
-          <option value="" disabled>{t.order.select}</option>
-          {malaysianStates.map((state, index) => <option key={state} value={state}>{locale === "ms" ? malaysianStatesMs[index] : state}</option>)}
-        </select>
-        <label htmlFor="notes">{t.order.notes} <span className="field-optional">{t.common.optional}</span></label>
-        <textarea id="notes" name="notes" rows={2} maxLength={500} />
-      </div>
-      <div className="form-section">
-        <p className="form-section-kicker">04 <span>{t.order.formSections[3]}</span></p>
-        {store.codAvailable ? (
-          <label className="check-row">
-            <input type="checkbox" name="codConfirmed" required />
-            <span>{t.common.codConfirmation}</span>
-          </label>
-        ) : (
-          <p className="form-error" role="status">{t.common.cod} {locale === "ms" ? "tidak tersedia buat masa ini." : "is not available at this time."} <Link href={contactPath}>{t.nav.contact}</Link></p>
-        )}
-        <label className="check-row">
-          <input type="checkbox" name="privacyConsent" required />
-          <span>{t.order.privacyConsent} <Link href={privacyPath}>{t.common.privacy}</Link>.</span>
+    <form className="form-card order-form" onSubmit={onSubmit} noValidate>
+      <fieldset>
+        <legend>{f.sections[0]}</legend>
+        <div className="field">
+          <label htmlFor="product">{f.product}</label>
+          <select id="product" name="product" value={productSlug} onChange={(e) => setProductSlug(e.target.value)}>
+            {products.map((item) => <option key={item.slug} value={item.slug}>{item.name} — {formatRinggit(item.price)}</option>)}
+          </select>
+        </div>
+        <div className="field">
+          <label htmlFor="quantity">{f.quantity}</label>
+          <select id="quantity" name="quantity" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}>
+            {Array.from({ length: MAX_QUANTITY }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n}</option>)}
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>{f.sections[1]}</legend>
+        <div className="field">
+          <label htmlFor="name">{f.name}</label>
+          <input id="name" name="name" autoComplete="name" required maxLength={100} />
+        </div>
+        <div className="field-row">
+          <div className="field">
+            <label htmlFor="phone">{f.phone}</label>
+            <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={f.phonePlaceholder} required maxLength={30} />
+          </div>
+          <div className="field">
+            <label htmlFor="email">{f.email}</label>
+            <input id="email" name="email" type="email" autoComplete="email" maxLength={254} />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>{f.sections[2]}</legend>
+        <div className="field">
+          <label htmlFor="address">{f.address}</label>
+          <textarea id="address" name="address" rows={3} autoComplete="street-address" placeholder={f.addressPlaceholder} required maxLength={500} />
+        </div>
+        <div className="field-row">
+          <div className="field">
+            <label htmlFor="city">{f.city}</label>
+            <input id="city" name="city" autoComplete="address-level2" required maxLength={80} />
+          </div>
+          <div className="field">
+            <label htmlFor="state">{f.state}</label>
+            <select id="state" name="state" defaultValue="" required>
+              <option value="" disabled>{f.selectState}</option>
+              {malaysianStates.map((state, index) => <option key={state} value={state}>{stateLabels[index]}</option>)}
+            </select>
+          </div>
+        </div>
+        <div className="field">
+          <label htmlFor="notes">{f.notes}</label>
+          <textarea id="notes" name="notes" rows={2} maxLength={500} />
+        </div>
+        <div className="hp" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>{f.sections[3]}</legend>
+        <dl className="summary">
+          <div><dt>{product.name} × {quantity}</dt><dd>{formatRinggit(product.price * quantity)}</dd></div>
+          <div><dt>{f.delivery}</dt><dd>{f.free}</dd></div>
+          <div><dt>{f.payment}</dt><dd>{t.common.codShort}</dd></div>
+          <div className="summary-total"><dt>{t.common.total}</dt><dd>{formatRinggit(product.price * quantity)}</dd></div>
+        </dl>
+        <label className="check">
+          <input type="checkbox" name="cod" required />
+          <span>{f.codConsent}</span>
         </label>
-      </div>
-      <div className="honeypot" aria-hidden="true">
-        <label htmlFor="order-website">{locale === "ms" ? "Biarkan ruangan ini kosong" : "Leave this field empty"}</label>
-        <input id="order-website" name="website" tabIndex={-1} autoComplete="off" />
-      </div>
-      <div className="order-total">
-        <span><strong>{t.order.price}: {formatPrice(selectedProduct.price)}</strong> × {quantity}<br /><small>{t.order.delivery}: {store.deliveryFee === 0 ? t.order.free : formatPrice(store.deliveryFee)} · {store.codAvailable ? t.common.cod : t.nav.contact}</small></span>
-        <span className="order-total-price">{formatPrice(total)}</span>
-      </div>
-      <p className="form-note">{locale === "ms" ? `Hantar pesanan terus ke ${store.contactEmail}. E-mel anda akan dibuka dengan butiran pesanan.` : `Send this order directly to ${store.contactEmail}. Your email app will open with the order details.`}</p>
+        <label className="check">
+          <input type="checkbox" name="consent" required />
+          <span>{f.privacyConsent} <Link href={routePath("privacy", locale)}>{f.privacyLink}</Link></span>
+        </label>
+      </fieldset>
+
       {error && <p className="form-error" role="alert">{error}</p>}
-      <button className="button button-dark form-submit" type="submit" disabled={submitting || !store.codAvailable}>
-        {submitting ? t.order.submitting : store.codAvailable ? `${t.order.submit} · ${formatPrice(total)}` : t.nav.contact}
-        <span aria-hidden="true">↗</span>
-      </button>
+      <button type="submit" className="btn btn-wa btn-lg btn-block"><WhatsAppIcon /> {f.submit}</button>
+      <p className="form-note">{f.privacyNote}</p>
     </form>
   );
 }
