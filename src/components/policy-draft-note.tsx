@@ -1,11 +1,7 @@
-import { getMessages, type Locale } from "@/i18n";
+import type { Locale } from "@/i18n";
 
-export function PolicyDraftNote({ locale = "en" }: { locale?: Locale }) {
-  const t = getMessages(locale);
-  return (
-    <aside className="policy-draft-note" role="note">
-      <strong>{t.common.draft}</strong>
-      <p>{t.common.draftText}</p>
-    </aside>
-  );
+// Internal draft notices are no longer shown to visitors. Business-identity gaps are tracked in code TODOs.
+export function PolicyDraftNote(props: { locale?: Locale }) {
+  void props;
+  return null;
 }
