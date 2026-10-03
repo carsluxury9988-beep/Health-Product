@@ -112,4 +112,18 @@ test("sales copy avoids prohibited claim phrases", () => {
   const banned = ["ubat kuat", "mati pucuk", "tenaga batin", "tahan lama", "besarkan zakar", "zakar", "draf", "draft"];
   const salesCopy = JSON.stringify({ ms, en, products }).toLowerCase();
   for (const phrase of banned) assert.ok(!salesCopy.includes(phrase), `Found banned phrase: ${phrase}`);
+  const articleCopy = JSON.stringify(articles).toLowerCase();
+  for (const phrase of ["ubat kuat", "tenaga batin", "besarkan zakar", "afrodisiak", "aphrodisiac"]) {
+    assert.ok(!articleCopy.includes(phrase), `Found banned phrase in articles: ${phrase}`);
+  }
+});
+
+test("every article has both languages, sources or a disclaimer, and a matching image", () => {
+  for (const article of articles) {
+    for (const content of [article.ms, article.en]) {
+      assert.ok(content.slug && content.title && content.description && content.disclaimer);
+      assert.ok(content.blocks.length > 0 || (content.qa?.length ?? 0) > 0);
+    }
+    assert.equal(article.ms.sources?.length ?? 0, article.en.sources?.length ?? 0);
+  }
 });

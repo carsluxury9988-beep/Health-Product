@@ -29,6 +29,8 @@ export function articleMetadata(slug: string, locale: Locale): Metadata {
     type: "article",
     publishedTime: article.published,
     modifiedTime: article.updated,
+    image: article.ogImage,
+    imageAlt: content.imageAlt,
   });
 }
 
