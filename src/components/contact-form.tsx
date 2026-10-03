@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { getMessages, type Locale } from "@/i18n";
-import { trackEvent } from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { contactMessage, whatsappUrl } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/icons";
 
@@ -18,7 +18,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
     if (name.length < 2) return setError(t.errors.name);
     if (message.length < 5) return setError(t.errors.message);
     setError(null);
-    trackEvent("contact_submit", { channel: "whatsapp" });
+    analytics.contactSubmit();
     window.open(whatsappUrl(contactMessage(name.slice(0, 100), message.slice(0, 1500), locale)), "_blank", "noopener,noreferrer");
   }
 

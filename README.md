@@ -35,6 +35,20 @@ Checks: `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`.
 - `src/lib/seo.ts`, `src/lib/schema.ts` — metadata (canonical, hreflang, Open Graph) and JSON-LD (OnlineStore, WebSite, Product/Offer, BreadcrumbList, FAQPage, Article).
 - `public/products/*-pack.webp` — background-removed, upscaled cut-outs of the supplied pack photos; `*-square.jpg` for structured data; `public/og/*` share images.
 
+## Analytics
+
+Optional GA4 (`NEXT_PUBLIC_GA_ID`) and Meta Pixel (`NEXT_PUBLIC_META_PIXEL_ID`) load only after the visitor accepts the consent banner. Events (`src/lib/analytics.ts`):
+
+| Action | GA4 event | Meta event |
+| --- | --- | --- |
+| Product page view | `view_item` | `ViewContent` |
+| Product WhatsApp "Order" click (card or product page) | `generate_lead` (`method: whatsapp`, value in MYR) | `Lead` |
+| Order form sent to WhatsApp | `generate_lead` (`method: order_form`) | `Lead` |
+| Other WhatsApp clicks (header, floating button, label request) | `whatsapp_click` | `Contact` |
+| Contact form sent to WhatsApp | `contact_submit` | `Contact` |
+
+In GA4, mark `generate_lead` as a key event (Admin → Events). A click is an intent to order; the actual order is confirmed on WhatsApp.
+
 ## Content rules
 
 - No medical, therapeutic or sexual-performance claims (Medicines (Advertisement and Sale) Act 1956). Tests fail if certain phrases appear in the dictionaries or product data.

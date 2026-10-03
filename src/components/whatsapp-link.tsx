@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { trackEvent } from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 
 type Props = {
   href: string;
@@ -10,10 +10,12 @@ type Props = {
   /** Where the click happened, for optional analytics. */
   source: string;
   product?: string;
+  /** Order value in RM for product order links (used for conversion value). */
+  value?: number;
   ariaLabel?: string;
 };
 
-export function WhatsAppLink({ href, children, className, source, product, ariaLabel }: Props) {
+export function WhatsAppLink({ href, children, className, source, product, value, ariaLabel }: Props) {
   return (
     <a
       href={href}
@@ -21,7 +23,7 @@ export function WhatsAppLink({ href, children, className, source, product, ariaL
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel}
-      onClick={() => trackEvent("whatsapp_click", { source, ...(product ? { item_name: product } : {}) })}
+      onClick={() => analytics.whatsappClick(source, product && value !== undefined ? { name: product, value } : undefined)}
     >
       {children}
     </a>

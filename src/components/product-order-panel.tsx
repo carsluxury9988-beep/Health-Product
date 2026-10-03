@@ -28,7 +28,7 @@ export function ProductOrderPanel({ product, locale }: { product: Pick<Product, 
         <span>{t.common.total}</span>
         <strong>{formatRinggit(total)}</strong>
       </div>
-      <WhatsAppLink href={productOrderUrl(product, quantity, locale)} source="product_page" product={product.name} className="btn btn-wa btn-lg btn-block">
+      <WhatsAppLink href={productOrderUrl(product, quantity, locale)} source="product_page" product={product.name} value={total} className="btn btn-wa btn-lg btn-block">
         <WhatsAppIcon /> {t.common.whatsappOrder}
       </WhatsAppLink>
       <p className="order-panel-hint">{t.productPage.orderHint}</p>
