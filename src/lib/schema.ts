@@ -11,10 +11,9 @@ export const websiteId = () => `${store.siteUrl}/#website`;
 export const returnPolicyId = (locale: Locale) => `${absoluteUrl(staticRoutes.returns[locale])}#return-policy`;
 
 /**
- * Store-wide return policy (Google "Option B": applicableCountry + merchantReturnLink).
- * The visible policy states no fixed return window, method or fee — damaged, wrong or
- * incomplete items are reviewed case by case — so no returnPolicyCategory/merchantReturnDays
- * is claimed here. If the owner publishes a window, switch to MerchantReturnFiniteReturnWindow.
+ * Return policy, matching the visible returns page: unopened and unused items can be returned
+ * within store.returnWindowDays days of delivery. The site does not state a return method or
+ * who pays return shipping, so returnMethod and returnFees are deliberately omitted.
  */
 export function returnPolicySchema(locale: Locale) {
   return {
@@ -22,6 +21,9 @@ export function returnPolicySchema(locale: Locale) {
     "@id": returnPolicyId(locale),
     name: getMessages(locale).policies.returns.title,
     applicableCountry: "MY",
+    returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+    merchantReturnDays: store.returnWindowDays,
+    itemCondition: "https://schema.org/NewCondition",
     merchantReturnLink: absoluteUrl(staticRoutes.returns[locale]),
   };
 }
@@ -100,7 +102,7 @@ export function productSchema(product: Product, locale: Locale) {
       availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: { "@id": organizationId() },
-      hasMerchantReturnPolicy: { "@id": returnPolicyId(locale) },
+      hasMerchantReturnPolicy: returnPolicySchema(locale),
       shippingDetails: {
         "@type": "OfferShippingDetails",
         shippingRate: { "@type": "MonetaryAmount", value: store.deliveryFee, currency: product.currency },

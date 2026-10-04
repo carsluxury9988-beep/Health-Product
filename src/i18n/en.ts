@@ -90,7 +90,7 @@ export const en: Messages = {
     delivery: [
       { title: "Coverage", body: "Peninsular Malaysia, Sabah and Sarawak. Delivery is free." },
       { title: "Payment", body: "COD — pay the courier in cash on receipt. COD availability for your address is confirmed when we confirm your order." },
-      { title: "Timing", body: "Depends on your location and the courier. We share an estimate when we confirm your order." },
+      { title: "Timing", body: "Usually 3–10 days from order confirmation, depending on your location." },
     ],
     deliveryLink: "Delivery & COD details",
     faqEyebrow: "FAQ",
@@ -126,7 +126,7 @@ export const en: Messages = {
     labelCta: "Ask for label photos",
     safetyTitle: "Before use",
     deliveryTitle: "Delivery & payment",
-    deliveryBody: "Free delivery across Malaysia. Pay the courier in cash when you receive the parcel. Estimated delivery time is 3–10 days from order confirmation, depending on your location.",
+    deliveryBody: "Free delivery across Malaysia. Pay the courier in cash when you receive the parcel. Delivery usually takes 3–10 days from order confirmation, depending on your location.",
     relatedTitle: "Other products",
     askLabel: "I have a question about",
   },
@@ -141,7 +141,7 @@ export const en: Messages = {
     afterTitle: "After you send the message",
     after: [
       { title: "Confirmation", body: "We reply on WhatsApp to confirm the product, quantity, total and delivery address. Your order ships only after it is confirmed with you." },
-      { title: "Delivery", body: "The parcel is sent by courier. Delivery is free across Malaysia. Estimated 3–10 days from order confirmation, depending on your location." },
+      { title: "Delivery", body: "The parcel is sent by courier. Delivery is free across Malaysia. It usually arrives within 3–10 days of order confirmation, depending on your location." },
       { title: "COD payment", body: "Pay the courier in cash when the parcel arrives. Please have the exact amount ready if possible." },
     ],
     tipsTitle: "Tips for a smooth order",
@@ -238,7 +238,7 @@ export const en: Messages = {
         items: [
           { q: "Is delivery free?", a: "Yes. Delivery is free across Malaysia, including Sabah and Sarawak." },
           { q: "How does cash on delivery work?", a: "You pay the courier in cash when the parcel arrives. The amount due is confirmed when we confirm your order, along with COD availability for your address." },
-          { q: "How long does delivery take?", a: "Usually 3–10 days from order confirmation: 1–3 days for us to hand the parcel to the courier and 2–7 days for delivery, depending on your location. This is an estimate, not a guarantee." },
+          { q: "How long does delivery take?", a: "Usually 3–10 days from order confirmation: 1–3 days for us to hand the parcel to the courier and 2–7 days for delivery, depending on your location." },
         ],
       },
       {
@@ -253,6 +253,7 @@ export const en: Messages = {
         heading: "Returns & privacy",
         items: [
           { q: "What if an item is damaged or wrong?", a: "Contact us on WhatsApp as soon as possible after receiving the parcel, with photos of the item and the name on the order. We will review it and arrange a suitable solution. Full details are in the Returns policy." },
+          { q: "Can I return an item?", a: "Yes, within 7 days of delivery if the item is unopened and unused. Items that have been opened or used, even slightly, cannot be returned. Damaged, wrong or incomplete items are handled as in the answer above." },
           { q: "How is my information used?", a: "Your name, phone number and address are used only to process and deliver your order, including sharing them with the courier for delivery. See the Privacy policy." },
         ],
       },
@@ -265,7 +266,7 @@ export const en: Messages = {
       sections: [
         { heading: "Delivery area", paragraphs: ["We deliver across Malaysia, including Peninsular Malaysia, Sabah and Sarawak.", "Delivery is free. No delivery charge is added to the product price."] },
         { heading: "Order confirmation", paragraphs: ["After you send your order on WhatsApp, we reply to confirm the product, quantity, total and delivery address. Parcels ship only after the order is confirmed."] },
-        { heading: "Delivery time", paragraphs: ["After your order is confirmed, we usually hand the parcel to the courier within 1–3 days. Courier delivery usually takes 2–7 days depending on your location. The overall estimate is 3–10 days from order confirmation.", "This is an estimate, not a guarantee. We will share an estimate for your address when we confirm your order. Delays can happen during festive seasons, bad weather or in remote areas."] },
+        { heading: "Delivery time", paragraphs: ["After your order is confirmed, we usually hand the parcel to the courier within 1–3 days. Courier delivery usually takes 2–7 days depending on your location. Overall, orders usually arrive within 3–10 days of order confirmation.", "We will confirm the timing for your address when we confirm your order. Delays can happen during festive seasons, bad weather or in remote areas."] },
         { heading: "Cash on delivery (COD)", paragraphs: ["You pay the courier in cash when you receive the parcel. The amount due is confirmed when we confirm your order.", "COD availability can vary by area and courier. We will confirm whether COD is available for your address before shipping."] },
         { heading: "Receiving your parcel", paragraphs: ["Please make sure someone can receive the parcel at the address given and that your phone number is active. If the parcel looks damaged on arrival, take photos and contact us on WhatsApp as soon as possible."] },
         { heading: "Unclaimed parcels", paragraphs: ["If a COD parcel is refused or cannot be delivered after the order was confirmed, we may not be able to accept further COD orders from the same number."] },
@@ -273,11 +274,12 @@ export const en: Messages = {
     },
     returns: {
       title: "Returns & refunds",
-      lead: "What to do if there is a problem with your order.",
+      lead: "Unopened and unused items can be returned within 7 days of delivery. This page also explains what to do if there is a problem with your order.",
       sections: [
         { heading: "Check on receipt", paragraphs: ["Please check the parcel and products as soon as you receive them — make sure the product, quantity and condition are correct."] },
         { heading: "Damaged, wrong or incomplete items", paragraphs: ["Contact us on WhatsApp or by email as soon as possible after receiving the parcel. Include the name on the order, photos of the product and packaging, and a short description of the problem.", "We will review each case and arrange a suitable solution, such as a replacement or refund, depending on the circumstances."] },
-        { heading: "Opened products", paragraphs: ["For hygiene and safety reasons, health products that have been opened or used may not be returnable, unless the product is faulty or not what you ordered."] },
+        { heading: "Returns within 7 days", paragraphs: ["You can return an item within 7 days of delivery, as long as it is unopened and unused.", "To start a return, contact us on WhatsApp or by email within those 7 days. Include the name on the order and the product you want to return, and we will tell you the next steps."] },
+        { heading: "Opened or used items", paragraphs: ["For hygiene and safety reasons, items that have been opened or used, even slightly, cannot be returned. This does not apply to damaged, wrong or incomplete items, which are handled as described above."] },
         { heading: "Cancellations", paragraphs: ["You can cancel an order by telling us on WhatsApp before the parcel ships. Because payment is made on delivery, nothing is charged for orders cancelled before shipping."] },
         { heading: "Refunds", paragraphs: ["If a refund is approved, we will contact you to arrange an agreed refund method."] },
         { heading: "Your rights", paragraphs: ["This policy does not affect your rights as a consumer under Malaysian law, including the Consumer Protection Act 1999."] },
@@ -347,7 +349,7 @@ export const en: Messages = {
     order: { title: "Order Form", description: "Fill in a short order form and send it straight to WhatsApp. RM159 per unit, free delivery, COD payment." },
     faq: { title: "FAQ — Ordering, COD & Delivery", description: "Answers about how to order, cash on delivery (COD), free delivery, products and returns at Lebih Yakin." },
     shipping: { title: "Delivery & Cash on Delivery", description: "Free delivery across Malaysia including Sabah and Sarawak. How cash on delivery (COD) and order confirmation work." },
-    returns: { title: "Returns & Refunds", description: "What to do if an item is damaged, wrong or incomplete, and how to cancel an order at Lebih Yakin." },
+    returns: { title: "Returns & Refunds", description: "Returns within 7 days for unopened, unused items, what to do about damaged or wrong items, and how to cancel an order at Lebih Yakin." },
     terms: { title: "Terms & Conditions", description: "Terms for using the site and ordering from Lebih Yakin: orders, prices, COD payment, product information and governing law." },
     privacy: { title: "Privacy Policy", description: "How Lebih Yakin collects, uses and protects your personal information in line with Malaysia's Personal Data Protection Act 2010." },
     about: { title: "About Us", description: "Lebih Yakin is an online store for men's health products in Malaysia. WhatsApp ordering, free delivery and COD payment." },
