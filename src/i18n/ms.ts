@@ -88,7 +88,7 @@ export const ms = {
     delivery: [
       { title: "Kawasan", body: "Semenanjung Malaysia, Sabah dan Sarawak. Penghantaran percuma." },
       { title: "Bayaran", body: "COD — bayar tunai kepada kurier semasa menerima. Ketersediaan COD bagi alamat anda disahkan semasa pengesahan pesanan." },
-      { title: "Tempoh", body: "Bergantung pada lokasi dan kurier. Kami maklumkan anggaran semasa mengesahkan pesanan." },
+      { title: "Tempoh", body: "Biasanya 3–10 hari dari pengesahan pesanan, bergantung pada lokasi." },
     ],
     deliveryLink: "Maklumat penghantaran & COD",
     faqEyebrow: "Soalan lazim",
@@ -124,7 +124,7 @@ export const ms = {
     labelCta: "Minta gambar label",
     safetyTitle: "Sebelum menggunakan",
     deliveryTitle: "Penghantaran & bayaran",
-    deliveryBody: "Penghantaran percuma ke seluruh Malaysia. Bayar tunai kepada kurier semasa menerima bungkusan. Anggaran tempoh penghantaran 3–10 hari dari pengesahan pesanan, bergantung pada lokasi.",
+    deliveryBody: "Penghantaran percuma ke seluruh Malaysia. Bayar tunai kepada kurier semasa menerima bungkusan. Tempoh penghantaran biasanya 3–10 hari dari pengesahan pesanan, bergantung pada lokasi.",
     relatedTitle: "Produk lain",
     askLabel: "Saya ada soalan tentang",
   },
@@ -139,7 +139,7 @@ export const ms = {
     afterTitle: "Selepas mesej dihantar",
     after: [
       { title: "Pengesahan", body: "Kami membalas di WhatsApp untuk mengesahkan produk, kuantiti, jumlah bayaran dan alamat penghantaran. Pesanan dihantar hanya selepas disahkan dengan anda." },
-      { title: "Penghantaran", body: "Bungkusan dihantar melalui kurier. Penghantaran percuma ke seluruh Malaysia. Anggaran 3–10 hari dari pengesahan pesanan, bergantung pada lokasi." },
+      { title: "Penghantaran", body: "Bungkusan dihantar melalui kurier. Penghantaran percuma ke seluruh Malaysia. Biasanya sampai dalam 3–10 hari dari pengesahan pesanan, bergantung pada lokasi." },
       { title: "Bayaran COD", body: "Bayar tunai kepada kurier apabila bungkusan sampai. Sediakan jumlah yang tepat jika boleh." },
     ],
     tipsTitle: "Tip supaya pesanan lancar",
@@ -236,7 +236,7 @@ export const ms = {
         items: [
           { q: "Adakah penghantaran percuma?", a: "Ya. Penghantaran percuma ke seluruh Malaysia, termasuk Sabah dan Sarawak." },
           { q: "Bagaimana bayaran COD berfungsi?", a: "Anda membayar tunai kepada kurier apabila bungkusan sampai. Jumlah yang perlu dibayar dimaklumkan semasa kami mengesahkan pesanan. Ketersediaan COD bagi alamat anda juga disahkan pada masa itu." },
-          { q: "Berapa lama tempoh penghantaran?", a: "Biasanya 3–10 hari dari pengesahan pesanan: 1–3 hari untuk kami menyerahkan bungkusan kepada kurier dan 2–7 hari untuk penghantaran, bergantung pada lokasi. Ini anggaran, bukan jaminan." },
+          { q: "Berapa lama tempoh penghantaran?", a: "Biasanya 3–10 hari dari pengesahan pesanan: 1–3 hari untuk kami menyerahkan bungkusan kepada kurier dan 2–7 hari untuk penghantaran, bergantung pada lokasi." },
         ],
       },
       {
@@ -251,6 +251,7 @@ export const ms = {
         heading: "Pemulangan & privasi",
         items: [
           { q: "Bagaimana jika barang rosak atau tidak betul?", a: "Hubungi kami di WhatsApp secepat mungkin selepas menerima bungkusan, sertakan gambar barang dan nama pada pesanan. Kami akan menyemak dan mengatur penyelesaian yang sesuai. Butiran penuh ada dalam Polisi Pemulangan." },
+          { q: "Bolehkah saya memulangkan barang?", a: "Boleh, dalam tempoh 7 hari dari tarikh penghantaran jika barang itu belum dibuka dan belum digunakan. Barang yang telah dibuka atau digunakan, walaupun sedikit, tidak boleh dipulangkan. Barang yang rosak, salah atau tidak lengkap dikendalikan seperti dalam jawapan di atas." },
           { q: "Bagaimana maklumat saya digunakan?", a: "Nama, telefon dan alamat anda digunakan untuk memproses dan menghantar pesanan sahaja, termasuk dikongsi dengan kurier untuk penghantaran. Lihat Polisi Privasi." },
         ],
       },
@@ -263,7 +264,7 @@ export const ms = {
       sections: [
         { heading: "Kawasan penghantaran", paragraphs: ["Kami menghantar ke seluruh Malaysia, termasuk Semenanjung Malaysia, Sabah dan Sarawak.", "Penghantaran adalah percuma. Tiada caj penghantaran ditambah pada harga produk."] },
         { heading: "Pengesahan pesanan", paragraphs: ["Selepas anda menghantar pesanan melalui WhatsApp, kami membalas untuk mengesahkan produk, kuantiti, jumlah bayaran dan alamat penghantaran. Bungkusan hanya dihantar selepas pesanan disahkan."] },
-        { heading: "Tempoh penghantaran", paragraphs: ["Selepas pesanan disahkan, kami biasanya menyerahkan bungkusan kepada kurier dalam 1–3 hari. Penghantaran oleh kurier biasanya mengambil 2–7 hari bergantung pada lokasi. Anggaran keseluruhan ialah 3–10 hari dari pengesahan pesanan.", "Ini ialah anggaran, bukan jaminan. Kami akan memaklumkan anggaran untuk alamat anda semasa pengesahan pesanan. Kelewatan boleh berlaku semasa musim perayaan, cuaca buruk atau di kawasan pedalaman."] },
+        { heading: "Tempoh penghantaran", paragraphs: ["Selepas pesanan disahkan, kami biasanya menyerahkan bungkusan kepada kurier dalam 1–3 hari. Penghantaran oleh kurier biasanya mengambil 2–7 hari bergantung pada lokasi. Secara keseluruhan, pesanan biasanya sampai dalam 3–10 hari dari pengesahan pesanan.", "Kami akan mengesahkan tempoh untuk alamat anda semasa pengesahan pesanan. Kelewatan boleh berlaku semasa musim perayaan, cuaca buruk atau di kawasan pedalaman."] },
         { heading: "Bayaran tunai semasa terima (COD)", paragraphs: ["Anda membayar tunai kepada kurier apabila bungkusan diterima. Jumlah yang perlu dibayar dimaklumkan semasa pengesahan pesanan.", "Ketersediaan COD mungkin berbeza mengikut kawasan dan kurier. Kami akan mengesahkan sama ada COD tersedia untuk alamat anda sebelum menghantar."] },
         { heading: "Semasa menerima bungkusan", paragraphs: ["Pastikan seseorang boleh menerima bungkusan di alamat yang diberikan dan nombor telefon anda aktif. Jika bungkusan kelihatan rosak semasa diterima, ambil gambar dan hubungi kami di WhatsApp secepat mungkin."] },
         { heading: "Bungkusan yang tidak dituntut", paragraphs: ["Jika bungkusan COD ditolak atau tidak dapat dihantar selepas pesanan disahkan, kami mungkin tidak dapat menerima pesanan COD seterusnya daripada nombor yang sama."] },
@@ -271,11 +272,12 @@ export const ms = {
     },
     returns: {
       title: "Pemulangan & bayaran balik",
-      lead: "Apa yang perlu dilakukan jika terdapat masalah dengan pesanan anda.",
+      lead: "Barang yang belum dibuka dan belum digunakan boleh dipulangkan dalam tempoh 7 hari dari tarikh penghantaran. Halaman ini juga menerangkan apa yang perlu dilakukan jika terdapat masalah dengan pesanan anda.",
       sections: [
         { heading: "Semak semasa menerima", paragraphs: ["Sila semak bungkusan dan produk sebaik sahaja diterima — pastikan produk, kuantiti dan keadaan bungkusan adalah betul."] },
         { heading: "Barang rosak, salah atau tidak lengkap", paragraphs: ["Hubungi kami di WhatsApp atau e-mel secepat mungkin selepas menerima bungkusan. Sertakan nama pada pesanan, gambar produk dan bungkusan, serta penerangan ringkas masalah.", "Kami akan menyemak setiap kes dan mengatur penyelesaian yang sesuai, seperti penggantian atau bayaran balik, mengikut keadaan."] },
-        { heading: "Produk yang telah dibuka", paragraphs: ["Atas sebab kebersihan dan keselamatan, produk kesihatan yang telah dibuka atau digunakan mungkin tidak dapat dipulangkan, kecuali jika produk itu rosak atau bukan seperti yang dipesan."] },
+        { heading: "Pemulangan dalam tempoh 7 hari", paragraphs: ["Anda boleh memulangkan barang dalam tempoh 7 hari dari tarikh penghantaran, dengan syarat barang itu belum dibuka dan belum digunakan.", "Untuk memulakan pemulangan, hubungi kami di WhatsApp atau e-mel dalam tempoh 7 hari itu. Sertakan nama pada pesanan dan produk yang ingin dipulangkan, dan kami akan memaklumkan langkah seterusnya."] },
+        { heading: "Barang yang telah dibuka atau digunakan", paragraphs: ["Atas sebab kebersihan dan keselamatan, barang yang telah dibuka atau digunakan, walaupun sedikit, tidak boleh dipulangkan. Ini tidak terpakai kepada barang yang rosak, salah atau tidak lengkap, yang dikendalikan seperti yang diterangkan di atas."] },
         { heading: "Pembatalan", paragraphs: ["Anda boleh membatalkan pesanan dengan memaklumkan kami di WhatsApp sebelum bungkusan dihantar. Oleh kerana bayaran dibuat semasa terima, tiada bayaran dikenakan bagi pesanan yang dibatalkan sebelum penghantaran."] },
         { heading: "Bayaran balik", paragraphs: ["Jika bayaran balik diluluskan, kami akan menghubungi anda untuk mengatur kaedah bayaran balik yang dipersetujui."] },
         { heading: "Hak anda", paragraphs: ["Polisi ini tidak menjejaskan hak anda sebagai pengguna di bawah undang-undang Malaysia, termasuk Akta Perlindungan Pengguna 1999."] },
@@ -345,7 +347,7 @@ export const ms = {
     order: { title: "Borang Pesanan", description: "Isi borang pesanan ringkas dan hantar terus melalui WhatsApp. RM159 seunit, penghantaran percuma, bayaran COD." },
     faq: { title: "Soalan Lazim — Pesanan, COD & Penghantaran", description: "Jawapan tentang cara pesan, bayaran tunai semasa terima (COD), penghantaran percuma, produk dan pemulangan di Lebih Yakin." },
     shipping: { title: "Penghantaran & Bayaran COD", description: "Penghantaran percuma ke seluruh Malaysia termasuk Sabah dan Sarawak. Cara bayaran tunai semasa terima (COD) dan pengesahan pesanan." },
-    returns: { title: "Pemulangan & Bayaran Balik", description: "Apa yang perlu dilakukan jika barang rosak, salah atau tidak lengkap, serta cara membatalkan pesanan di Lebih Yakin." },
+    returns: { title: "Pemulangan & Bayaran Balik", description: "Pemulangan dalam 7 hari untuk barang yang belum dibuka dan belum digunakan, barang rosak atau salah, dan cara membatalkan pesanan di Lebih Yakin." },
     terms: { title: "Terma & Syarat", description: "Terma penggunaan laman dan pesanan di Lebih Yakin: pesanan, harga, bayaran COD, maklumat produk dan undang-undang." },
     privacy: { title: "Polisi Privasi", description: "Cara Lebih Yakin mengumpul, menggunakan dan melindungi maklumat peribadi anda selaras dengan Akta Perlindungan Data Peribadi 2010." },
     about: { title: "Tentang Kami", description: "Lebih Yakin ialah kedai dalam talian produk kesihatan lelaki di Malaysia. Pesanan melalui WhatsApp, penghantaran percuma dan bayaran COD." },

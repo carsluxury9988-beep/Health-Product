@@ -28,6 +28,11 @@ export const store = {
    * handling = order confirmed → parcel handed to the courier; transit = courier delivery.
    * If you change these numbers, update the visible text in src/i18n/ms.ts and en.ts too (a test checks this).
    */
+  /**
+   * Return window in days from delivery, for unopened and unused items (stated on the returns
+   * page and FAQ, and used in MerchantReturnPolicy structured data). A test checks the text matches.
+   */
+  returnWindowDays: 7,
   deliveryEstimateDays: { handling: { min: 1, max: 3 }, transit: { min: 2, max: 7 } },
   codAvailable: true,
   // TODO(owner): confirm before advertising these. They stay hidden while false/null.
