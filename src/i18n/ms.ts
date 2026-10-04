@@ -124,7 +124,7 @@ export const ms = {
     labelCta: "Minta gambar label",
     safetyTitle: "Sebelum menggunakan",
     deliveryTitle: "Penghantaran & bayaran",
-    deliveryBody: "Penghantaran percuma ke seluruh Malaysia. Bayar tunai kepada kurier semasa menerima bungkusan. Tempoh penghantaran bergantung pada lokasi; kami maklumkan anggaran semasa pengesahan pesanan.",
+    deliveryBody: "Penghantaran percuma ke seluruh Malaysia. Bayar tunai kepada kurier semasa menerima bungkusan. Anggaran tempoh penghantaran 3–10 hari dari pengesahan pesanan, bergantung pada lokasi.",
     relatedTitle: "Produk lain",
     askLabel: "Saya ada soalan tentang",
   },
@@ -139,7 +139,7 @@ export const ms = {
     afterTitle: "Selepas mesej dihantar",
     after: [
       { title: "Pengesahan", body: "Kami membalas di WhatsApp untuk mengesahkan produk, kuantiti, jumlah bayaran dan alamat penghantaran. Pesanan dihantar hanya selepas disahkan dengan anda." },
-      { title: "Penghantaran", body: "Bungkusan dihantar melalui kurier. Penghantaran percuma ke seluruh Malaysia. Kami maklumkan anggaran tempoh semasa pengesahan." },
+      { title: "Penghantaran", body: "Bungkusan dihantar melalui kurier. Penghantaran percuma ke seluruh Malaysia. Anggaran 3–10 hari dari pengesahan pesanan, bergantung pada lokasi." },
       { title: "Bayaran COD", body: "Bayar tunai kepada kurier apabila bungkusan sampai. Sediakan jumlah yang tepat jika boleh." },
     ],
     tipsTitle: "Tip supaya pesanan lancar",
@@ -236,7 +236,7 @@ export const ms = {
         items: [
           { q: "Adakah penghantaran percuma?", a: "Ya. Penghantaran percuma ke seluruh Malaysia, termasuk Sabah dan Sarawak." },
           { q: "Bagaimana bayaran COD berfungsi?", a: "Anda membayar tunai kepada kurier apabila bungkusan sampai. Jumlah yang perlu dibayar dimaklumkan semasa kami mengesahkan pesanan. Ketersediaan COD bagi alamat anda juga disahkan pada masa itu." },
-          { q: "Berapa lama tempoh penghantaran?", a: "Tempoh penghantaran bergantung pada lokasi anda dan kurier. Kami maklumkan anggaran semasa mengesahkan pesanan." },
+          { q: "Berapa lama tempoh penghantaran?", a: "Biasanya 3–10 hari dari pengesahan pesanan: 1–3 hari untuk kami menyerahkan bungkusan kepada kurier dan 2–7 hari untuk penghantaran, bergantung pada lokasi. Ini anggaran, bukan jaminan." },
         ],
       },
       {
@@ -263,7 +263,7 @@ export const ms = {
       sections: [
         { heading: "Kawasan penghantaran", paragraphs: ["Kami menghantar ke seluruh Malaysia, termasuk Semenanjung Malaysia, Sabah dan Sarawak.", "Penghantaran adalah percuma. Tiada caj penghantaran ditambah pada harga produk."] },
         { heading: "Pengesahan pesanan", paragraphs: ["Selepas anda menghantar pesanan melalui WhatsApp, kami membalas untuk mengesahkan produk, kuantiti, jumlah bayaran dan alamat penghantaran. Bungkusan hanya dihantar selepas pesanan disahkan."] },
-        { heading: "Tempoh penghantaran", paragraphs: ["Tempoh penghantaran bergantung pada lokasi dan perkhidmatan kurier. Kami akan memaklumkan anggaran semasa pengesahan pesanan. Kelewatan boleh berlaku semasa musim perayaan, cuaca buruk atau di kawasan pedalaman."] },
+        { heading: "Tempoh penghantaran", paragraphs: ["Selepas pesanan disahkan, kami biasanya menyerahkan bungkusan kepada kurier dalam 1–3 hari. Penghantaran oleh kurier biasanya mengambil 2–7 hari bergantung pada lokasi. Anggaran keseluruhan ialah 3–10 hari dari pengesahan pesanan.", "Ini ialah anggaran, bukan jaminan. Kami akan memaklumkan anggaran untuk alamat anda semasa pengesahan pesanan. Kelewatan boleh berlaku semasa musim perayaan, cuaca buruk atau di kawasan pedalaman."] },
         { heading: "Bayaran tunai semasa terima (COD)", paragraphs: ["Anda membayar tunai kepada kurier apabila bungkusan diterima. Jumlah yang perlu dibayar dimaklumkan semasa pengesahan pesanan.", "Ketersediaan COD mungkin berbeza mengikut kawasan dan kurier. Kami akan mengesahkan sama ada COD tersedia untuk alamat anda sebelum menghantar."] },
         { heading: "Semasa menerima bungkusan", paragraphs: ["Pastikan seseorang boleh menerima bungkusan di alamat yang diberikan dan nombor telefon anda aktif. Jika bungkusan kelihatan rosak semasa diterima, ambil gambar dan hubungi kami di WhatsApp secepat mungkin."] },
         { heading: "Bungkusan yang tidak dituntut", paragraphs: ["Jika bungkusan COD ditolak atau tidak dapat dihantar selepas pesanan disahkan, kami mungkin tidak dapat menerima pesanan COD seterusnya daripada nombor yang sama."] },

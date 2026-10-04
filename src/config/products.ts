@@ -13,6 +13,10 @@ export type Product = {
   /** Square pack image on a light background (used for structured data). */
   squareImage: string;
   ogImage: Record<Locale, string>;
+  /** Brand name as printed on the pack. */
+  brand: string;
+  /** Set to false when an item is out of stock (structured data shows OutOfStock). */
+  inStock: boolean;
   summary: Record<Locale, string>;
   /**
    * Label facts. Kept empty until the owner supplies the official label / MAL number.
@@ -34,6 +38,8 @@ function product(id: ProductId, name: string, packSize: Product["packSize"] = nu
     packImage: `/products/${id}-pack.webp`,
     squareImage: `/products/${id}-square.jpg`,
     ogImage: { ms: `/og/${id}-ms.png`, en: `/og/${id}-en.png` },
+    brand: name,
+    inStock: true,
     summary: {
       ms: `${name} ialah salah satu daripada empat produk kesihatan lelaki dalam katalog Lebih Yakin. Harga RM159 seunit, penghantaran percuma ke seluruh Malaysia dan bayaran tunai semasa terima (COD).`,
       en: `${name} is one of the four men's health products in the Lebih Yakin catalogue. RM159 per unit, free delivery across Malaysia and cash on delivery (COD).`,
