@@ -7,6 +7,8 @@ import { enquiryUrl } from "@/lib/whatsapp";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageHeader } from "@/components/page-header";
 import { WhatsAppLink } from "@/components/whatsapp-link";
+import { JsonLd } from "@/components/json-ld";
+import { returnPolicyPageSchema } from "@/lib/schema";
 
 export type PolicyKey = "shipping" | "returns" | "terms" | "privacy";
 
@@ -20,6 +22,7 @@ export function PolicyPage({ policy, locale }: { policy: PolicyKey; locale: Loca
   const content = t.policies[policy];
   return (
     <main id="main-content">
+      {policy === "returns" && <JsonLd data={returnPolicyPageSchema(locale)} />}
       <Breadcrumbs locale={locale} items={[{ label: content.title }]} />
       <PageHeader title={content.title} lead={content.lead}>
         <p className="muted small">{t.common.updated}</p>

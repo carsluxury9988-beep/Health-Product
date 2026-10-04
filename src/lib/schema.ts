@@ -8,6 +8,33 @@ import { absoluteUrl } from "@/lib/seo";
 
 export const organizationId = () => `${store.siteUrl}/#organization`;
 export const websiteId = () => `${store.siteUrl}/#website`;
+export const returnPolicyId = (locale: Locale) => `${absoluteUrl(staticRoutes.returns[locale])}#return-policy`;
+
+/**
+ * Store-wide return policy (Google "Option B": applicableCountry + merchantReturnLink).
+ * The visible policy states no fixed return window, method or fee — damaged, wrong or
+ * incomplete items are reviewed case by case — so no returnPolicyCategory/merchantReturnDays
+ * is claimed here. If the owner publishes a window, switch to MerchantReturnFiniteReturnWindow.
+ */
+export function returnPolicySchema(locale: Locale) {
+  return {
+    "@type": "MerchantReturnPolicy",
+    "@id": returnPolicyId(locale),
+    name: getMessages(locale).policies.returns.title,
+    applicableCountry: "MY",
+    merchantReturnLink: absoluteUrl(staticRoutes.returns[locale]),
+  };
+}
+
+/** JSON-LD for the returns page: the policy node that product offers reference by @id. */
+export function returnPolicyPageSchema(locale: Locale) {
+  return { "@context": "https://schema.org", ...returnPolicySchema(locale) };
+}
+
+/** Last day of next calendar year (rolls forward on every deploy). */
+export function priceValidUntil(now = new Date()) {
+  return `${now.getFullYear() + 1}-12-31`;
+}
 
 export function organizationSchema(locale: Locale) {
   const t = getMessages(locale);
@@ -23,6 +50,7 @@ export function organizationSchema(locale: Locale) {
     email: store.contactEmail,
     areaServed: { "@type": "Country", name: "Malaysia" },
     currenciesAccepted: "MYR",
+    hasMerchantReturnPolicy: returnPolicySchema(locale),
     paymentAccepted: "Cash",
     contactPoint: {
       "@type": "ContactPoint",
@@ -51,6 +79,7 @@ export function websiteSchema(locale: Locale) {
 }
 
 export function productSchema(product: Product, locale: Locale) {
+  const delivery = store.deliveryEstimateDays;
   const url = absoluteUrl(productPath(product.slug, locale));
   return {
     "@context": "https://schema.org",
@@ -58,6 +87,7 @@ export function productSchema(product: Product, locale: Locale) {
     "@id": `${url}#product`,
     name: product.name,
     sku: product.id,
+    brand: { "@type": "Brand", name: product.brand },
     description: product.summary[locale],
     image: [absoluteUrl(product.squareImage), absoluteUrl(product.packImage)],
     url,
@@ -66,12 +96,20 @@ export function productSchema(product: Product, locale: Locale) {
       url,
       price: product.price.toFixed(2),
       priceCurrency: product.currency,
+      priceValidUntil: priceValidUntil(),
+      availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: { "@id": organizationId() },
+      hasMerchantReturnPolicy: { "@id": returnPolicyId(locale) },
       shippingDetails: {
         "@type": "OfferShippingDetails",
-        shippingRate: { "@type": "MonetaryAmount", value: 0, currency: product.currency },
+        shippingRate: { "@type": "MonetaryAmount", value: store.deliveryFee, currency: product.currency },
         shippingDestination: { "@type": "DefinedRegion", addressCountry: "MY" },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: { "@type": "QuantitativeValue", minValue: delivery.handling.min, maxValue: delivery.handling.max, unitCode: "DAY" },
+          transitTime: { "@type": "QuantitativeValue", minValue: delivery.transit.min, maxValue: delivery.transit.max, unitCode: "DAY" },
+        },
       },
     },
   };

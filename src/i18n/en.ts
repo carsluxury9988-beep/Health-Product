@@ -126,7 +126,7 @@ export const en: Messages = {
     labelCta: "Ask for label photos",
     safetyTitle: "Before use",
     deliveryTitle: "Delivery & payment",
-    deliveryBody: "Free delivery across Malaysia. Pay the courier in cash when you receive the parcel. Delivery time depends on your location; we share an estimate when we confirm your order.",
+    deliveryBody: "Free delivery across Malaysia. Pay the courier in cash when you receive the parcel. Estimated delivery time is 3–10 days from order confirmation, depending on your location.",
     relatedTitle: "Other products",
     askLabel: "I have a question about",
   },
@@ -141,7 +141,7 @@ export const en: Messages = {
     afterTitle: "After you send the message",
     after: [
       { title: "Confirmation", body: "We reply on WhatsApp to confirm the product, quantity, total and delivery address. Your order ships only after it is confirmed with you." },
-      { title: "Delivery", body: "The parcel is sent by courier. Delivery is free across Malaysia. We share an estimated delivery time when we confirm." },
+      { title: "Delivery", body: "The parcel is sent by courier. Delivery is free across Malaysia. Estimated 3–10 days from order confirmation, depending on your location." },
       { title: "COD payment", body: "Pay the courier in cash when the parcel arrives. Please have the exact amount ready if possible." },
     ],
     tipsTitle: "Tips for a smooth order",
@@ -238,7 +238,7 @@ export const en: Messages = {
         items: [
           { q: "Is delivery free?", a: "Yes. Delivery is free across Malaysia, including Sabah and Sarawak." },
           { q: "How does cash on delivery work?", a: "You pay the courier in cash when the parcel arrives. The amount due is confirmed when we confirm your order, along with COD availability for your address." },
-          { q: "How long does delivery take?", a: "It depends on your location and the courier. We share an estimate when we confirm your order." },
+          { q: "How long does delivery take?", a: "Usually 3–10 days from order confirmation: 1–3 days for us to hand the parcel to the courier and 2–7 days for delivery, depending on your location. This is an estimate, not a guarantee." },
         ],
       },
       {
@@ -265,7 +265,7 @@ export const en: Messages = {
       sections: [
         { heading: "Delivery area", paragraphs: ["We deliver across Malaysia, including Peninsular Malaysia, Sabah and Sarawak.", "Delivery is free. No delivery charge is added to the product price."] },
         { heading: "Order confirmation", paragraphs: ["After you send your order on WhatsApp, we reply to confirm the product, quantity, total and delivery address. Parcels ship only after the order is confirmed."] },
-        { heading: "Delivery time", paragraphs: ["Delivery time depends on your location and the courier service. We will share an estimate when we confirm your order. Delays can happen during festive seasons, bad weather or in remote areas."] },
+        { heading: "Delivery time", paragraphs: ["After your order is confirmed, we usually hand the parcel to the courier within 1–3 days. Courier delivery usually takes 2–7 days depending on your location. The overall estimate is 3–10 days from order confirmation.", "This is an estimate, not a guarantee. We will share an estimate for your address when we confirm your order. Delays can happen during festive seasons, bad weather or in remote areas."] },
         { heading: "Cash on delivery (COD)", paragraphs: ["You pay the courier in cash when you receive the parcel. The amount due is confirmed when we confirm your order.", "COD availability can vary by area and courier. We will confirm whether COD is available for your address before shipping."] },
         { heading: "Receiving your parcel", paragraphs: ["Please make sure someone can receive the parcel at the address given and that your phone number is active. If the parcel looks damaged on arrival, take photos and contact us on WhatsApp as soon as possible."] },
         { heading: "Unclaimed parcels", paragraphs: ["If a COD parcel is refused or cannot be delivered after the order was confirmed, we may not be able to accept further COD orders from the same number."] },
