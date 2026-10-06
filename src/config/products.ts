@@ -27,6 +27,8 @@ export type Product = {
 };
 
 const PRICE = 159;
+/** Date the current RM159 price took effect (first storefront release, git 22984eb). Used as Offer.validFrom. */
+export const PRICE_VALID_FROM = "2026-09-29";
 
 function product(id: ProductId, name: string, packSize: Product["packSize"] = null): Product {
   return {
