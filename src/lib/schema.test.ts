@@ -25,6 +25,8 @@ test("Product JSON-LD has the merchant-listing fields on every product page", ()
       assert.equal(offer.priceCurrency, "MYR", id);
       assert.equal(offer.itemCondition, "https://schema.org/NewCondition", id);
       assert.equal(offer.url, schema.url, id);
+      assert.equal(offer.validFrom, "2026-09-29", id);
+      assert.ok(offer.validFrom < offer.priceValidUntil, id);
       assert.match(offer.priceValidUntil, /^\d{4}-12-31$/, id);
       assert.ok(offer.priceValidUntil > new Date().toISOString().slice(0, 10), `${id}: priceValidUntil must be in the future`);
       assert.deepEqual(offer.hasMerchantReturnPolicy, returnPolicySchema(locale), id);

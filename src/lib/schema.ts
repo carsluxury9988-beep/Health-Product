@@ -1,6 +1,6 @@
 import { articlePath, type Article } from "@/content/articles";
 import { getTopic } from "@/content/topics";
-import type { Product } from "@/config/products";
+import { PRICE_VALID_FROM, type Product } from "@/config/products";
 import { store } from "@/config/store";
 import { getMessages, type Locale } from "@/i18n";
 import { productPath, staticRoutes } from "@/i18n/routes";
@@ -98,6 +98,7 @@ export function productSchema(product: Product, locale: Locale) {
       url,
       price: product.price.toFixed(2),
       priceCurrency: product.currency,
+      validFrom: PRICE_VALID_FROM,
       priceValidUntil: priceValidUntil(),
       availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
