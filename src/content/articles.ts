@@ -6,10 +6,11 @@ import { relationshipArticles } from "@/content/qa/relationships";
 import { mensHealthArticles } from "@/content/qa/mens-health";
 import { ingredientArticles } from "@/content/qa/ingredients";
 import { buyingArticles } from "@/content/qa/buying";
+import { withExpansion } from "@/content/qa/expansions";
 
 /** Paragraphs and list items may contain inline links written as `[label](/path)`. */
 export type ArticleBlock = { heading: string; paragraphs: string[]; list?: string[]; /** Paragraphs shown after the list. */ after?: string[] };
-export type ArticleSource = { label: string; url: string };
+export type ArticleSource = { label: string; url: string; /** ISO date the source was last checked. */ checked?: string };
 export type ArticleQa = { q: string; a: string };
 
 export type ArticleContent = {
@@ -159,7 +160,7 @@ export const articles: readonly Article[] = [
   foodsForStamina,
   happyMarriage,
   relationshipQuestions,
-];
+].map(withExpansion);
 
 export function articlesByTopic(topic: TopicKey) {
   return sortedArticles().filter((article) => article.topic === topic);

@@ -64,6 +64,11 @@ export function BlogTopicPage({ slug, locale }: { slug: string; locale: Locale }
           <div className="article-grid">
             {items.map((article) => <ArticleCard key={article.key} article={article} locale={locale} />)}
           </div>
+          {topic[locale].intro && (
+            <div className="topic-intro prose">
+              {topic[locale].intro?.map((paragraph) => <p key={paragraph.slice(0, 32)}>{paragraph}</p>)}
+            </div>
+          )}
           <p className="topic-index-link"><Link href={questionIndexPaths[locale]} className="text-link">{ui.indexCta} <ArrowRightIcon size={16} /></Link></p>
         </div>
       </section>

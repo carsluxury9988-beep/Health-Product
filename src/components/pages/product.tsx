@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, products } from "@/config/products";
+import { articlePath, articles } from "@/content/articles";
 import { getMessages, type Locale } from "@/i18n";
 import { productPath, routePath } from "@/i18n/routes";
 import { productSchema } from "@/lib/schema";
@@ -15,6 +16,10 @@ import { ProductGrid } from "@/components/product-card";
 import { ProductOrderPanel } from "@/components/product-order-panel";
 import { ProductViewTracker } from "@/components/product-view-tracker";
 import { WhatsAppLink } from "@/components/whatsapp-link";
+
+/** Buying guides linked from product pages (not shown on Hammer of Thor). */
+const guideKeys = ["check-kkm", "choose-supplement", "cod", "buy-online"];
+const guidesTitle = { ms: "Panduan berkaitan", en: "Related guides" } as const;
 
 export function productStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -87,6 +92,16 @@ export function ProductPage({ slug, locale }: { slug: string; locale: Locale }) 
             <p>{p.deliveryBody}</p>
             <Link href={routePath("shipping", locale)} className="text-link">{t.nav.shipping} <ArrowRightIcon size={16} /></Link>
           </div>
+          {product.id !== "hammer-of-thor" && (
+            <div className="detail-card">
+              <h2>{guidesTitle[locale]}</h2>
+              <ul className="guide-links">
+                {guideKeys.map((key) => articles.find((article) => article.key === key)).filter((article) => article !== undefined).map((article) => (
+                  <li key={article.key}><Link href={articlePath(article, locale)} className="text-link">{article[locale].title}</Link></li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
 

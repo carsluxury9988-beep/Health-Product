@@ -103,7 +103,7 @@ export function ArticlePage({ slug, locale }: { slug: string; locale: Locale }) 
               <h2>{t.common.sources}</h2>
               <ol>
                 {content.sources.map((source) => (
-                  <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>
+                  <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a>{source.checked && <> ({locale === "en" ? "checked" : "disemak"} {formatDate(source.checked, locale)})</>}</li>
                 ))}
               </ol>
             </section>
