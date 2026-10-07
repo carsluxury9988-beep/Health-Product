@@ -54,3 +54,15 @@ export function localizedPath(pathname: string, target: Locale) {
 
 /** Last meaningful content change for static pages (sitemap lastmod). Update when page content changes. */
 export const SITE_CONTENT_UPDATED = "2026-10-03";
+
+/** Last real content change per static page (from git history). Blog pages use the newest article instead. */
+export const ROUTE_UPDATED: Partial<Record<RouteKey, string>> = {
+  products: "2026-10-07",
+  howToOrder: "2026-10-04",
+  faq: "2026-10-04",
+  shipping: "2026-10-04",
+  returns: "2026-10-04",
+};
+
+/** Product pages: Offer schema (validFrom) and related-guides block. */
+export const PRODUCTS_UPDATED = "2026-10-07";
