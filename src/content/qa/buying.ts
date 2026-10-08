@@ -297,4 +297,99 @@ const buyOnline = qaArticle(
   },
 );
 
-export const buyingArticles: Article[] = [cod, chooseSupplement, buyOnline];
+
+const unregisteredHerbalCoffee = qaArticle(
+  "unregistered-herbal-coffee",
+  "buying",
+  {
+    slug: "kenapa-kopi-herba-dilarang",
+    title: "Kenapa sesetengah kopi herba dilarang, dan bagaimana menyemaknya?",
+    seoTitle: "Kopi Herba Dilarang: Cara Semak",
+    description: "Kenapa sesetengah kopi herba dilarang di Malaysia, apa yang NPRA dan KKM laporkan tentang Nan Bao serta Kopi Pejuang, dan cara menyemak label sebelum membeli.",
+    lead: "Sesetengah kopi dan produk yang dijual sebagai herba dilarang kerana ujian kerajaan menemui ubat preskripsi yang tidak dibenarkan di dalamnya, atau kerana label tidak memenuhi peraturan makanan. Nama yang sedap didengar tidak membuktikan produk itu berdaftar. Semak label dan status pendaftaran sendiri sebelum membeli, dan jangan cari penjual lain untuk produk yang sudah dilarang.",
+    imageAlt: "Ikon cawan kopi dan biji kopi untuk artikel semakan kopi herba",
+    blocks: [
+      { heading: "Kenapa sesetengah kopi herba dilarang?", paragraphs: [
+        "Dua sebab yang berbeza pernah diumumkan oleh pihak berkuasa di Malaysia. Pertama, produk yang dilabel tradisional atau herba kadang-kadang mengandungi ubat preskripsi yang tidak dibenarkan dalam formulasi itu. Kedua, sesetengah produk kopi gagal peraturan pelabelan makanan, jadi ia tidak boleh diiklankan atau dijual.",
+        "Larangan itu tentang produk yang dinamakan dalam kenyataan rasmi. Ia bukan senarai semua kopi, dan ia bukan arahan untuk mencari ganti yang serupa.",
+      ] },
+      { heading: "Apa yang NPRA umumkan pada 18 Mac 2019?", paragraphs: [
+        "Pada 18 Mac 2019, Bahagian Regulatori Farmasi Negara (NPRA) meminta orang awam supaya tidak membeli dan tidak menggunakan produk tradisional Nan Bao Capsule. NPRA berkata produk itu dikesan mengandungi sildenafil dan tadalafil. Pendaftarannya dibatalkan oleh Pihak Berkuasa Kawalan Dadah pada mesyuarat ke-332 kerana kedua-dua bahan itu tidak dibenarkan dalam formulasi produk tradisional.",
+        "NPRA menyatakan sildenafil dan tadalafil ialah ubat preskripsi. Ubat yang mengandunginya hanya boleh dibekalkan oleh doktor atau diperoleh di farmasi dengan preskripsi. NPRA memberi amaran bahawa penggunaan tanpa pengawasan doktor boleh menyebabkan kesan serius, termasuk pengurangan atau kehilangan penglihatan dan pendengaran, penurunan tekanan darah yang mendadak, serta strok dan serangan jantung. Risiko ini lebih tinggi bagi pesakit jantung seperti angina yang mengambil ubat nitrat.",
+        "NPRA juga berkata penjualan dan pengedaran produk itu melanggar Akta Jualan Dadah 1952 dan Peraturan-Peraturan Kawalan Dadah dan Kosmetik 1984. Bagi kesalahan pertama, individu boleh didenda tidak melebihi RM25,000 atau dipenjara tidak melebihi 3 tahun, atau kedua-duanya. Kesalahan seterusnya: denda tidak melebihi RM50,000 atau penjara tidak melebihi 5 tahun, atau kedua-duanya. Syarikat: denda sehingga RM50,000 untuk kesalahan pertama dan sehingga RM100,000 untuk kesalahan seterusnya. Orang yang sedang menggunakan produk itu dinasihatkan berhenti serta-merta dan mendapatkan nasihat profesional kesihatan jika ada ketidakselesaan.",
+      ] },
+      { heading: "Apa yang dilaporkan tentang Kopi Pejuang pada Ogos 2024?", paragraphs: [
+        "Pada 22 Ogos 2024, Utusan melaporkan kenyataan Kementerian Kesihatan Malaysia melalui Program Keselamatan dan Kualiti Makanan. KKM mengesahkan produk Kopi Pejuang dikesan mengandungi tadalafil. Semua peniaga, termasuk peniaga dalam talian, yang masih ada stok diarahkan menghentikan penjualan serta-merta. Iklan di platform e-dagang dan media sosial juga hendaklah dihentikan.",
+        "Utusan melaporkan label produk itu tidak mematuhi Peraturan-Peraturan Makanan 1985 kerana tiada nama dan alamat pengilang, pembungkus, pengedar, empunya hak untuk mengilang, atau pengimport. Kerana itu, KKM berkata produk itu tidak boleh diiklankan untuk jualan dan tidak boleh dijual di bawah Peraturan 9. Jangan cari penjual lain untuk Kopi Pejuang.",
+        "Utusan juga melaporkan bahawa dari tahun 2021 hingga Julai 2024, 500 sampel kopi pelbagai jenama dianalisis dan 7 sampel mengandungi racun berjadual yang tidak dibenarkan di bawah Peraturan-Peraturan Makanan 1985. Utusan memetik KKM: jika disabitkan kesalahan, denda tidak melebihi RM100,000 atau penjara tidak melebihi 10 tahun, atau kedua-duanya.",
+      ] },
+      { heading: "Bagaimana cara menyemak sebelum membeli?", paragraphs: [], list: [
+        "Minta gambar label penuh: nama produk, ramuan, nama dan alamat pengeluar atau pengedar, cara guna dan amaran.",
+        "Cari nombor MAL jika produk itu ubat, produk tradisional atau suplemen, kemudian semak di QUEST3+.",
+        "Untuk langkah nombor MAL, hologram FarmaTag dan aduan, ikut panduan [cara semak produk lulus KKM](/blog/cara-semak-produk-lulus-kkm).",
+        "Jika label tiada nama pengeluar, atau penjual enggan menunjukkan label, jangan beli.",
+      ], after: [
+        "Nama jualan seperti kopi jantan tidak memberitahu anda sama ada sesuatu pek itu berdaftar. Semak pek yang ada di tangan anda, bukan nama yang digunakan dalam iklan.",
+      ] },
+      { heading: "Apa yang dijual dalam katalog Lebih Yakin?", paragraphs: [
+        "Artikel ini bukan cadangan untuk menggantikan kopi yang dilarang. Dalam katalog laman ini, [Magnum Pump](/produk/magnum-pump), [Ultrahot](/produk/ultrahot) dan [Horsemen](/produk/horsemen) masing-masing berharga RM159 seunit, dengan penghantaran percuma ke seluruh Malaysia dan bayaran tunai semasa terima (COD). Ramuan, cara guna dan amaran ada pada label bungkusan, bukan dalam artikel ini.",
+        "Minta gambar label penuh melalui WhatsApp sebelum memesan, kemudian buat semakan sendiri. Laman ini tidak menyatakan nombor MAL bagi produk itu. Artikel ini juga tidak mengatakan produk itu kopi, dan tidak mengatakan ia mengandungi mana-mana herba.",
+      ] },
+    ],
+    qa: [
+      { q: "Perlukah saya membeli kopi yang sudah dilarang daripada penjual lain?", a: "Tidak. Jika pihak berkuasa mengarahkan penjualan dihentikan, jangan mencari penjual lain. Hentikan penggunaan jika anda sudah memilikinya, dan dapatkan nasihat doktor jika anda rasa tidak sihat." },
+      { q: "Adakah setiap kopi herba mengandungi ubat preskripsi?", a: "Tidak. Kenyataan di atas tentang produk yang dinamakan, dan tentang 7 daripada 500 sampel kopi yang dianalisis antara 2021 dan Julai 2024. Angka itu bukan bermaksud setiap kopi. Tetap semak label pek yang anda ingin beli." },
+      { q: "Di mana nombor MAL boleh disemak?", a: "Di carian produk NPRA yang dipanggil QUEST3+. Langkah demi langkah ada dalam artikel cara semak produk lulus KKM di blog ini." },
+      { q: "Adakah Magnum Pump, Ultrahot atau Horsemen sejenis kopi?", a: "Tidak dinyatakan begitu. Halaman setiap produk hanya menyatakan harga RM159, penghantaran percuma dan bayaran semasa terima. Ramuan ada pada label. Minta gambar label jika anda mahu menyemaknya sebelum membeli." },
+    ],
+    sources: [src.nanBao, src.utusanKopiPejuang, src.pharmacyMal, src.quest],
+    disclaimer: "Artikel ini maklumat pengguna berdasarkan kenyataan NPRA pada 18 Mac 2019 dan laporan Utusan pada 22 Ogos 2024. Ia bukan nasihat perubatan dan bukan dakwaan tentang sebarang produk.",
+  },
+  {
+    slug: "why-some-herbal-coffees-are-banned",
+    title: "Why are some herbal coffees banned, and how do you check?",
+    seoTitle: "Herbal Coffee Bans: How to Check",
+    description: "Why some herbal coffees are banned in Malaysia, what NPRA and the health ministry reported about Nan Bao and Kopi Pejuang, and how to check a label before you buy.",
+    lead: "Some coffees and products sold as herbs are banned because government tests found prescription medicines that are not allowed in them, or because the label does not meet food rules. A pleasant name does not prove a product is registered. Check the label and the registration status yourself before you buy, and do not look for another seller of a product that has already been banned.",
+    imageAlt: "Icon of a coffee cup and coffee beans for an article on checking herbal coffee",
+    blocks: [
+      { heading: "Why are some herbal coffees banned?", paragraphs: [
+        "Malaysian authorities have announced two different reasons. First, a product labelled as traditional or herbal sometimes contains a prescription medicine that is not allowed in that formula. Second, some coffee products fail food labelling rules, so they cannot be advertised or sold.",
+        "A ban is about the products named in the official statement. It is not a list of every coffee, and it is not an instruction to look for a similar replacement.",
+      ] },
+      { heading: "What did the NPRA announce on 18 March 2019?", paragraphs: [
+        "On 18 March 2019, the National Pharmaceutical Regulatory Agency (NPRA) asked the public not to buy or use the traditional product Nan Bao Capsule. The NPRA said the product was found to contain sildenafil and tadalafil. Its registration was cancelled by the Drug Control Authority at its 332nd meeting because neither substance is allowed in a traditional-product formula.",
+        "The NPRA said sildenafil and tadalafil are prescription medicines. Medicines that contain them may be supplied only by a doctor, or by a pharmacy with a doctor's prescription. The NPRA warned that use without a doctor's supervision can cause serious effects, including reduced or lost sight and hearing, a sudden drop in blood pressure, stroke and heart attack. The risk is higher for heart patients, such as people with angina who take nitrate medicines.",
+        "The NPRA also said selling and distributing that product breaks the Sale of Drugs Act 1952 and the Control of Drugs and Cosmetics Regulations 1984. For a first offence, a person may be fined not more than RM25,000 or jailed for not more than 3 years, or both. A later offence: a fine of not more than RM50,000 or jail of not more than 5 years, or both. A company: a fine of up to RM50,000 for a first offence and up to RM100,000 for a later offence. People already using the product were advised to stop at once and to get health advice if they feel unwell.",
+      ] },
+      { heading: "What was reported about Kopi Pejuang in August 2024?", paragraphs: [
+        "On 22 August 2024, Utusan reported a statement from the Ministry of Health Malaysia through the Food Safety and Quality Programme. The ministry confirmed that the product Kopi Pejuang was found to contain tadalafil. Every seller, including online sellers, still holding stock was told to stop sales immediately. Advertising on e-commerce platforms and social media was also to stop.",
+        "Utusan reported that the label did not comply with the Food Regulations 1985 because it had no name and address of the manufacturer, packer, distributor, owner of the right to manufacture, or importer. Because of that, the ministry said the product could not be advertised for sale and could not be sold under Regulation 9. Do not look for another seller of Kopi Pejuang.",
+        "Utusan also reported that from 2021 through July 2024, 500 coffee samples of various brands were analysed and 7 samples contained scheduled poisons that are not allowed under the Food Regulations 1985. Utusan quoted the ministry: if convicted, a fine of not more than RM100,000 or jail of not more than 10 years, or both.",
+      ] },
+      { heading: "How do you check before you buy?", paragraphs: [], list: [
+        "Ask for a photo of the full label: product name, ingredients, the producer or distributor's name and address, directions and warnings.",
+        "Look for a MAL number if the product is a medicine, traditional product or supplement, then check it on QUEST3+.",
+        "For the MAL number, the FarmaTag hologram and how to complain, follow [how to check KKM registration](/en/blog/how-to-check-kkm-registration).",
+        "If the label has no producer name, or the seller will not show the label, do not buy.",
+      ], after: [
+        "A sales name such as kopi jantan does not tell you whether that pack is registered. Check the pack in front of you, not the name used in an advert.",
+      ] },
+      { heading: "What does the Lebih Yakin catalogue sell?", paragraphs: [
+        "This article is not a suggestion to replace a banned coffee. In this site's catalogue, [Magnum Pump](/en/products/magnum-pump), [Ultrahot](/en/products/ultrahot) and [Horsemen](/en/products/horsemen) are each RM159, with free delivery across Malaysia and cash on delivery (COD). Ingredients, directions and warnings are on the pack label, not in this article.",
+        "Ask on WhatsApp for a photo of the full label before you order, then check it yourself. This site does not state a MAL number for those products. This article also does not say those products are coffee, and it does not say they contain any herb.",
+      ] },
+    ],
+    qa: [
+      { q: "Should I buy a banned coffee from another seller?", a: "No. If the authorities have ordered sales to stop, do not look for another seller. Stop using it if you already have it, and get a doctor's advice if you feel unwell." },
+      { q: "Does every herbal coffee contain a prescription medicine?", a: "No. The statements above are about the named products, and about 7 of 500 coffee samples analysed from 2021 through July 2024. That figure does not mean every coffee. Still check the label of the pack you want to buy." },
+      { q: "Where can a MAL number be checked?", a: "On the NPRA product search called QUEST3+. The step-by-step guide is the article on how to check KKM registration, on this blog." },
+      { q: "Are Magnum Pump, Ultrahot or Horsemen a coffee?", a: "They are not described that way. Each product page states only the RM159 price, free delivery and payment on delivery. Ingredients are on the label. Ask for a label photo if you want to check before you buy." },
+    ],
+    sources: [src.nanBao, src.utusanKopiPejuang, src.pharmacyMal, src.quest],
+    disclaimer: "This article is consumer information based on the NPRA statement of 18 March 2019 and Utusan's report of 22 August 2024. It is not medical advice and makes no claim about any product.",
+  },
+  { published: "2026-10-09", updated: "2026-10-09" },
+);
+
+export const buyingArticles: Article[] = [cod, chooseSupplement, buyOnline, unregisteredHerbalCoffee];

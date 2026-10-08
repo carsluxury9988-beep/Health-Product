@@ -49,4 +49,8 @@ export const src = {
   ninjaScam: { label: "Ninja Van Malaysia — Nasihat penipuan penghantaran bungkusan", url: "https://www.ninjavan.co/ms-my/support/consignee-support/parcel-scams-advisory" },
   malayMailCod: { label: "Malay Mail (17 Jun 2025) — Paying for nothing: how Malaysians are scammed using parcels they never ordered", url: "https://www.malaymail.com/news/malaysia/2025/06/17/paying-for-nothing-how-malaysians-are-scammed-using-parcels-they-never-ordered/179959" },
   pdpa: { label: "Jabatan Perlindungan Data Peribadi — Akta Perlindungan Data Peribadi 2010", url: "https://www.pdp.gov.my/" },
+  utusanKopiPejuang: { label: "Utusan (22 Ogos 2024) — KKM larang penjualan Kopi Pejuang", url: "https://www.utusan.com.my/nasional/2024/08/kkm-larang-penjualan-kopi-pejuang-dikesan-ada-ubat-mati-pucuk/" },
+  tjnprTongkat: { label: "Tropical Journal of Natural Product Research (2023). Comparison of three plants synonymous with Tongkat Ali. TJNPR 7(5)", url: "https://www.tjnpr.org/index.php/home/article/view/1983" },
+  mybisBullata: { label: "MyBIS — Polyalthia bullata (Tongkat Ali Hitam)", url: "https://www.mybis.gov.my/sp/4261" },
+  frimTongkat: { label: "FRIM Herba Xpress — Eurycoma longifolia (Tongkat Ali)", url: "https://herbaxpress.frim.gov.my/kenaliHerbaDetail.cfm?namaHerba=TONGKAT+ALI" },
 } satisfies Record<string, ArticleSource>;
