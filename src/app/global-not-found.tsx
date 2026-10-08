@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { sans } from "@/lib/fonts";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 export const metadata: Metadata = {
   title: "Halaman tidak ditemui | Lebih Yakin",
@@ -11,6 +12,9 @@ export const metadata: Metadata = {
 export default function GlobalNotFound() {
   return (
     <html lang="ms-MY" className={sans.variable}>
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body>
         <main id="main-content" className="section">
           <div className="container status-page">
