@@ -521,4 +521,99 @@ const tongkatAliColours = qaArticle(
   { published: "2026-10-09", updated: "2026-10-09" },
 );
 
-export const ingredientArticles: Article[] = [ginseng, maca, honey, dates, blackSeed, tongkatAliColours];
+
+const ashwagandha = qaArticle(
+  "ashwagandha",
+  "ingredients",
+  {
+    slug: "ashwagandha-untuk-apa",
+    title: "Ashwagandha untuk apa, dan kenapa tiba-tiba semua orang sebut?",
+    seoTitle: "Ashwagandha Untuk Apa? Fakta & Risiko",
+    description: "Ashwagandha tiba-tiba ada di rak dan iklan, kadang-kadang bersama habbatus sauda. Apa itu, apa kata kajian tentang tidur dan stres, risiko keselamatan, dan cara semak MAL.",
+    lead: "Seorang kawan hantar gambar botol di grup WhatsApp: ashwagandha campur habbatus sauda, katanya semua orang dah cuba. Ashwagandha (Withania somnifera) ialah pokok renek dari India, Afrika dan Timur Tengah yang lama digunakan dalam perubatan Ayurveda. Menurut NCCIH, kajian menunjukkan sesetengah sediaan ashwagandha mungkin membantu insomnia dan stres, tetapi banyak kajian kecil dan menggunakan sediaan berbeza. Ia mungkin selamat untuk jangka pendek sehingga 3 bulan, dan ada orang yang perlu mengelakkannya.",
+    imageAlt: "Ikon daun dan buah kecil untuk artikel ashwagandha",
+    blocks: [
+      { heading: "Kenapa ashwagandha tiba-tiba ada di mana-mana?", paragraphs: [
+        "Sebab ia sedang dipromosikan untuk banyak perkara sekali gus. NCCIH, agensi kesihatan Amerika Syarikat, menyatakan suplemen ashwagandha kini sering dipromosikan untuk stres dan kebimbangan, tidur, dan prestasi sukan. Ia juga pernah dipromosikan untuk COVID-19, tetapi NCCIH berkata tiada bukti berkualiti tinggi yang mencukupi untuk itu.",
+        "Bila satu bahan dijual untuk terlalu banyak tujuan, itu tanda untuk perlahan dan baca bukti dahulu.",
+      ] },
+      { heading: "Apa sebenarnya ashwagandha?", paragraphs: [
+        "Ashwagandha, juga dipanggil Indian ginseng, ialah pokok renek malar hijau bernama saintifik Withania somnifera. Ia mengandungi sekumpulan sebatian yang dipanggil withanolide. Suplemen biasanya mengandungi akar, daun, atau ekstrak akar dan daun.",
+        "Walaupun digelar Indian ginseng, ia bukan ginseng Panax. Untuk ginseng, baca artikel [kebaikan ginseng](/blog/kebaikan-ginseng).",
+      ] },
+      { heading: "Apa kata kajian tentang tidur dan stres?", paragraphs: [
+        "NCCIH menyatakan kajian menunjukkan sesetengah sediaan ashwagandha mungkin berkesan untuk insomnia dan stres. Kesannya terhadap kebimbangan masih tidak jelas.",
+        "Untuk kegunaan lain seperti asma, prestasi sukan, fungsi kognitif dan diabetes, NCCIH berkata bukti belum cukup untuk menentukan sama ada ia membantu. Banyak kajian mempunyai saiz sampel kecil dan menggunakan pelbagai jenis sediaan, jadi satu jenama tidak boleh dianggap sama dengan yang dikaji.",
+        "Jika masalah utama anda tidur atau stres, langkah asas tetap penting. Lihat [cara tidur lena](/blog/cara-tidur-lena) dan [cara kurangkan stres](/blog/cara-kurangkan-stres).",
+      ] },
+      { heading: "Siapa yang perlu berhati-hati atau mengelakkannya?", paragraphs: [
+        "Menurut NCCIH, ashwagandha mungkin selamat jika diambil untuk jangka pendek, sehingga 3 bulan. Belum ada maklumat yang cukup tentang keselamatan jangka panjang. Sesetengah orang mengalami rasa mengantuk, sakit perut, cirit-birit dan muntah. Walaupun jarang, ada kes kecederaan hati yang dikaitkan dengan suplemen ashwagandha.",
+      ], list: [
+        "Elakkan semasa mengandung dan jangan guna semasa menyusu.",
+        "Tidak disyorkan bagi mereka yang akan menjalani pembedahan, atau yang mempunyai penyakit autoimun atau tiroid.",
+        "Ia mungkin berinteraksi dengan ubat diabetes, ubat darah tinggi, ubat yang melemahkan sistem imun, ubat penenang, ubat sawan dan ubat hormon tiroid.",
+        "NCCIH juga menasihatkan pesakit kanser prostat yang sensitif hormon supaya mengelakkannya.",
+      ] },
+      { heading: "Ashwagandha campur habbatus sauda: perlukah lulus KKM?", paragraphs: [
+        "Produk gabungan tetap satu produk, dan pek yang anda pegang perlu disemak sendiri. Cari nombor MAL dan hologram pada pek, kemudian semak di carian produk NPRA. Langkahnya ada dalam [cara semak produk lulus KKM](/blog/cara-semak-produk-lulus-kkm).",
+        "Untuk fakta tentang habbatus sauda sendiri, baca [kebaikan habbatus sauda](/blog/kebaikan-habbatus-sauda). Artikel ini tidak merujuk kepada mana-mana produk yang dijual di laman ini dan tidak mengatakan mana-mana produk itu mengandungi ashwagandha.",
+      ] },
+    ],
+    qa: [
+      { q: "Berapa lama ashwagandha boleh diambil?", a: "NCCIH menyatakan ia mungkin selamat untuk jangka pendek, sehingga 3 bulan. Keselamatan jangka panjang belum cukup diketahui. Ikut label produk berdaftar dan bincang dengan doktor atau ahli farmasi." },
+      { q: "Adakah ashwagandha sama dengan ginseng?", a: "Tidak. Ia digelar Indian ginseng, tetapi nama saintifiknya Withania somnifera, tumbuhan berbeza daripada ginseng Panax." },
+      { q: "Bolehkah ashwagandha diambil bersama ubat darah tinggi atau diabetes?", a: "Bincang dengan doktor dahulu. NCCIH menyatakan ashwagandha mungkin berinteraksi dengan beberapa ubat, termasuk ubat diabetes dan ubat darah tinggi." },
+      { q: "Adakah ashwagandha merawat kebimbangan?", a: "Belum jelas. NCCIH menyatakan bukti tentang kesannya terhadap kebimbangan masih tidak jelas. Jika kebimbangan mengganggu hidup anda, berjumpa doktor atau hubungi Talian HEAL 15555." },
+    ],
+    sources: [src.nccihAshwagandha, src.pharmacyMal, src.quest],
+    doctorNote: herbDoctorMs,
+    disclaimer: "Artikel ini maklumat umum berdasarkan ringkasan NCCIH dan panduan KKM. Kawan di grup WhatsApp ialah contoh. Ia bukan nasihat perubatan dan bukan dakwaan tentang mana-mana produk.",
+  },
+  {
+    slug: "what-is-ashwagandha",
+    title: "What is ashwagandha for, and why is everyone suddenly talking about it?",
+    seoTitle: "What Is Ashwagandha? Facts & Risks",
+    description: "Ashwagandha is suddenly on shelves and in adverts, sometimes mixed with black seed. What it is, what research says about sleep and stress, the safety risks, and how to check a MAL number.",
+    lead: "A friend posts a photo of a bottle in the family WhatsApp group: ashwagandha mixed with black seed, and apparently everyone has tried it. Ashwagandha (Withania somnifera) is a shrub from India, Africa and the Middle East with a long history in Ayurvedic medicine. According to NCCIH, research shows some ashwagandha preparations may help insomnia and stress, but many studies are small and use different preparations. It may be safe short term, up to 3 months, and some people should avoid it.",
+    imageAlt: "Icon of a leaf and a small fruit for an article on ashwagandha",
+    blocks: [
+      { heading: "Why is ashwagandha suddenly everywhere?", paragraphs: [
+        "Because it is being promoted for many things at once. NCCIH, a US health agency, says ashwagandha supplements are now often promoted for stress and anxiety, sleep, and athletic performance. It has also been promoted for COVID-19, but NCCIH says there is not enough high-quality evidence for that.",
+        "When one ingredient is sold for too many purposes, that is a sign to slow down and read the evidence first.",
+      ] },
+      { heading: "What exactly is ashwagandha?", paragraphs: [
+        "Ashwagandha, also called Indian ginseng, is an evergreen shrub with the scientific name Withania somnifera. It contains a group of compounds called withanolides. Supplements usually contain the root, the leaf, or root and leaf extracts.",
+        "Despite the nickname Indian ginseng, it is not Panax ginseng. For ginseng, read [ginseng benefits](/en/blog/ginseng-benefits).",
+      ] },
+      { heading: "What does research say about sleep and stress?", paragraphs: [
+        "NCCIH says research shows some ashwagandha preparations may be effective for insomnia and stress. The evidence on anxiety is unclear.",
+        "For other uses such as asthma, athletic performance, cognitive function and diabetes, NCCIH says there is not enough evidence to tell whether it helps. Many studies had small sample sizes and used a variety of preparations, so one brand cannot be assumed to match what was studied.",
+        "If your main problem is sleep or stress, the basics still matter. See [how to sleep better](/en/blog/how-to-sleep-better) and [how to reduce stress](/en/blog/how-to-reduce-stress).",
+      ] },
+      { heading: "Who should be careful or avoid it?", paragraphs: [
+        "According to NCCIH, ashwagandha may be safe when taken short term, up to 3 months. There is not enough information on long-term safety. Some people get drowsiness, stomach upset, diarrhoea and vomiting. Although rare, there have been cases of liver injury linked to ashwagandha supplements.",
+      ], list: [
+        "Avoid it during pregnancy and do not use it while breastfeeding.",
+        "It is not recommended for people about to have surgery, or for people with autoimmune or thyroid disorders.",
+        "It may interact with medicines for diabetes and high blood pressure, immunosuppressants, sedatives, anti-seizure medicines and thyroid hormone medicines.",
+        "NCCIH also advises people with hormone-sensitive prostate cancer to avoid it.",
+      ] },
+      { heading: "Ashwagandha mixed with black seed: does it need KKM registration?", paragraphs: [
+        "A combination product is still one product, and the pack in your hand needs to be checked on its own. Look for the MAL number and hologram on the pack, then check it on NPRA's product search. The steps are in [how to check KKM registration](/en/blog/how-to-check-kkm-registration).",
+        "For facts on black seed itself, read [black seed benefits](/en/blog/black-seed-benefits). This article does not refer to any product sold on this site and does not say that any of those products contain ashwagandha.",
+      ] },
+    ],
+    qa: [
+      { q: "How long can ashwagandha be taken?", a: "NCCIH says it may be safe short term, up to 3 months. Long-term safety is not well known. Follow a registered product's label and talk to a doctor or pharmacist." },
+      { q: "Is ashwagandha the same as ginseng?", a: "No. It is nicknamed Indian ginseng, but its scientific name is Withania somnifera, a different plant from Panax ginseng." },
+      { q: "Can ashwagandha be taken with blood pressure or diabetes medicine?", a: "Talk to a doctor first. NCCIH says ashwagandha may interact with some medicines, including those for diabetes and high blood pressure." },
+      { q: "Does ashwagandha treat anxiety?", a: "That is unclear. NCCIH says the evidence on its effect on anxiety is unclear. If anxiety is affecting your life, see a doctor or call the HEAL 15555 line." },
+    ],
+    sources: [src.nccihAshwagandha, src.pharmacyMal, src.quest],
+    doctorNote: herbDoctorEn,
+    disclaimer: "This article is general information based on NCCIH's summary and MOH guidance. The friend in the WhatsApp group is an example. It is not medical advice and makes no claim about any product.",
+  },
+  { published: "2026-10-09", updated: "2026-10-09" },
+);
+
+export const ingredientArticles: Article[] = [ginseng, maca, honey, dates, blackSeed, tongkatAliColours, ashwagandha];

@@ -685,4 +685,103 @@ const screening = qaArticle(
   },
 );
 
-export const mensHealthArticles: readonly Article[] = [sleep, stress, tired, stamina, belly, smoking, screening];
+
+const kkmScreening = qaArticle(
+  "kkm-adult-screening",
+  "mens-health",
+  {
+    slug: "saringan-kesihatan-lelaki-klinik-kerajaan",
+    title: "Kenapa lelaki 20-an hingga 50-an elak klinik, dan apa saringan KKM yang menunggu?",
+    seoTitle: "Saringan Kesihatan Lelaki di Klinik KKM",
+    description: "Ramai lelaki tunggu sakit baru jumpa doktor. KKM ada saringan status kesihatan untuk lelaki dewasa 20 hingga 59 tahun. Siapa layak, di mana, dan apa yang disemak.",
+    lead: "Abang ipar kata dia sihat, tak perlu klinik, sebab tak pernah sakit. Ramai lelaki macam itu. Tetapi Kementerian Kesihatan Malaysia menyediakan saringan status kesihatan untuk lelaki dan wanita dewasa berumur 20 hingga 59 tahun, untuk mengesan faktor risiko dan penyakit lebih awal. Saringan ini direkod menggunakan Borang Saringan Status Kesihatan (BSSK) dan dijalankan di klinik kesihatan, Klinik 1 Malaysia dan aktiviti komuniti.",
+    imageAlt: "Ikon papan klip dengan senarai semak untuk artikel saringan kesihatan lelaki",
+    blocks: [
+      { heading: "Kenapa ramai lelaki tunggu sakit baru pergi klinik?", paragraphs: [
+        "Sibuk kerja, malu menunggu lama, atau rasa tidak ada apa-apa yang perlu diperiksa. Masalahnya, banyak faktor risiko tidak memberi isyarat awal. Saringan dibuat untuk orang yang rasa sihat, bukan hanya untuk orang yang sudah sakit.",
+        "Artikel ini menerangkan saringan dewasa KKM. Untuk senarai pemeriksaan mengikut umur dan program SEHATi PERKESO, baca [pemeriksaan kesihatan untuk lelaki](/blog/pemeriksaan-kesihatan-lelaki).",
+      ] },
+      { heading: "Siapa yang disasarkan oleh saringan dewasa KKM?", paragraphs: [
+        "Bahagian Pembangunan Kesihatan Keluarga KKM menyatakan kumpulan sasaran Perkhidmatan Kesihatan Dewasa ialah lelaki dan wanita dewasa berumur 20 hingga 59 tahun. Bagi umur 60 tahun ke atas, Jabatan Kesihatan WP Kuala Lumpur dan Putrajaya menyenaraikan BSSK untuk warga emas sebagai kategori berasingan.",
+      ] },
+      { heading: "Apa yang disemak dalam saringan ini?", paragraphs: [
+        "Jabatan Kesihatan WP Kuala Lumpur dan Putrajaya menyenaraikan fokus saringan BSSK seperti berikut:",
+      ], list: [
+        "Sejarah perubatan, pembedahan dan reproduktif, peribadi dan keluarga.",
+        "Corak pemakanan.",
+        "Aktiviti fizikal.",
+        "Pengambilan bahan dan ubat.",
+        "Kesihatan mental.",
+        "Ukuran biometri.",
+      ], after: [
+        "Objektifnya, menurut jabatan itu, ialah pengesanan awal faktor risiko, pengesanan awal penyakit, dan pengurusan awal penyakit untuk mengelakkan komplikasi.",
+      ] },
+      { heading: "Di mana saringan ini boleh dibuat?", paragraphs: [
+        "Bagi dewasa, Jabatan Kesihatan WP Kuala Lumpur dan Putrajaya menyatakan saringan dijalankan di klinik kesihatan, Klinik 1 Malaysia dan dalam aktiviti komuniti. Perkhidmatan yang disenaraikan oleh KKM termasuk saringan untuk mengenal pasti faktor risiko, khidmat nasihat pengurusan risiko, rujukan ke perkhidmatan lanjutan jika perlu, dan saringan kesihatan mental.",
+        "Tanya klinik kesihatan berhampiran tentang cara mendaftar dan waktu saringan. Bawa senarai ubat dan suplemen yang anda ambil, serta sejarah penyakit keluarga.",
+      ] },
+      { heading: "Apa beza saringan KKM dengan pakej klinik swasta?", paragraphs: [
+        "Saringan KKM disasarkan kepada kumpulan umur tertentu dan dijalankan melalui klinik kerajaan dan aktiviti komuniti. Klinik swasta dan hospital menawarkan pakej pemeriksaan sendiri dengan kandungan dan harga yang berbeza. PERKESO pula menawarkan saringan melalui SEHATi kepada pencarum yang memenuhi syarat, jadi semak kelayakan terkini di laman SEHATi.",
+        "Mana-mana pilihan yang anda buat, yang penting ialah minta doktor terangkan keputusan dan langkah seterusnya.",
+      ] },
+    ],
+    qa: [
+      { q: "Berapa umur yang layak untuk saringan dewasa KKM?", a: "KKM menyatakan kumpulan sasaran Perkhidmatan Kesihatan Dewasa ialah lelaki dan wanita berumur 20 hingga 59 tahun. Warga emas 60 tahun ke atas mempunyai kategori saringan tersendiri." },
+      { q: "Apa itu BSSK?", a: "BSSK ialah Borang Saringan Status Kesihatan, borang yang digunakan untuk merekod saringan bagi remaja, lelaki dan wanita dewasa, serta warga emas." },
+      { q: "Adakah saringan ini termasuk kesihatan mental?", a: "Ya. KKM menyenaraikan saringan kesihatan mental lelaki dan wanita dewasa sebagai sebahagian daripada perkhidmatan kesihatan dewasa." },
+      { q: "Perlukah saya rasa sakit dahulu sebelum saringan?", a: "Tidak. Objektif saringan ialah mengesan faktor risiko dan penyakit lebih awal, sebelum komplikasi berlaku. Jika anda sudah ada gejala, jumpa doktor tanpa menunggu saringan." },
+    ],
+    sources: [src.bpkkAdult, src.jknklScreening, src.sehati],
+    doctorNote: "Jangan tunggu saringan berkala jika anda mengalami sakit dada, sesak nafas, kelemahan sebelah badan, darah dalam air kencing atau najis, berat badan turun tanpa sebab, atau rasa sedih atau putus asa yang berpanjangan. Jumpa doktor segera atau hubungi 999 dalam kecemasan. Talian HEAL 15555 (KKM) tersedia untuk sokongan kesihatan mental.",
+    disclaimer: "Artikel ini maklumat umum berdasarkan laman KKM dan Jabatan Kesihatan WP Kuala Lumpur & Putrajaya. Abang ipar dalam cerita ialah contoh. Ia bukan nasihat perubatan; syarat dan tempat saringan boleh berubah.",
+  },
+  {
+    slug: "mens-health-screening-government-clinics",
+    title: "Why do men in their 20s to 50s avoid the clinic, and what MOH screening is waiting?",
+    seoTitle: "Men's Health Screening at MOH Clinics",
+    description: "Many men wait until they are ill to see a doctor. Malaysia's MOH runs health status screening for adult men aged 20 to 59. Who it is for, where it happens and what is checked.",
+    lead: "Your brother-in-law says he is healthy and does not need a clinic, because he is never sick. Many men think that way. But Malaysia's Ministry of Health provides health status screening for adult men and women aged 20 to 59, to find risk factors and disease earlier. The screening is recorded on the Health Status Screening Form (BSSK) and carried out at health clinics, Klinik 1 Malaysia and community activities.",
+    imageAlt: "Clipboard checklist icon for an article on men's health screening",
+    blocks: [
+      { heading: "Why do so many men wait until they are ill?", paragraphs: [
+        "Busy with work, not wanting to queue, or feeling there is nothing to check. The problem is that many risk factors give no early warning. Screening is meant for people who feel well, not only for people who are already sick.",
+        "This article explains MOH adult screening. For a list of checks by age and PERKESO's SEHATi programme, read [health screening for men](/en/blog/health-screening-for-men).",
+      ] },
+      { heading: "Who is MOH adult screening for?", paragraphs: [
+        "The MOH Family Health Development Division says the target group for Adult Health Services is men and women aged 20 to 59. For people aged 60 and over, the Federal Territories of Kuala Lumpur and Putrajaya Health Department lists BSSK for older people as a separate category.",
+      ] },
+      { heading: "What is checked in this screening?", paragraphs: [
+        "The Kuala Lumpur and Putrajaya Health Department lists the focus of BSSK screening as:",
+      ], list: [
+        "Medical, surgical and reproductive history, personal and family.",
+        "Eating patterns.",
+        "Physical activity.",
+        "Substance and medicine use.",
+        "Mental health.",
+        "Body measurements.",
+      ], after: [
+        "Its stated aims are early detection of risk factors, early detection of disease, and early management of disease to prevent complications.",
+      ] },
+      { heading: "Where can this screening be done?", paragraphs: [
+        "For adults, the Kuala Lumpur and Putrajaya Health Department says screening is carried out at health clinics, Klinik 1 Malaysia and in community activities. Services listed by MOH include screening to identify risk factors, advice on managing risk, referral to further services where needed, and mental health screening.",
+        "Ask your nearest health clinic how to register and when screening is held. Bring a list of the medicines and supplements you take, and your family's medical history.",
+      ] },
+      { heading: "How is MOH screening different from a private clinic package?", paragraphs: [
+        "MOH screening targets set age groups and runs through government clinics and community activities. Private clinics and hospitals offer their own check-up packages with different contents and prices. PERKESO also offers screening through SEHATi to eligible contributors, so check the latest eligibility on the SEHATi site.",
+        "Whichever option you choose, the important part is asking the doctor to explain the results and the next steps.",
+      ] },
+    ],
+    qa: [
+      { q: "What age group is MOH adult screening for?", a: "MOH says the target group for Adult Health Services is men and women aged 20 to 59. People aged 60 and over have their own screening category." },
+      { q: "What is BSSK?", a: "BSSK is the Health Status Screening Form (Borang Saringan Status Kesihatan), used to record screening for adolescents, adult men and women, and older people." },
+      { q: "Does this screening include mental health?", a: "Yes. MOH lists mental health screening for adult men and women as part of its adult health services." },
+      { q: "Do I need to feel ill before getting screened?", a: "No. The aim of screening is to find risk factors and disease earlier, before complications. If you already have symptoms, see a doctor without waiting for screening." },
+    ],
+    sources: [src.bpkkAdult, src.jknklScreening, src.sehati],
+    doctorNote: "Do not wait for routine screening if you have chest pain, breathlessness, weakness on one side of the body, blood in your urine or stool, unexplained weight loss, or lasting low mood or hopelessness. See a doctor urgently or call 999 in an emergency. The MOH HEAL 15555 line offers mental health support.",
+    disclaimer: "This article is general information based on MOH and Kuala Lumpur & Putrajaya Health Department pages. The brother-in-law is an example. It is not medical advice; screening terms and locations can change.",
+  },
+  { published: "2026-10-09", updated: "2026-10-09" },
+);
+
+export const mensHealthArticles: readonly Article[] = [sleep, stress, tired, stamina, belly, smoking, screening, kkmScreening];
