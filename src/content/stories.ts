@@ -23,7 +23,7 @@ const malamPertamaMs = story({
   description: "Kisah rekaan malam pertama selepas nikah: pengantin baru yang penat dan gementar, perbualan jujur, secawan teh dan doa berdua. Disertakan tips malam pertama yang tenang.",
   category: "Kisah rekaan",
   lead: "Kisah rekaan. Selepas kenduri yang panjang, sepasang pengantin baru akhirnya tinggal berdua: penat, gementar dan tidak tahu hendak bercakap apa. Inilah kisah malam pertama selepas nikah yang berakhir dengan secawan teh, doa berdua dan pintu yang ditutup perlahan.",
-  imageAlt: "Bunga melur putih di sebelah secawan teh panas di bawah cahaya lampu kuning yang hangat",
+  imageAlt: "Ilustrasi: pasangan pengantin baru berbaju nikah duduk bersama dan tersenyum di bilik pengantin",
   blocks: [
     {
       heading: "Selepas kenduri: pelamin sudah kosong, inai masih merah",
@@ -116,7 +116,7 @@ const malamPertamaEn = story({
   description: "Fiction: a Malaysian couple's first night after the nikah. Tired, nervous newlyweds, an honest talk, a cup of tea and a prayer together, plus tips for a calm wedding night.",
   category: "Fiction",
   lead: "Fiction (Kisah rekaan). After a long kenduri, two newlyweds are finally alone: exhausted, nervous and with no idea what to say. This is a story of the first night after the nikah that ends with a cup of tea, a prayer together and a door closing softly.",
-  imageAlt: "White jasmine flowers beside a cup of hot tea in warm yellow lamplight",
+  imageAlt: "Illustration: newlywed couple in wedding attire sitting together and smiling in the bridal room",
   blocks: [
     {
       heading: "After the kenduri: an empty pelamin and fresh inai",
