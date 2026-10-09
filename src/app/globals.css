@@ -441,3 +441,21 @@ img { max-width: 100%; height: auto; }
 .doctor-note h2 { font-size: 1.15rem; margin-bottom: 6px; }
 .doctor-note p { font-size: 1.02rem; }
 .prose section[id], .faq-item[id] { scroll-margin-top: 96px; }
+
+/* "Produk Kami" box at the end of buying/relationships articles */
+.article-products { margin-top: 36px; margin-bottom: 8px; }
+.article-products-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 12px; }
+.article-products-head h2 { font-size: 1.2rem; margin: 0; color: var(--green-900); }
+.article-products-head p { margin: 0; font-size: 0.9rem; color: var(--ink-3); }
+.article-products-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.article-product { display: flex; gap: 14px; align-items: center; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg-muted); }
+.article-product-media { flex: 0 0 64px; display: flex; justify-content: center; }
+.article-product-media img { width: 64px; height: auto; }
+.article-product-body { min-width: 0; flex: 1; }
+.article-product-body h3 { font-size: 1.02rem; margin: 0 0 2px; }
+.article-product-body h3 a { color: var(--ink); text-decoration: none; }
+.article-product-price { margin: 0; color: var(--green-800); }
+.article-product-perks { margin: 2px 0 10px; font-size: 0.82rem; font-weight: 700; color: var(--green-800); }
+.article-product-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.article-product-actions .btn { min-height: 38px; padding: 0.35rem 0.8rem; font-size: 0.9rem; }
+@media (max-width: 640px) { .article-products-list { grid-template-columns: 1fr; } }

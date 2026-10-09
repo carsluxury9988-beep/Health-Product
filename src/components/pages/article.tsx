@@ -11,6 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 import { headingId, formatDate } from "@/lib/article-utils";
 import { RichText, plainText } from "@/lib/rich-text";
 import { ArticleCard } from "@/components/article-card";
+import { ArticleProducts } from "@/components/article-products";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FaqList } from "@/components/faq-list";
 import { ArrowRightIcon } from "@/components/icons";
@@ -111,6 +112,7 @@ export function ArticlePage({ slug, locale }: { slug: string; locale: Locale }) 
           <p className="disclaimer">{content.disclaimer}</p>
           <p className="article-index-link"><Link href={questionIndexPaths[locale]} className="text-link">{ui.indexCta} <ArrowRightIcon size={16} /></Link></p>
         </div>
+        <ArticleProducts article={article} locale={locale} />
       </article>
       {related.length > 0 && (
         <section className="section section-muted">
