@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n";
 
-export type TopicKey = "relationships" | "mens-health" | "ingredients" | "buying";
+export type TopicKey = "relationships" | "stories" | "mens-health" | "ingredients" | "buying";
 
 type TopicCopy = { slug: string; label: string; title: string; seoTitle: string; description: string; lead: string; /** Longer explanatory text shown below the article list. */ intro?: string[] };
 
@@ -28,6 +28,28 @@ export const topics: readonly Topic[] = [
       description: "Practical answers on making your wife happy, communication, romantic ideas, making up after an argument and handling conflict in marriage.",
       lead: "Questions husbands and wives often ask — about communication, affection and conflict — with practical answers that respect family values.",
       intro: ["Articles in this category answer everyday questions in a marriage: how to communicate with your spouse, show appreciation, make up after an argument and handle conflict without damaging the relationship. Each starts with a short answer, followed by practical steps you can try.", "If problems persist, the articles list professional help, including LPPKN marriage and family counselling and the MOH HEAL 15555 line for emotional support. This content is general reading and not a substitute for counselling."],
+    },
+  },
+  {
+    key: "stories",
+    ogImage: "/og/topic-stories.jpg",
+    ms: {
+      slug: "kisah-pasangan",
+      label: "Kisah Pasangan",
+      title: "Kisah Pasangan",
+      seoTitle: "Kisah Pasangan: Cerita Rumah Tangga",
+      description: "Kisah rekaan tentang suami isteri di Malaysia: pengantin baru, malam pertama, kenduri dan rumah tangga, ditulis dengan hangat dan diakhiri tips praktikal.",
+      lead: "Kisah rekaan tentang pasangan suami isteri di Malaysia, dari hari nikah hingga rutin harian. Setiap kisah diakhiri dengan tips ringkas yang praktikal.",
+      intro: ["Kisah dalam kategori ini ialah rekaan. Watak dan peristiwa tidak berdasarkan orang sebenar, tetapi rasa gementar, penat dan lucu dalam rumah tangga itu dekat dengan ramai pasangan. Setiap kisah diakhiri dengan beberapa tips dan sumber rujukan yang boleh dipercayai."],
+    },
+    en: {
+      slug: "couple-stories",
+      label: "Couple Stories",
+      title: "Couple Stories",
+      seoTitle: "Couple Stories: Malaysian Marriage Fiction",
+      description: "Short fiction about married couples in Malaysia: newlyweds, the wedding night, the kenduri and everyday married life, told warmly and ending with practical tips.",
+      lead: "Short fiction about married couples in Malaysia, from the wedding day to everyday routines. Each story ends with a few practical tips.",
+      intro: ["Stories in this category are fiction. The characters and events are not based on real people, but the nerves, tiredness and humour of married life will feel familiar to many couples. Each story ends with a few tips and reputable sources."],
     },
   },
   {
