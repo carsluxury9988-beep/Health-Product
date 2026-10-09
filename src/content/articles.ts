@@ -7,6 +7,7 @@ import { mensHealthArticles } from "@/content/qa/mens-health";
 import { ingredientArticles } from "@/content/qa/ingredients";
 import { buyingArticles } from "@/content/qa/buying";
 import { withExpansion } from "@/content/qa/expansions";
+import { storyArticles } from "@/content/stories";
 
 /** Paragraphs and list items may contain inline links written as `[label](/path)`. */
 export type ArticleBlock = { heading: string; paragraphs: string[]; list?: string[]; /** Paragraphs shown after the list. */ after?: string[] };
@@ -160,6 +161,8 @@ export const articles: readonly Article[] = [
   foodsForStamina,
   happyMarriage,
   relationshipQuestions,
+  // Stories last: same-day articles keep registry order, so stories never displace newer Q&A on the homepage.
+  ...storyArticles,
 ].map(withExpansion);
 
 export function articlesByTopic(topic: TopicKey) {
