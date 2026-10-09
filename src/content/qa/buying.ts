@@ -396,4 +396,95 @@ const unregisteredHerbalCoffee = qaArticle(
   { published: "2026-10-09", updated: "2026-10-09" },
 );
 
-export const buyingArticles: Article[] = [cod, chooseSupplement, buyOnline, unregisteredHerbalCoffee];
+
+const codSabahSarawak = qaArticle(
+  "cod-sabah-sarawak",
+  "buying",
+  {
+    slug: "cod-sabah-sarawak-berapa-hari",
+    title: "Duduk di Sabah atau Sarawak, berapa hari bungkusan COD sampai?",
+    seoTitle: "COD ke Sabah & Sarawak: Berapa Hari?",
+    description: "Pesan dari Kota Kinabalu atau Kuching dan tertanya bila kurier datang? Tempoh penghantaran Lebih Yakin, angka rasmi Pos Malaysia untuk Malaysia Timur, dan cara COD berfungsi.",
+    lead: "Di Kota Kinabalu, seorang pembeli tekan hantar pada mesej WhatsApp, kemudian mula kira hari. Ramai kedai online senyap-senyap tulis “kecuali Sabah dan Sarawak”. Di Lebih Yakin, penghantaran percuma ke seluruh Malaysia termasuk Sabah dan Sarawak. Kami biasanya serahkan bungkusan kepada kurier dalam 1–3 hari selepas pesanan disahkan, dan kurier biasanya ambil 2–7 hari. Secara keseluruhan, biasanya 3–10 hari dari pengesahan pesanan, bergantung pada lokasi.",
+    imageAlt: "Ikon kotak bungkusan untuk artikel penghantaran COD ke Sabah dan Sarawak",
+    blocks: [
+      { heading: "Kenapa orang Sabah dan Sarawak selalu tanya soalan ini dulu?", paragraphs: [
+        "Sebab mereka sudah biasa kecewa. Iklan kata penghantaran percuma, tetapi di bawah ada tulisan kecil yang mengecualikan Malaysia Timur, atau ada caj tambahan selepas pesanan dibuat. Jadi soalan pertama bukan pasal produk. Soalan pertama ialah: sampai tak ke sini, dan berapa lama?",
+        "Di laman ini jawapannya tertulis di halaman [penghantaran](/penghantaran): kami menghantar ke Semenanjung Malaysia, Sabah dan Sarawak, dan tiada caj penghantaran ditambah pada harga produk.",
+      ] },
+      { heading: "Berapa hari biasanya, mengikut polisi kedai ini?", paragraphs: [
+        "Selepas pesanan disahkan di WhatsApp, kami biasanya serahkan bungkusan kepada kurier dalam 1–3 hari. Penghantaran oleh kurier biasanya 2–7 hari bergantung pada lokasi. Secara keseluruhan, pesanan biasanya sampai dalam 3–10 hari dari pengesahan pesanan.",
+        "Kami sahkan tempoh untuk alamat anda semasa pengesahan pesanan. Kelewatan boleh berlaku semasa musim perayaan, cuaca buruk atau di kawasan pedalaman. Kami tidak menjanjikan tarikh yang lebih cepat daripada polisi ini.",
+      ] },
+      { heading: "Apa kata angka rasmi kurier tentang Malaysia Timur?", paragraphs: [
+        "Sebagai gambaran, halaman perniagaan Pos Malaysia menyenaraikan penghantaran bungkusan domestik standard 1–3 hari untuk Semenanjung Malaysia dan 3–7 hari untuk Malaysia Timur. Itu angka Pos Malaysia untuk perkhidmatan mereka, bukan janji kedai ini, dan artikel ini tidak menyatakan kurier mana yang akan membawa bungkusan anda.",
+        "Pengajarannya mudah: bila kedai berkata Semenanjung lebih cepat, itu bukan alasan. Angka kurier sendiri memang membezakan Semenanjung dan Malaysia Timur.",
+      ] },
+      { heading: "Bagaimana COD berfungsi bila bungkusan sampai?", paragraphs: [
+        "Anda bayar tunai kepada kurier apabila bungkusan sampai. Jumlah yang perlu dibayar dimaklumkan semasa kami mengesahkan pesanan. Ketersediaan COD boleh berbeza mengikut kawasan dan kurier, jadi kami sahkan sama ada COD tersedia untuk alamat anda sebelum menghantar.",
+        "Sebelum bayar, semak nama penjual dan jumlah COD sama dengan yang disahkan di WhatsApp. Jangan bayar untuk bungkusan yang anda tidak pesan. Panduan penuh ada dalam [apa itu COD](/blog/apa-itu-cod).",
+      ] },
+      { heading: "Apa yang berlaku jika barang salah, atau anda ubah fikiran?", paragraphs: [
+        "Jika barang rosak, salah atau tidak lengkap, hubungi kami di WhatsApp secepat mungkin dengan gambar barang dan nama pada pesanan. Anda juga boleh memulangkan barang dalam 7 hari dari tarikh penghantaran jika barang itu belum dibuka dan belum digunakan. Butiran ada dalam [polisi pemulangan](/polisi-pemulangan).",
+        "Jika bungkusan COD ditolak atau tidak dapat dihantar selepas pesanan disahkan, kami mungkin tidak dapat menerima pesanan COD lagi daripada nombor yang sama. Jadi pesan bila anda memang bersedia menerima.",
+      ] },
+      { heading: "Apa yang ada dalam katalog untuk dipesan dari Malaysia Timur?", paragraphs: [
+        "Katalog ini ringkas. [Magnum Pump](/produk/magnum-pump), [Ultrahot](/produk/ultrahot) dan [Horsemen](/produk/horsemen) masing-masing RM159 seunit, penghantaran percuma termasuk ke Sabah dan Sarawak, dan bayaran tunai semasa terima. Ramuan, cara guna dan amaran ada pada label bungkusan.",
+        "Minta gambar label penuh melalui WhatsApp sebelum memesan jika anda mahu menyemaknya dahulu. Langkah memesan ada dalam [cara pesan](/cara-pesan).",
+      ] },
+    ],
+    qa: [
+      { q: "Adakah penghantaran ke Sabah dan Sarawak dikenakan caj?", a: "Tidak. Penghantaran percuma ke seluruh Malaysia, termasuk Sabah dan Sarawak. Tiada caj penghantaran ditambah pada harga produk." },
+      { q: "Berapa lama pesanan sampai ke Sabah atau Sarawak?", a: "Biasanya 3–10 hari dari pengesahan pesanan: 1–3 hari untuk kami serahkan kepada kurier dan 2–7 hari untuk penghantaran, bergantung pada lokasi. Kami sahkan tempoh untuk alamat anda semasa pengesahan pesanan." },
+      { q: "Adakah COD tersedia di kawasan pedalaman?", a: "Ia bergantung pada kawasan dan kurier. Kami sahkan sama ada COD tersedia untuk alamat anda sebelum bungkusan dihantar." },
+      { q: "Bolehkah saya pulangkan barang dari Sabah atau Sarawak?", a: "Boleh, dalam 7 hari dari tarikh penghantaran jika barang belum dibuka dan belum digunakan. Hubungi kami di WhatsApp atau e-mel dalam tempoh itu untuk langkah seterusnya." },
+    ],
+    sources: [src.lyShipping, src.lyReturns, src.posBusiness, src.ninjaScam],
+    disclaimer: "Artikel ini menerangkan polisi Lebih Yakin dan angka umum Pos Malaysia. Pembeli di Kota Kinabalu ialah contoh, bukan kes sebenar. Tempoh sebenar disahkan semasa pengesahan pesanan.",
+  },
+  {
+    slug: "cod-delivery-time-sabah-sarawak",
+    title: "Living in Sabah or Sarawak, how many days does a COD parcel take?",
+    seoTitle: "COD to Sabah & Sarawak: How Many Days?",
+    description: "Ordering from Kota Kinabalu or Kuching and wondering when the courier comes? Lebih Yakin's delivery times, Pos Malaysia's official East Malaysia figures, and how COD works.",
+    lead: "In Kota Kinabalu, a buyer taps send on a WhatsApp message, then starts counting days. Plenty of online shops quietly write “except Sabah and Sarawak”. At Lebih Yakin, delivery is free across Malaysia, including Sabah and Sarawak. We usually hand the parcel to the courier within 1–3 days after the order is confirmed, and the courier usually takes 2–7 days. Overall, it usually takes 3–10 days from order confirmation, depending on location.",
+    imageAlt: "Parcel box icon for an article on COD delivery to Sabah and Sarawak",
+    blocks: [
+      { heading: "Why do people in Sabah and Sarawak ask this first?", paragraphs: [
+        "Because they are used to being let down. An advert says free delivery, but the small print excludes East Malaysia, or an extra charge appears after the order. So the first question is not about the product. The first question is: will it reach me, and how long will it take?",
+        "On this site the answer is written on the [delivery](/en/shipping) page: we deliver to Peninsular Malaysia, Sabah and Sarawak, and no delivery charge is added to the product price.",
+      ] },
+      { heading: "How many days does it usually take under this shop's policy?", paragraphs: [
+        "After your order is confirmed on WhatsApp, we usually hand the parcel to the courier within 1–3 days. Courier delivery usually takes 2–7 days depending on location. Overall, orders usually arrive within 3–10 days of order confirmation.",
+        "We confirm the timing for your address when we confirm your order. Delays can happen during festive seasons, bad weather or in remote areas. We do not promise a faster date than this policy.",
+      ] },
+      { heading: "What do official courier figures say about East Malaysia?", paragraphs: [
+        "For a picture of the gap, Pos Malaysia's business page lists standard domestic parcel delivery as 1–3 days for Peninsular Malaysia and 3–7 days for East Malaysia. Those are Pos Malaysia's figures for its own service, not this shop's promise, and this article does not say which courier will carry your parcel.",
+        "The lesson is simple: when a shop says the Peninsula is faster, that is not an excuse. The courier's own figures separate the Peninsula from East Malaysia.",
+      ] },
+      { heading: "How does COD work when the parcel arrives?", paragraphs: [
+        "You pay the courier in cash when the parcel arrives. The amount due is confirmed when we confirm your order. COD availability can vary by area and courier, so we confirm whether COD is available for your address before shipping.",
+        "Before paying, check that the seller's name and the COD amount match what was confirmed on WhatsApp. Do not pay for a parcel you did not order. The full guide is in [what is cash on delivery](/en/blog/what-is-cash-on-delivery).",
+      ] },
+      { heading: "What happens if the item is wrong, or you change your mind?", paragraphs: [
+        "If an item is damaged, wrong or incomplete, contact us on WhatsApp as soon as possible with photos and the name on the order. You can also return an item within 7 days of delivery if it is unopened and unused. Details are in the [refund policy](/en/refund-policy).",
+        "If a COD parcel is refused or cannot be delivered after the order was confirmed, we may not be able to accept further COD orders from the same number. So order when you are ready to receive it.",
+      ] },
+      { heading: "What is in the catalogue to order from East Malaysia?", paragraphs: [
+        "The catalogue is short. [Magnum Pump](/en/products/magnum-pump), [Ultrahot](/en/products/ultrahot) and [Horsemen](/en/products/horsemen) are each RM159, with free delivery including to Sabah and Sarawak, and cash on delivery. Ingredients, directions and warnings are on the pack label.",
+        "Ask on WhatsApp for a photo of the full label before ordering if you want to check it first. The ordering steps are in [how to order](/en/how-to-order).",
+      ] },
+    ],
+    qa: [
+      { q: "Is there a charge for delivery to Sabah and Sarawak?", a: "No. Delivery is free across Malaysia, including Sabah and Sarawak. No delivery charge is added to the product price." },
+      { q: "How long does an order take to reach Sabah or Sarawak?", a: "Usually 3–10 days from order confirmation: 1–3 days for us to hand it to the courier and 2–7 days for delivery, depending on location. We confirm the timing for your address when we confirm the order." },
+      { q: "Is COD available in remote areas?", a: "It depends on the area and courier. We confirm whether COD is available for your address before the parcel is shipped." },
+      { q: "Can I return an item from Sabah or Sarawak?", a: "Yes, within 7 days of delivery if the item is unopened and unused. Contact us on WhatsApp or by email within that time for the next steps." },
+    ],
+    sources: [src.lyShipping, src.lyReturns, src.posBusiness, src.ninjaScam],
+    disclaimer: "This article explains Lebih Yakin's policy and Pos Malaysia's general figures. The buyer in Kota Kinabalu is an example, not a real case. The actual timing is confirmed when your order is confirmed.",
+  },
+  { published: "2026-10-09", updated: "2026-10-09" },
+);
+
+export const buyingArticles: Article[] = [cod, chooseSupplement, buyOnline, unregisteredHerbalCoffee, codSabahSarawak];

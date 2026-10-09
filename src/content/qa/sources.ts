@@ -53,4 +53,10 @@ export const src = {
   tjnprTongkat: { label: "Tropical Journal of Natural Product Research (2023). Comparison of three plants synonymous with Tongkat Ali. TJNPR 7(5)", url: "https://www.tjnpr.org/index.php/home/article/view/1983" },
   mybisBullata: { label: "MyBIS — Polyalthia bullata (Tongkat Ali Hitam)", url: "https://www.mybis.gov.my/sp/4261" },
   frimTongkat: { label: "FRIM Herba Xpress — Eurycoma longifolia (Tongkat Ali)", url: "https://herbaxpress.frim.gov.my/kenaliHerbaDetail.cfm?namaHerba=TONGKAT+ALI" },
+  posBusiness: { label: "Pos Malaysia — Business domestic shipping (standard parcel delivery times)", url: "https://www.pos.com.my/business/domestic" },
+  lyShipping: { label: "Lebih Yakin — Penghantaran & bayaran COD", url: "https://lebihyakin.my/penghantaran" },
+  lyReturns: { label: "Lebih Yakin — Polisi pemulangan", url: "https://lebihyakin.my/polisi-pemulangan" },
+  nccihAshwagandha: { label: "NCCIH (NIH) — Ashwagandha: usefulness and safety", url: "https://www.nccih.nih.gov/health/ashwagandha" },
+  bpkkAdult: { label: "KKM Bahagian Pembangunan Kesihatan Keluarga — Kesihatan dewasa", url: "https://hq.moh.gov.my/bpkk/index.php/component/content/category/30-kesihatan-dewasa.html" },
+  jknklScreening: { label: "Jabatan Kesihatan WP Kuala Lumpur & Putrajaya — Saringan kesihatan (BSSK)", url: "https://jknkl.moh.gov.my/jkwpklp/ms/perkhidmatan/program-kesihatan/saringan-kesihatan" },
 } satisfies Record<string, ArticleSource>;
